@@ -45,6 +45,15 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <style>
+        .dataTables_filter input:focus {
+            border-color: #000000;
+            outline: none;
+            background: gainsboro;
+        }
+
+
+
+
         .table th,
         .table td {
             text-align: left;
@@ -462,31 +471,31 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                    <svg class="stroke-icon ">
-                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Institution</span></a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="addInstitution.html">Add Institution </a></li>
-                                    <li><a href="institutionList.html">Institution List </a></li>
-                                </ul>
-                            </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Institution</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="addInstitution.html">Add Institution </a></li>
+                                        <li><a href="institutionList.html">Institution List </a></li>
+                                    </ul>
+                                </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">FAQ section</span></a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="FAQ.html">FAQ Question </a></li>
-                                <li><a href="FAQans.html">FAQ List </a></li>
-                            </ul>
-                        </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">FAQ section</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="FAQ.html">FAQ Question </a></li>
+                                        <li><a href="FAQans.html">FAQ List </a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -508,176 +517,26 @@
                             <div class="col-md-12">
                                 <div class="card p-3 shadow-sm overflow-auto">
                                     <!-- Tutor and Student Information Table -->
-                                    <table id="tutorStudentTable" class="table table-bordered table-striped mt-3">
-                                        <thead class="table-dark">
+                                    <table id="hireTutorRequestTable" class="table table-bordered table-striped mt-3">
+                                        <thead class="table-light">
                                             <tr class="">
                                                 <th>ID</th>
-                                                <th></th>
-                                                <th>Name</th>
-                                                <th>Phone</th>
-                                                <th>Location</th>
+                                                <th>Type</th>
+                                                <th class="text-nowrap"> Tutor Name</th>
+                                                <th class="text-nowrap">Phone</th>
+                                                <th class="text-nowrap">Location</th>
                                                 <th>Charge</th>
-                                                <th></th>
-                                                <th>Name</th>
-                                                <th>Phone</th>
+                                                <th>Type</th>
+                                                <th class="text-nowrap"> Student Name</th>
+                                                <th class="text-nowrap">Phone</th>
                                                 <th>Medium</th>
-                                                <th>Start Date</th>
+                                                <th class="text-nowrap">Start Date</th>
                                                 <th>Subject</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <!-- Rows as shown in your code -->
-                                            <!-- Example row -->
+                                        <tbody id="table-body">
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Karim Hossain</td>
-                                                <td class="text-nowrap">+880 987 654 3210</td>
-                                                <td class="text-nowrap">Chittagong</td>
-                                                <td>1995</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Aminul Islam</td>
-                                                <td class="text-nowrap">+880 654 789 1234</td>
-                                                <td class="text-nowrap">Math</td>
-                                                <td class="text-nowrap">15/08/2201</td>
-                                                <td class="text-nowrap">Science</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Hasan Uddin</td>
-                                                <td class="text-nowrap">+880 564 789 0123</td>
-                                                <td class="text-nowrap">Sylhet</td>
-                                                <td>1988</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Rafiqul Haque</td>
-                                                <td class="text-nowrap">+880 876 543 2109</td>
-                                                <td class="text-nowrap">Bangla</td>
-                                                <td class="text-nowrap">22/01/2202</td>
-                                                <td class="text-nowrap">History</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Jalal Miah</td>
-                                                <td class="text-nowrap">+880 210 987 6543</td>
-                                                <td class="text-nowrap">Rajshahi</td>
-                                                <td>1990</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Mahmud Rahman</td>
-                                                <td class="text-nowrap">+880 789 012 3456</td>
-                                                <td class="text-nowrap">Physics</td>
-                                                <td class="text-nowrap">05/05/2203</td>
-                                                <td class="text-nowrap">Chemistry</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Nazrul Islam</td>
-                                                <td class="text-nowrap">+880 345 678 9012</td>
-                                                <td class="text-nowrap">Khulna</td>
-                                                <td>1985</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Samiul Karim</td>
-                                                <td class="text-nowrap">+880 901 234 5678</td>
-                                                <td class="text-nowrap">Geography</td>
-                                                <td class="text-nowrap">20/02/2204</td>
-                                                <td class="text-nowrap">Biology</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Faruk Ali</td>
-                                                <td class="text-nowrap">+880 456 789 0123</td>
-                                                <td class="text-nowrap">Barisal</td>
-                                                <td>1992</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Tanvir Alam</td>
-                                                <td class="text-nowrap">+880 678 901 2345</td>
-                                                <td class="text-nowrap">Economics</td>
-                                                <td class="text-nowrap">30/03/2205</td>
-                                                <td class="text-nowrap">Business</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Asad Khan</td>
-                                                <td class="text-nowrap">+880 567 890 1234</td>
-                                                <td class="text-nowrap">Rangpur</td>
-                                                <td>1998</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Shakib Jahan</td>
-                                                <td class="text-nowrap">+880 234 567 8901</td>
-                                                <td class="text-nowrap">Civics</td>
-                                                <td class="text-nowrap">10/04/2206</td>
-                                                <td class="text-nowrap">History</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Mohiuddin Chowdhury</td>
-                                                <td class="text-nowrap">+880 678 901 2345</td>
-                                                <td class="text-nowrap">Comilla</td>
-                                                <td>1989</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Masum Billah</td>
-                                                <td class="text-nowrap">+880 345 678 9012</td>
-                                                <td class="text-nowrap">Sociology</td>
-                                                <td class="text-nowrap">25/07/2207</td>
-                                                <td class="text-nowrap">Political Science</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Shafiqul Hasan</td>
-                                                <td class="text-nowrap">+880 789 012 3456</td>
-                                                <td class="text-nowrap">Mymensingh</td>
-                                                <td>2001</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Rakibul Islam</td>
-                                                <td class="text-nowrap">+880 012 345 6789</td>
-                                                <td class="text-nowrap">Islamic Studies</td>
-                                                <td class="text-nowrap">18/09/2208</td>
-                                                <td class="text-nowrap">Philosophy</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>9</td>
-                                                <td><strong>Tutor</strong></td>
-                                                <td class="text-nowrap">Iqbal Siddique</td>
-                                                <td class="text-nowrap">+880 890 123 4567</td>
-                                                <td class="text-nowrap">Narayanganj</td>
-                                                <td>1997</td>
-                                                <td><strong>Student</strong></td>
-                                                <td class="text-nowrap">Akram Hossain</td>
-                                                <td class="text-nowrap">+880 123 456 7890</td>
-                                                <td class="text-nowrap">Computer Science</td>
-                                                <td class="text-nowrap">14/12/2209</td>
-                                                <td class="text-nowrap">ICT</td>
-                                                <td class="text-center"><button class="btn btn-success">Edit</button>
-                                                </td>
-                                            </tr>
-
-
-
-                                            <!-- Additional rows as required -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -748,15 +607,95 @@
 
     <script>
         $(document).ready(function () {
-            // Initialize DataTables with search and pagination
-            $('#tutorStudentTable').DataTable({
-                "paging": true,
-                "searching": true,
-                "pageLength": 5, // Set initial number of rows per page
-                "lengthMenu": [5, 10, 15, 20] // Options for pagination
-            });
+
+            fetch('http://192.168.0.154:8000/api/account/view-approve-reqeust-list/')
+                .then(res => res.json())
+                .then(data => {
+                    const tableBody = document.getElementById('table-body');
+                    if (data.length === 0) {
+                        tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        return;
+                    }
+                    data.forEach(request => {
+                        const { id, tutor_name, tutor_phone, tutor_division, tutor_district, tutor_charge,
+                            name, phone, medium, subjects, start_date, tutor } = request;
+
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td>${id || ''}</td>
+                    <td ><strong>tutor</strong></td>
+                    <td class="text-nowrap">${tutor_name || ''}</td>
+                    <td class="text-nowrap">${tutor_phone || ''}</td>
+                    <td class="text-nowrap"> ${tutor_district || ''} , ${tutor_division || ''}</td> 
+                    <td>${tutor_charge || ''}</td>
+                     <td ><strong>student</strong></td>
+                    <td class="text-nowrap">${name || ''}</td>
+                    <td class="text-nowrap">${phone || ''}</td>
+                    <td class="text-nowrap">${medium || ''}</td>
+                    <td class="text-nowrap">${start_date || ''}</td>
+                    <td>${subjects || ''}</td>
+                    <td><button onClick="handleRemoveApprove(${id})" class="btn btn-edit">Edit</button></td>
+           `;
+                        tableBody.appendChild(row);
+                    });
+
+                    // Initialize DataTables with search and pagination
+                    $('#hireTutorRequestTable').DataTable({
+                        "paging": true,
+                        "searching": true,
+                        "pageLength": 5,
+                        "lengthMenu": [5, 10, 15, 20],
+                        "columnDefs": [
+                            {
+                                "targets": [0, 2, 3, 4, 5, 7, 8, 9, 10, 11],
+                                "orderable": true
+                            },
+                            {
+                                "targets": "_all",
+                                "orderable": false
+                            }
+                        ]
+                    });
+
+                })
+
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+
+
+                });
         });
+
+
+
+
+        const handleRemoveApprove = (id) => {
+
+            const apiUrl = `http://192.168.0.154:8000/api/account/unapproved-request/${id}/`
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('ID posted successfully');
+                        window.location.reload();
+                    } else {
+                        console.error('Failed to post ID');
+                    }
+                })
+
+
+        }
+
+
+
     </script>
+
 
 
 </body>

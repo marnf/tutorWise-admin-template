@@ -45,6 +45,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <style>
+         .dataTables_filter input:focus {
+            border-color: #000000;
+            outline: none;
+            background: gainsboro;
+        }
+
         .table th,
         .table td {
             text-align: left;
@@ -462,31 +468,31 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                    <svg class="stroke-icon ">
-                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Institution</span></a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="addInstitution.html">Add Institution </a></li>
-                                    <li><a href="institutionList.html">Institution List </a></li>
-                                </ul>
-                            </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Institution</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="addInstitution.html">Add Institution </a></li>
+                                        <li><a href="institutionList.html">Institution List </a></li>
+                                    </ul>
+                                </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">FAQ section</span></a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="FAQ.html">FAQ Question </a></li>
-                                <li><a href="FAQans.html">FAQ List </a></li>
-                            </ul>
-                        </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">FAQ section</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="FAQ.html">FAQ Question </a></li>
+                                        <li><a href="FAQans.html">FAQ List </a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -507,15 +513,15 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th>ID</th>
-                                            <th>Profile Picture</th>
-                                            <th>Name</th>
+                                            <th class="text-nowrap">Profile Picture</th>
+                                            <th class="text-nowrap">Name</th>
                                             <th>Division</th>
-                                            <th>Location</th>
+                                            <th class="text-nowrap">Location</th>
                                             <th>Subject</th>
                                             <th>Gender</th>
-                                            <th>Days / week</th>
+                                            <th class="text-nowrap">Days/week</th>
                                             <th>Charge</th>
-                                            <th>Phone</th>
+                                            <th class="text-nowrap">Phone</th>
                                         </tr>
                                     </thead>
                                     <tbody id="table-body">
@@ -584,58 +590,73 @@
     <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-  <script>
-     
-     $(document).ready(function () {
-        fetch('http://192.168.0.154:8000/api/account/find-tutor/?format=json')
-            .then(res => res.json())
-            .then(data => {
-                const tableBody = document.getElementById('table-body');
-                if (data.length === 0) {
-                    tableBody.innerHTML = "<tr><td colspan='10' class='text-center'>No data available</td></tr>";
-                    return;
-                }
-    
-                data.forEach(tutor => {
-                    const personalInfo = tutor.tutor_personal_info;
-                    const secondPersonalInfo = tutor.tutor_tuition_info;
-    
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+    <script>
+
+        $(document).ready(function () {
+            fetch('http://192.168.0.154:8000/api/account/find-tutor/?format=json')
+                .then(res => res.json())
+                .then(data => {
+                    const tableBody = document.getElementById('table-body');
+                    if (data.length === 0) {
+                        tableBody.innerHTML = "<tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        return;
+                    }
+
+                    data.forEach(tutor => {
+                        const personalInfo = tutor.tutor_personal_info;
+                        const secondPersonalInfo = tutor.tutor_tuition_info;
+                        console.log(personalInfo.profile_picture)
+                        const profilePictureUrl = `http://192.168.0.154:8000${personalInfo.profile_picture}`;
+
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                         <td>${personalInfo.id}</td>
                         <td>
-                            <img src="${personalInfo.profile_picture}" alt="${personalInfo.full_name}" style="height: 30px; width: 30px; border-radius: 50%;">
+
+                        <img src="${profilePictureUrl}" alt="${personalInfo.full_name}" style="height: 30px; width: 30px; border-radius: 50%;">
+
                         </td>
+
                         <td class="text-nowrap">${personalInfo.full_name}</td>
-                        <td class="text-nowrap">${personalInfo.division ? personalInfo.division : 'N/A'}</td>
-                        <td class="text-nowrap">${personalInfo.location ? personalInfo.location : 'N/A'}</td>
-                        <td>${secondPersonalInfo.subject ? secondPersonalInfo.subject : 'N/A'}</td>
+                        <td class="text-nowrap">${personalInfo.division ? personalInfo.division : ''}</td>
+                        <td class="text-nowrap">${personalInfo.location ? personalInfo.location : ''}</td>
+                        <td>${secondPersonalInfo.subject ? secondPersonalInfo.subject : ''}</td>
                         <td>${personalInfo.gender}</td>
-                        <td>${secondPersonalInfo.days_per_week ? secondPersonalInfo.days_per_week : 'N/A'}</td>
-                        <td>${secondPersonalInfo.charge_per_month ? secondPersonalInfo.charge_per_month : 'N/A'}</td>
-                        <td class="text-nowrap">${personalInfo.nominee1_nidcard_number ? personalInfo.nominee1_nidcard_number : 'N/A'}</td>
+                        <td>${secondPersonalInfo.days_per_week ? secondPersonalInfo.days_per_week : ''}</td>
+                        <td>${secondPersonalInfo.charge_per_month ? secondPersonalInfo.charge_per_month : ''}</td>
+                        <td class="text-nowrap">${personalInfo.phone ? personalInfo.phone : ''}</td>
                     `;
-                    tableBody.appendChild(row);
+                        tableBody.appendChild(row);
+                    });
+
+                    // DataTables initialize here after data load
+                    $('#tutorStudentTable').DataTable({
+                        "paging": true,
+                        "searching": true,
+                        "pageLength": 5,
+                        "lengthMenu": [5, 10, 15, 20],
+                        "columnDefs": [
+                            {
+                                "targets": [0, 2,3,4,5,6,7,8,9],
+                                "orderable": true
+                            },
+                            {
+                                "targets": "_all",
+                                "orderable": false
+                            }
+                        ]
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
                 });
-    
-                // DataTables initialize here after data load
-                $('#tutorStudentTable').DataTable({
-                    "paging": true,
-                    "searching": true,
-                    "pageLength": 5,
-                    "lengthMenu": [5, 10, 15, 20]
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
-            });
-    });
-    
-  
-  </script>
+        });
+
+
+    </script>
 
 
 </body>
- 
+
 </html>

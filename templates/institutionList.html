@@ -46,6 +46,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <style>
+        .dataTables_filter input:focus {
+            border-color: #000000;
+            outline: none;
+            background: gainsboro;
+        }
+
         .table th,
         .table td {
             text-align: left;
@@ -463,31 +469,31 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                    <svg class="stroke-icon ">
-                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Institution</span></a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="addInstitution.html">Add Institution </a></li>
-                                    <li><a href="institutionList.html">Institution List </a></li>
-                                </ul>
-                            </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Institution</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="addInstitution.html">Add Institution </a></li>
+                                        <li><a href="institutionList.html">Institution List </a></li>
+                                    </ul>
+                                </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">FAQ section</span></a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="FAQ.html">FAQ Question </a></li>
-                                <li><a href="FAQans.html">FAQ List </a></li>
-                            </ul>
-                        </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">FAQ section</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="FAQ.html">FAQ Question </a></li>
+                                        <li><a href="FAQans.html">FAQ List </a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -505,85 +511,16 @@
                         <div class="col-md-12">
                             <div class="card p-3 shadow-sm overflow-auto">
                                 <!-- Tutor and Student Information Table -->
-                                <table id="tutorStudentTable" class="table table-bordered table-striped mt-3">
-                                    <thead class="table-dark">
-                                        <tr class="">
-                                            <th>ID</th>              
+                                <table id="institutionTable" class="table table-bordered table-striped mt-3">
+                                    <thead class="">
+                                        <tr>
+                                            <th>ID</th>
                                             <th>Images</th>
                                             <th>Name</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Fleek Bangladesh</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Tech Innovators</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Green Ventures</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Creative Minds</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Smart Solutions</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Urban Architects</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>NextGen Solutions</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Eco Life Projects</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>HealthCare Innovations</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>
-                                                <img src="../assets/images/user/user.jpg" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
-                                            </td>
-                                            <td>Global Enterprises</td>
-                                        </tr>
+                                    <tbody id="table-body">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -660,14 +597,63 @@
 
     <script>
         $(document).ready(function () {
-            // Initialize DataTables with search and pagination
-            $('#tutorStudentTable').DataTable({
-                "paging": true,
-                "searching": true,
-                "pageLength": 5, // Set initial number of rows per page
-                "lengthMenu": [5, 10, 15, 20] // Options for pagination
-            });
+
+            fetch('http://192.168.0.154:8000/api/account/view-institution/')
+                .then(res => res.json())
+                .then(data => {
+                    const tableBody = document.getElementById('table-body');
+                    if (data.length === 0) {
+                        tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        return;
+                    }
+                    data.forEach(data => {
+                        const { id, name, logo } = data;
+                        const institutionLogo = `http://192.168.0.154:8000${logo}`;
+
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td>${id || ''}</td>
+                    <td>
+                        <img src=${institutionLogo} alt="" style="height: 50px; width: 50px; border-radius: 50%;">
+                        </td>
+                    <td>${name || ''}</td>
+           `;
+                        tableBody.appendChild(row);
+                    });
+
+                    // Initialize DataTables with search and pagination
+                    $('#institutionTable').DataTable({
+                        "paging": true,
+                        "searching": true,
+                        "pageLength": 5,
+                        "lengthMenu": [5, 10, 15, 20],
+                        "columnDefs": [
+                            {
+                                "targets": [0, 2],
+                                "orderable": true
+                            },
+                            {
+                                "targets": "_all",
+                                "orderable": false
+                            }
+                        ]
+                    });
+
+                })
+
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+
+
+                });
         });
+
+
+
+
+
+
     </script>
 
 

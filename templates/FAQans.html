@@ -46,6 +46,13 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <style>
+        .dataTables_filter input:focus {
+            border-color: #000000;
+            outline: none;
+            background: gainsboro;
+        }
+
+
         .table th,
         .table td {
             text-align: left;
@@ -463,31 +470,31 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                    <svg class="stroke-icon ">
-                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Institution</span></a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="addInstitution.html">Add Institution </a></li>
-                                    <li><a href="institutionList.html">Institution List </a></li>
-                                </ul>
-                            </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Institution</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="addInstitution.html">Add Institution </a></li>
+                                        <li><a href="institutionList.html">Institution List </a></li>
+                                    </ul>
+                                </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">FAQ section</span></a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="FAQ.html">FAQ Question </a></li>
-                                <li><a href="FAQans.html">FAQ List </a></li>
-                            </ul>
-                        </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">FAQ section</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="FAQ.html">FAQ Question </a></li>
+                                        <li><a href="FAQans.html">FAQ List </a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -505,65 +512,16 @@
                         <div class="col-md-12">
                             <div class="card p-3 shadow-sm overflow-auto">
                                 <!-- Tutor and Student Information Table -->
-                                <table id="tutorStudentTable" class="table table-bordered table-striped mt-3">
+                                <table id="faqTable" class="table table-bordered table-striped mt-3">
                                     <thead class="table-dark">
                                         <tr class="">
-                                            <th>ID</th>              
+                                            <th>ID</th>
                                             <th>Questions</th>
                                             <th>Answers</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>What is the meaning of what?</td>
-                                            <td>This is something that I don't know but bro asked me all the time.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>What is the capital of France?</td>
-                                            <td>The capital of France is Paris.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>What is the largest planet in our solar system?</td>
-                                            <td>The largest planet is Jupiter.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>What is the square root of 64?</td>
-                                            <td>The square root of 64 is 8.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Who wrote "Romeo and Juliet"?</td>
-                                            <td>"Romeo and Juliet" was written by William Shakespeare.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>What is the fastest animal on land?</td>
-                                            <td>The fastest land animal is the cheetah.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>What is the boiling point of water?</td>
-                                            <td>The boiling point of water is 100°C at sea level.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>What is the tallest mountain in the world?</td>
-                                            <td>The tallest mountain is Mount Everest.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>What is the largest ocean on Earth?</td>
-                                            <td>The largest ocean is the Pacific Ocean.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>What is the chemical symbol for water?</td>
-                                            <td>The chemical symbol for water is H2O.</td>
-                                        </tr>
+                                    <tbody id="table-body">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -640,14 +598,60 @@
 
     <script>
         $(document).ready(function () {
-            // Initialize DataTables with search and pagination
-            $('#tutorStudentTable').DataTable({
-                "paging": true,
-                "searching": true,
-                "pageLength": 5, // Set initial number of rows per page
-                "lengthMenu": [5, 10, 15, 20] // Options for pagination
-            });
+
+            fetch('http://192.168.0.154:8000/api/account/view-faq/')
+                .then(res => res.json())
+                .then(data => {
+                    const tableBody = document.getElementById('table-body');
+                    if (data.length === 0) {
+                        tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        return;
+                    }
+                    data.forEach(data => {
+                        const { id, question, answer, created_at } = data;
+
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td>${id || ''}</td>
+                    <td>${question || ''}</td>
+                    <td>${answer || ''}</td>
+           `;
+                        tableBody.appendChild(row);
+                    });
+
+                    // Initialize DataTables with search and pagination
+                    $('#faqTable').DataTable({
+                        "paging": true,
+                        "searching": true,
+                        "pageLength": 5,
+                        "lengthMenu": [5, 10, 15, 20],
+                        "columnDefs": [
+                            {
+                                "targets": [0],
+                                "orderable": true
+                            },
+                            {
+                                "targets": "_all",
+                                "orderable": false
+                            }
+                        ]
+                    });
+
+                })
+
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+
+
+                });
         });
+
+
+
+
+
+
     </script>
 
 
