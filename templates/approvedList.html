@@ -496,6 +496,44 @@
                                         <li><a href="FAQans.html">FAQ List </a></li>
                                     </ul>
                                 </li>
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+
+                                    <svg class="stroke-icon ">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                    </svg><span class="h6 ">Payment</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                    <li><a href="proTutorPayment.html">pro payment </a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">Review</span></a>
+                        </li>
+
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
+
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">testimonial</span></a>
+                        </li>
+
+
+                            
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -544,6 +582,25 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to Remove this user?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick="closeModal()" class="btn btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                                <button id="confirmButton" type="button" class="btn btn-primary">Remove</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -634,7 +691,7 @@
                     <td class="text-nowrap">${medium || ''}</td>
                     <td class="text-nowrap">${start_date || ''}</td>
                     <td>${subjects || ''}</td>
-                    <td><button onClick="handleRemoveApprove(${id})" class="btn btn-edit">Edit</button></td>
+                    <td><button onClick="showModalWithId(${id})" class="btn btn-edit">Edit</button></td>
            `;
                         tableBody.appendChild(row);
                     });
@@ -643,7 +700,7 @@
                     $('#hireTutorRequestTable').DataTable({
                         "paging": true,
                         "searching": true,
-                        "pageLength": 5,
+                        "pageLength": 10,
                         "lengthMenu": [5, 10, 15, 20],
                         "columnDefs": [
                             {
@@ -666,6 +723,15 @@
 
                 });
         });
+
+
+        function showModalWithId(id) {
+            $('#exampleModal').modal('show');
+
+            document.getElementById('confirmButton').onclick = function () { handleRemoveApprove(id); };
+
+        }
+
 
 
 
@@ -692,6 +758,9 @@
 
         }
 
+        function closeModal() {
+            $('#exampleModal').modal('hide');  // Close the modal
+        }
 
 
     </script>

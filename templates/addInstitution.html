@@ -45,10 +45,10 @@
     <!-- database cdn link -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
-  
 
-    
-    
+
+
+
     <style>
         .form-container {
             width: 100%;
@@ -59,7 +59,7 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             margin: 20px auto;
         }
-    
+
         .form-title {
             font-size: 28px;
             font-weight: 700;
@@ -67,18 +67,18 @@
             text-align: center;
             margin-bottom: 20px;
         }
-    
+
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-    
+
         .form-container .form-label {
             font-weight: 600;
             color: #666;
         }
-    
+
         .form-container .form-control {
             padding: 12px;
             font-size: 16px;
@@ -87,13 +87,13 @@
             transition: border-color 0.3s, box-shadow 0.3s;
             width: 100%;
         }
-    
+
         .form-container .form-control:focus {
             border-color: #007bff;
             box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
             outline: none;
         }
-    
+
         .submit-btn {
             background-color: #007bff;
             color: white;
@@ -105,12 +105,12 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-    
+
         .submit-btn:hover {
             background-color: #0056b3;
         }
     </style>
-    
+
 
 
 
@@ -506,6 +506,43 @@
                                         <li><a href="FAQans.html">FAQ List </a></li>
                                     </ul>
                                 </li>
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Payment</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                        <li><a href="proTutorPayment.html">pro payment </a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+
+                                    <svg class="stroke-icon ">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                    </svg><span class="h6 ">Review</span></a>
+                            </li>
+
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
+
+                                    <svg class="stroke-icon ">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                    </svg><span class="h6 ">testimonial</span></a>
+                            </li>
+
+
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -520,24 +557,25 @@
 
                 <div class="form-container">
                     <h2 class="form-title">Question & Answer Form</h2>
-                    <form>
-                      
-                
+                    <form id="myForm" onsubmit="submitForm(event)">
+
                         <!-- Name Section -->
                         <div class="form-group">
                             <label for="nameInput" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="nameInput" placeholder="Enter your name" required>
+                            <input type="text" class="form-control" id="nameInput" name="name"
+                                placeholder="Enter your name" required>
                         </div>
-                
+
                         <!-- Image Section -->
                         <div class="form-group">
                             <label for="imageInput" class="form-label">Upload Image</label>
-                            <input type="file" class="form-control" id="imageInput" accept="image/*" required>
+                            <input type="file" class="form-control" id="imageInput" name="logo" accept="image/*"
+                                required>
                         </div>
-                
+
                         <!-- Submit Button -->
                         <div class="button-container mt-3">
-                            <button type="submit" class="submit-btn">Submit</button>
+                            <button type="submit" onclick="submitForm(event)" class="submit-btn">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -617,13 +655,46 @@
             $('#tutorStudentTable').DataTable({
                 "paging": true,
                 "searching": true,
-                "pageLength": 5, // Set initial number of rows per page
+                "pageLength": 10, // Set initial number of rows per page
                 "lengthMenu": [5, 10, 15, 20] // Options for pagination
             });
         });
     </script>
 
 
+
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+
+
+            const url = 'http://192.168.0.154:8000/api/account/add-institution/';
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    console.log("Form submitted successfully!");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Failed to submit form.");
+                });
+        }
+
+
+    </script>
+
+
 </body>
 
 </html>
+
+
+

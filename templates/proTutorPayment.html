@@ -20,7 +20,6 @@
         rel="stylesheet">
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
     <!-- Themify icon-->
@@ -52,12 +51,15 @@
             background: gainsboro;
         }
 
+
+
+
         .table th,
         .table td {
             text-align: left;
         }
 
-        .btn-approve {
+        .btn-Edit {
             background-color: #007bff;
             color: white;
             border: none;
@@ -66,8 +68,23 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        .btn-approve:hover {
+        .btn-Edit:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #7e8083;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-edit:hover {
+            background-color: #000000;
             transform: scale(1.05);
             color: white;
         }
@@ -79,7 +96,10 @@
             height: 100%;
         }
 
-       
+        .btn-Edit,
+        .btn-edit {
+            width: 100%;/
+        }
     </style>
 
 
@@ -479,40 +499,40 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Payment</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                        <li><a href="proTutorPayment.html">pro payment </a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+
                                     <svg class="stroke-icon ">
                                         <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
                                     </svg>
                                     <svg class="fill-icon">
                                         <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Payment</span></a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
-                                    <li><a href="proTutorPayment.html">pro payment </a></li>
-
-                                </ul>
+                                    </svg><span class="h6 ">Review</span></a>
                             </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">Review</span></a>
-                        </li>
+                                    <svg class="stroke-icon ">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                    </svg><span class="h6 ">testimonial</span></a>
+                            </li>
 
-                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">testimonial</span></a>
-                        </li>
-
-                            
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -526,26 +546,39 @@
             <div class="page-body">
 
                 <div class=" mt-4">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <div class="card p-3 shadow-sm overflow-auto">
-                                <!-- Tutor and Student Information Table -->
-                                <table id="institutionTable" class="table table-bordered table-striped mt-3">
-                                    <thead class="">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Images</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-body">
+                    <h2 class="text-center ">Pro Tutor Payment</h2>
 
-                                    </tbody>
-                                </table>
+
+                    <div class=" mt-4">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div class="card p-3 shadow-sm overflow-auto">
+                                    <!-- Tutor and Student Information Table -->
+                                    <table id="applyNumberPayment" class="table table-bordered table-striped mt-3">
+                                        <thead class="table-light">
+                                            <tr class="">
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th class="text-nowrap">User Type</th>
+                                                <th class="text-nowrap">Email</th>
+                                                <th class="text-nowrap">Phone</th>
+                                                <th>Transaction ID</th>
+                                                <th>package</th>
+                                                <th class="text-nowrap">Amount</th>
+                                                <th class="text-nowrap">Digital Banking</th>
+                                                <th>Payment Time</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body">
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
 
@@ -567,15 +600,7 @@
             </footer>
         </div>
 
-
-
-
-
     </div>
-
-
-
-
 
 
 
@@ -618,7 +643,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.154:8000/api/account/view-institution/')
+            fetch('http://192.168.0.154:8000/api/account/pro-tutor-payment')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -626,31 +651,34 @@
                         tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
                         return;
                     }
-                    data.forEach(data => {
-                        const { id, name, logo } = data;
-                        const institutionLogo = `http://192.168.0.154:8000${logo}`;
+                    data.forEach(proPaymentData => {
+                        const { id, name, user_type,email, phone, transaction_id, package, amount, digital_bank_name, created_at } = proPaymentData;
 
                         const row = document.createElement('tr');
                         row.innerHTML = `
                     <td>${id || ''}</td>
-                    <td>
-                        <img src=${institutionLogo} alt="" style="height: 50px; width: 50px; border-radius: 50%;">
-                        </td>
-                    <td>${name || ''}</td>
-                     <td><button  onclick="" class="btn btn-approve ">Delate</button></td>
+                    <td class="text-nowrap">${name || ''}</td>
+                    <td class="text-nowrap">${user_type || ''}</td>
+                    <td class="text-nowrap"> ${email || ''} </td> 
+                    <td>${phone || ''}</td>
+                    <td class="text-nowrap">${transaction_id || ''}</td>
+                    <td class="text-nowrap">${package || ''}</td>
+                    <td class="text-nowrap">${amount || ''}</td>
+                    <td class="text-nowrap">${digital_bank_name || ''}</td>
+                    <td>${created_at || ''}</td>
            `;
                         tableBody.appendChild(row);
                     });
 
                     // Initialize DataTables with search and pagination
-                    $('#institutionTable').DataTable({
+                    $('#applyNumberPayment').DataTable({
                         "paging": true,
                         "searching": true,
                         "pageLength": 10,
                         "lengthMenu": [5, 10, 15, 20],
                         "columnDefs": [
                             {
-                                "targets": [0, 2],
+                                "targets": [0,4,6,7,9],
                                 "orderable": true
                             },
                             {
@@ -671,11 +699,8 @@
         });
 
 
-
-
-
-
     </script>
+
 
 
 </body>

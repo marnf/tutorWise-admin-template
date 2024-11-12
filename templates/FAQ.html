@@ -506,6 +506,43 @@
                                         <li><a href="FAQans.html">FAQ List </a></li>
                                     </ul>
                                 </li>
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+
+                                    <svg class="stroke-icon ">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                    </svg><span class="h6 ">Payment</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                    <li><a href="proTutorPayment.html">pro payment </a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">Review</span></a>
+                        </li>
+
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
+
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">testimonial</span></a>
+                        </li>
+
+                            
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -520,24 +557,24 @@
 
                 <div class="form-container">
                     <h2 class="form-title">Question & Answer Form</h2>
-                    <form>
+                    <form id="myForm">
                         <!-- Question Section -->
                         <div class="form-group">
                             <label for="questionInput" class="form-label">Question</label>
-                            <input type="text" class="form-control" id="questionInput" placeholder="Enter your question"
+                            <input type="text" class="form-control" name="question" id="questionInput" placeholder="Enter your question"
                                 required>
                         </div>
 
                         <!-- Answer Section -->
                         <div class="form-group">
                             <label for="answerInput" class="form-label">Answer</label>
-                            <textarea class="form-control" id="answerInput" rows="4" placeholder="Enter the answer"
+                            <textarea class="form-control" name="answer" id="answerInput" rows="4" placeholder="Enter the answer"
                                 required></textarea>
                         </div>
 
                         <!-- Submit Button -->
                         <div class="button-container mt-3">
-                            <button type="submit" class="submit-btn">Submit</button>
+                            <button type="submit" onclick="submitForm(event)" class="submit-btn">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -617,11 +654,41 @@
             $('#tutorStudentTable').DataTable({
                 "paging": true,
                 "searching": true,
-                "pageLength": 5, // Set initial number of rows per page
+                "pageLength": 10, // Set initial number of rows per page
                 "lengthMenu": [5, 10, 15, 20] // Options for pagination
             });
         });
     </script>
+
+
+
+    
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        const form = document.getElementById('myForm');
+        const formData = new FormData(form);
+
+
+        const url = 'http://192.168.0.154:8000/api/account/add-faq/';
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                console.log("Form submitted successfully!");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Failed to submit form.");
+            });
+    }
+
+
+</script>
 
 
 </body>
