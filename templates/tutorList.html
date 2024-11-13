@@ -622,7 +622,7 @@
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/script1.js"></script>
-    <script src="../assets/js/theme-customizer/customizer.js"></script>
+    
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Include DataTables JS -->
@@ -631,7 +631,7 @@
     <script>
 
         $(document).ready(function () {
-            fetch('http://192.168.0.154:8000/api/account/find-tutor/?format=json')
+            fetch('http://192.168.0.169:8000/api/account/non-pro-tutor-list/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -643,26 +643,31 @@
                     data.forEach(tutor => {
                         const personalInfo = tutor.tutor_personal_info;
                         const secondPersonalInfo = tutor.tutor_tuition_info;
-                        console.log(personalInfo.profile_picture)
-                        const profilePictureUrl = `http://192.168.0.154:8000${personalInfo.profile_picture}`;
+                    
+                        const {id,full_name,division, location,gender, phone} = personalInfo;
+                        const {subject,days_per_week,charge_per_month} = secondPersonalInfo;
+
+
+
+                        const profilePictureUrl = `http://192.168.0.169:8000${personalInfo.profile_picture}`;
 
                         const row = document.createElement('tr');
                         row.innerHTML = `
-                        <td>${personalInfo.id}</td>
+                        <td>${id}</td>
                         <td>
 
-                        <img src="${profilePictureUrl}" alt="${personalInfo.full_name}" style="height: 30px; width: 30px; border-radius: 50%;">
+                        <img src="${profilePictureUrl}" alt="${full_name}" style="height: 30px; width: 30px; border-radius: 50%;">
 
                         </td>
 
-                        <td class="text-nowrap">${personalInfo.full_name}</td>
-                        <td class="text-nowrap">${personalInfo.division ? personalInfo.division : ''}</td>
-                        <td class="text-nowrap">${personalInfo.location ? personalInfo.location : ''}</td>
-                        <td>${secondPersonalInfo.subject ? secondPersonalInfo.subject : ''}</td>
-                        <td>${personalInfo.gender}</td>
-                        <td>${secondPersonalInfo.days_per_week ? secondPersonalInfo.days_per_week : ''}</td>
-                        <td>${secondPersonalInfo.charge_per_month ? secondPersonalInfo.charge_per_month : ''}</td>
-                        <td class="text-nowrap">${personalInfo.phone ? personalInfo.phone : ''}</td>
+                        <td class="text-nowrap">${full_name}</td>
+                        <td class="text-nowrap">${division ? division : ''}</td>
+                        <td class="text-nowrap">${location ? location : ''}</td>
+                        <td>${subject ? subject : ''}</td>
+                        <td>${gender}</td>
+                        <td>${days_per_week ? days_per_week : ''}</td>
+                        <td>${charge_per_month ? charge_per_month : ''}</td>
+                        <td class="text-nowrap">${phone ? phone : ''}</td>
                     `;
                         tableBody.appendChild(row);
                     });

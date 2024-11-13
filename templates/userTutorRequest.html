@@ -651,7 +651,7 @@
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/script1.js"></script>
-    <script src="../assets/js/theme-customizer/customizer.js"></script>
+    
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Include DataTables JS -->
@@ -660,7 +660,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.154:8000/api/account/view-hire-request-tutor/')
+            fetch('http://192.168.0.169:8000/api/account/view-hire-request-tutor/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -732,7 +732,7 @@
 
         const approveRequest = (id) => {
 
-            const apiUrl = `http://192.168.0.154:8000/api/account/approve-request/${id}/`
+            const apiUrl = `http://192.168.0.169:8000/api/account/approve-request/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
