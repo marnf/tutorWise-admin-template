@@ -439,9 +439,10 @@
                                             <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                         </svg><span class="h6 ">Tutor Request</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="guestTutorRequest.html"> Tutor Request</a></li>
-                                        <li><a href="userTutorRequest.html">Hire Tutor Request</a></li>
-                                        <li><a href="approvedList.html">Approved List</a></li>
+                                        <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
+                                        <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
 
                                     </ul>
                                 </li>
@@ -462,68 +463,68 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Institution</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="addInstitution.html">Add Institution </a></li>
+                                        <li><a href="institutionList.html">Institution List </a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">FAQ section</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="FAQ.html">FAQ Question </a></li>
+                                        <li><a href="FAQans.html">FAQ List </a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+
                                     <svg class="stroke-icon ">
                                         <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
                                     </svg>
                                     <svg class="fill-icon">
                                         <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Institution</span></a>
+                                    </svg><span class="h6 ">Payment</span></a>
                                 <ul class="sidebar-submenu">
-                                    <li><a href="addInstitution.html">Add Institution </a></li>
-                                    <li><a href="institutionList.html">Institution List </a></li>
+                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                    <li><a href="proTutorPayment.html">pro payment </a></li>
+
                                 </ul>
                             </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
 
                                 <svg class="stroke-icon ">
                                     <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
                                 </svg>
                                 <svg class="fill-icon">
                                     <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">FAQ section</span></a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="FAQ.html">FAQ Question </a></li>
-                                <li><a href="FAQans.html">FAQ List </a></li>
-                            </ul>
+                                </svg><span class="h6 ">Review</span></a>
                         </li>
 
-                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
 
-                            <svg class="stroke-icon ">
-                                <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                            </svg><span class="h6 ">Payment</span></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="applyNumberPayment.html">normal payment </a></li>
-                            <li><a href="proTutorPayment.html">pro payment </a></li>
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">testimonial</span></a>
+                        </li>
 
-                        </ul>
-                    </li>
-
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
-
-                        <svg class="stroke-icon ">
-                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                        </svg>
-                        <svg class="fill-icon">
-                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                        </svg><span class="h6 ">Review</span></a>
-                </li>
-
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
-
-                        <svg class="stroke-icon ">
-                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                        </svg>
-                        <svg class="fill-icon">
-                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                        </svg><span class="h6 ">testimonial</span></a>
-                </li>
-
-                    
+                            
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -624,12 +625,12 @@
     <script>
 
         $(document).ready(function () {
-            fetch('http://192.168.0.169:8000/api/account/pro-tutor-list/')
+            fetch('http://192.168.0.154:8000/api/account/pro-tutor-list/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
                     if (data.length === 0) {
-                        tableBody.innerHTML = "<tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        tableBody.innerHTML = "<tr><td colspan='15' class='text-center'>No data available</td></tr>";
                         return;
                     }
 
@@ -642,7 +643,7 @@
 
 
 
-                        const profilePictureUrl = `http://192.168.0.169:8000${personalInfo.profile_picture}`;
+                        const profilePictureUrl = `http://192.168.0.154:8000${personalInfo.profile_picture}`;
 
                         const row = document.createElement('tr');
                         row.innerHTML = `
@@ -685,7 +686,7 @@
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
                 });
         });
 

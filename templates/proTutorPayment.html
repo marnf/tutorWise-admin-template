@@ -448,9 +448,10 @@
                                             <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                         </svg><span class="h6 ">Tutor Request</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="guestTutorRequest.html"> Tutor Request</a></li>
-                                        <li><a href="userTutorRequest.html">Hire Tutor Request</a></li>
-                                        <li><a href="approvedList.html">Approved List</a></li>
+                                        <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
+                                        <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
 
                                     </ul>
                                 </li>
@@ -499,40 +500,40 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                        <svg class="stroke-icon ">
-                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                        </svg>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                        </svg><span class="h6 ">Payment</span></a>
-                                    <ul class="sidebar-submenu">
-                                        <li><a href="applyNumberPayment.html">normal payment </a></li>
-                                        <li><a href="proTutorPayment.html">pro payment </a></li>
-
-                                    </ul>
-                                </li>
-
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
-
                                     <svg class="stroke-icon ">
                                         <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
                                     </svg>
                                     <svg class="fill-icon">
                                         <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Review</span></a>
+                                    </svg><span class="h6 ">Payment</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                    <li><a href="proTutorPayment.html">pro payment </a></li>
+
+                                </ul>
                             </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
 
-                                    <svg class="stroke-icon ">
-                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">testimonial</span></a>
-                            </li>
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">Review</span></a>
+                        </li>
 
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
 
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">testimonial</span></a>
+                        </li>
+
+                            
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -643,12 +644,12 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.169:8000/api/account/pro-tutor-payment')
+            fetch('http://192.168.0.154:8000/api/account/pro-tutor-payment')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
                     if (data.length === 0) {
-                        tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        tableBody.innerHTML = " <tr><td colspan='15' class='text-center'>No data available</td></tr>";
                         return;
                     }
                     data.forEach(proPaymentData => {
@@ -692,7 +693,7 @@
 
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
 
 
                 });

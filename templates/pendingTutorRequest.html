@@ -19,8 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap"
         rel="stylesheet">
     <!-- Font Awesome-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
     <!-- Themify icon-->
@@ -45,70 +44,138 @@
     <!-- database cdn link -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
     <style>
-        .form-container {
-            width: 100%;
-            /* পুরো প্রস্থ জুড়ে ফর্মটি রাখবে */
-            max-width: 1200px;
-            /* ফর্মের সর্বাধিক প্রস্থ নির্ধারণ */
-            padding: 40px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            margin: 20px auto;
-            /* উপরের এবং নিচের দিকে কেন্দ্রবিন্দু */
-        }
-
-        .form-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .form-container .form-label {
-            font-weight: 600;
-            color: #666;
-        }
-
-        .form-container .form-control {
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            width: 100%;
-        }
-
-        .form-container .form-control:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        .dataTables_filter input:focus {
+            border-color: #000000;
             outline: none;
+            background: gainsboro;
         }
 
 
 
-        .submit-btn {
+
+        .table th,
+        .table td {
+            text-align: left;
+        }
+
+        .btn-approve {
             background-color: #007bff;
             color: white;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 8px;
             border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        .submit-btn:hover {
+        .btn-approve:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #7e8083;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-edit:hover {
+            background-color: #000000;
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .btn-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .btn-approve,
+        .btn-edit {
+            width: 100%;/
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+
+        .form-select {
+            height: 40px;
+            font-size: 15px;
+            padding: 0.65rem 0.75rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+        }
+
+        .form-container {
+
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .modal-title {
+            font-weight: 700;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .modal-content {
+            max-height: 85vh;
+            /* Limit modal height */
+            overflow-y: auto;
+            /* Enable scroll if content overflows */
+        }
+
+        .d-grid .btn-primary {
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #FF6F61;
+            border-color: #FF6F61;
+        }
+
+        .form-select {
+            height: calc(1.5em + 1.25rem + 2px);
+            font-size: 15px;
+            padding: 0.65rem 0.75rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
         }
     </style>
 
@@ -460,8 +527,10 @@
                                     <ul class="sidebar-submenu">
                                         <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
                                         <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
-                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
-                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a>
+                                        </li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a>
+                                        </li>
 
                                     </ul>
                                 </li>
@@ -510,40 +579,40 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                    <svg class="stroke-icon ">
-                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Payment</span></a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
-                                    <li><a href="proTutorPayment.html">pro payment </a></li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Payment</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                        <li><a href="proTutorPayment.html">pro payment </a></li>
 
-                                </ul>
-                            </li>
+                                    </ul>
+                                </li>
 
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">Review</span></a>
-                        </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Review</span></a>
+                                </li>
 
-                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
 
-                                <svg class="stroke-icon ">
-                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                </svg><span class="h6 ">testimonial</span></a>
-                        </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">testimonial</span></a>
+                                </li>
 
-                            
+
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -556,48 +625,173 @@
 
             <div class="page-body">
 
-                <div class="form-container">
-                    <h2 class="form-title">Question & Answer Form</h2>
-                    <form id="myForm">
-                        <!-- Question Section -->
-                        <div class="form-group">
-                            <label for="questionInput" class="form-label">Question</label>
-                            <input type="text" class="form-control" name="question" id="questionInput"
-                                placeholder="Enter your question" required>
-                        </div>
+                <div class="container mt-5">
+                    <h2 class="mb-4 text-center">Tutor Request List</h2>
+                    <table id="tutorRequestList" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Location</th>
+                                <th>Details</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
 
-                        <!-- Answer Section -->
-                        <div class="form-group">
-                            <label for="answerInput" class="form-label">Answer</label>
-                            <textarea class="form-control" name="answer" id="answerInput" rows="4"
-                                placeholder="Enter the answer" required></textarea>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="button-container mt-3">
-                            <button type="submit" onclick="submitForm(event)" class="submit-btn">Submit</button>
-                        </div>
-                    </form>
+                        </tbody>
+                    </table>
                 </div>
 
 
 
 
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Job Application Form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body ">
+                                <form id="myForm p-3">
+                                    <div class="row">
+                                        <!-- Left Section -->
+                                        <div class="col-md-6 border-end pe-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Phone Number <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" placeholder="Enter your number"
+                                                    name="phoneNumber" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Start Date <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="datepicker"
+                                                        placeholder="Select a date">
+                                                    <span class="input-group-text">
+                                                        <i class="bi bi-calendar"></i>
+                                                    </span>
+                                                </div>
 
+                                                <div class="form-check mt-1">
+                                                    <input class="form-check-input" type="checkbox" id="startImmediate">
+                                                    <label class="form-check-label" for="startImmediate">Start
+                                                        Immediately</label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Educational Level <span
+                                                        class="text-danger">*</span></label>
+                                                <select class="form-select" name="educationalLevel" required>
+                                                    <option>Class 1</option>
+                                                    <option>Class 2</option>
+                                                    <!-- Add more options as needed -->
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Curriculums <span
+                                                        class="text-danger">*</span></label>
+                                                <select class="form-select" name="curriculums" required>
+                                                    <option>N/A</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Job Title</label>
+                                                <input type="text" class="form-control" placeholder="Type here..."
+                                                    name="jobTitle">
+                                            </div>
 
+                                        </div>
 
-                <div id="popupSuccess"
-                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
-                    <div>
-                        <h6 class=" text-white">Data successfully submitted....</h6>
+                                        <!-- Right Section -->
+                                        <div class="col-md-6 ps-4">
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Lesson Type <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="d-flex gap-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lessonType"
+                                                            id="online" value="Online" required>
+                                                        <label class="form-check-label" for="online">Online</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lessonType"
+                                                            id="offline" value="Offline" required>
+                                                        <label class="form-check-label" for="offline">Offline</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lessonType"
+                                                            id="Both" value="Both" required>
+                                                        <label class="form-check-label" for="Both">Both</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Gender <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="d-flex gap-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="male" value="Male" required>
+                                                        <label class="form-check-label" for="male">Male</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="female" value="Female" required>
+                                                        <label class="form-check-label" for="female">Female</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="Others" value="Others" required>
+                                                        <label class="form-check-label" for="Others">Others</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Budget <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="number" class="form-control" placeholder="0" name="budget"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Days Per Week <span
+                                                        class="text-danger">*</span></label>
+
+                                                <select class="form-select" name="daysPerWeek"
+                                                    aria-label="Default select required">
+                                                    <option selected>3 days</option>
+                                                    <option value="1 ">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Additional Comment</label>
+                                                <textarea class="form-control" rows="3" placeholder="Type here..."
+                                                    name="additionalComment"></textarea>
+                                            </div>
+                                            <div class="d-grid mt-4">
+                                                <button type="submit" class="btn btn-primary py-2">Post Job</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Submit Button without scrolling -->
+
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div id="successFailed"
-                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
-                    <div>
-                        <h6 class=" text-white">Failed to submit....</h6>
-                    </div>
-                </div>
+
+
 
             </div>
 
@@ -659,38 +853,83 @@
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/script1.js"></script>
-    
+
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+    
+
     <script>
-        $(document).ready(function () {
-            // Initialize DataTables with search and pagination
-            $('#tutorStudentTable').DataTable({
-                "paging": true,
-                "searching": true,
-                "pageLength": 10, // Set initial number of rows per page
-                "lengthMenu": [5, 10, 15, 20] // Options for pagination
+        fetch('http://192.168.0.154:8000/api/account/view-request-tutor/')
+            .then(res => res.json())
+            .then(data => {
+                const tableBody = document.getElementById('table-body');
+                if (data.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='15' class='text-center'>No data available</td></tr>";
+                    return;
+                }
+
+                data.forEach(tutor => {
+                    const { id, name, phone, location, details } = tutor;
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <td>${id}</td>
+                <td class="text-nowrap">${name}</td>
+                <td class="text-nowrap">${phone ? phone : ''}</td>
+                <td class="text-nowrap">${location ? location : ''}</td>
+                <td>${details ? details : ''}</td>
+                 <td><button onClick="showModalWithId(${id})" class="btn btn-approve">Add Data</button></td>
+          
+            `;
+                    tableBody.appendChild(row);
+                });
+
+                $('#tutorRequestList').DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "pageLength": 10,
+                    "lengthMenu": [5, 10, 15, 20],
+                    "columnDefs": [
+                        {
+                            "targets": [0, 1, 2, 3, 4],
+                            "orderable": true
+                        },
+                        {
+                            "targets": "_all",
+                            "orderable": false
+                        }
+                    ]
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
             });
-        });
-    </script>
+
+
+        function showModalWithId(id) {
+            $('#exampleModal').modal('show');
+
+            document.getElementById('confirmButton').onclick = function () { handleEditData(id); };
+
+        }
 
 
 
 
-    <script>
-        function submitForm(event) {
+        function handleEditData(id) {
             event.preventDefault();
             const form = document.getElementById('myForm');
             const formData = new FormData(form);
 
 
-            const url = 'http://192.168.0.154:8000/api/account/add-faq/';
+            const url = `http://192.168.0.154:8000/api/account/edit-faq/${id}/`;
 
             fetch(url, {
-                method: 'POST',
+                method: 'PUT',
                 body: formData,
             })
                 .then(response => response.json())
@@ -717,8 +956,28 @@
         }
 
 
+        function closeModal() {
+            $('#exampleModal').modal('hide');  // Close the modal
+        }
+
+
+
+        $(document).ready(function () {
+            $('#datepicker').datepicker({
+                format: 'mm/dd/yyyy', 
+                autoclose: true
+            });
+        });
+
+
+
     </script>
 
+
+
+  
+ <!-- Bootstrap Datepicker JS -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
 </body>
 

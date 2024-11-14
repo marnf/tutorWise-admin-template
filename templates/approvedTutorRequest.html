@@ -44,6 +44,7 @@
     <!-- database cdn link -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
+
     <style>
         .dataTables_filter input:focus {
             border-color: #000000;
@@ -59,7 +60,7 @@
             text-align: left;
         }
 
-        .btn-Edit {
+        .btn-approve {
             background-color: #007bff;
             color: white;
             border: none;
@@ -68,7 +69,7 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        .btn-Edit:hover {
+        .btn-approve:hover {
             background-color: #0056b3;
             transform: scale(1.05);
             color: white;
@@ -96,7 +97,7 @@
             height: 100%;
         }
 
-        .btn-Edit,
+        .btn-approve,
         .btn-edit {
             width: 100%;/
         }
@@ -448,9 +449,10 @@
                                             <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                         </svg><span class="h6 ">Tutor Request</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="guestTutorRequest.html"> Tutor Request</a></li>
-                                        <li><a href="userTutorRequest.html">Hire Tutor Request</a></li>
-                                        <li><a href="approvedList.html">Approved List</a></li>
+                                        <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
+                                        <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
 
                                     </ul>
                                 </li>
@@ -532,7 +534,6 @@
                                 </svg><span class="h6 ">testimonial</span></a>
                         </li>
 
-
                             
                             </ul>
                         </div>
@@ -546,61 +547,30 @@
 
             <div class="page-body">
 
-                <div class=" mt-4">
-                    <h2 class="text-center ">Approved List</h2>
+                <div class="container mt-5">
+                    <h2 class="mb-4 text-center">Tutor Request List</h2>
+                    <table id="tutorRequestList" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th class="text-nowrap">Name</th>
+                                <th >Phone</th>
+                                <th class="text-nowrap">Location</th>
+                                <th>Details</th>
+                                <th>Subject</th>
+                                <th class="text-nowrap">Start Date</th>
+                                <th>Class</th>
+                                <th class="text-nowrap">lesson Type</th>
+                                <th>Gender</th>
+                                <th>Budget</th>
+                                <th class="text-nowrap">Days/week</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
 
-
-                    <div class=" mt-4">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <div class="card p-3 shadow-sm overflow-auto">
-                                    <!-- Tutor and Student Information Table -->
-                                    <table id="hireTutorRequestTable" class="table table-bordered table-striped mt-3">
-                                        <thead class="table-light">
-                                            <tr class="">
-                                                <th>ID</th>
-                                                <th>Type</th>
-                                                <th class="text-nowrap"> Tutor Name</th>
-                                                <th class="text-nowrap">Phone</th>
-                                                <th class="text-nowrap">Location</th>
-                                                <th>Charge</th>
-                                                <th>Type</th>
-                                                <th class="text-nowrap"> Student Name</th>
-                                                <th class="text-nowrap">Phone</th>
-                                                <th>Medium</th>
-                                                <th class="text-nowrap">Start Date</th>
-                                                <th>Subject</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="table-body">
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to Remove this user?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" onclick="closeModal()" class="btn btn-secondary"
-                                    data-dismiss="modal">Close</button>
-                                <button id="confirmButton" type="button" class="btn btn-primary">Remove</button>
-                            </div>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
 
 
@@ -622,7 +592,15 @@
             </footer>
         </div>
 
+
+
+
+
     </div>
+
+
+
+
 
 
 
@@ -663,105 +641,59 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        fetch('http://192.168.0.154:8000/api/account/view-request-tutor/')
+            .then(res => res.json())
+            .then(data => {
+                const tableBody = document.getElementById('table-body');
+                if (data.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='15' class='text-center'>No data available</td></tr>";
+                    return;
+                }
 
-            fetch('http://192.168.0.169:8000/api/account/view-approve-reqeust-list/')
-                .then(res => res.json())
-                .then(data => {
-                    const tableBody = document.getElementById('table-body');
-                    if (data.length === 0) {
-                        tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
-                        return;
-                    }
-                    data.forEach(request => {
-                        const { id, tutor_name, tutor_phone, tutor_division, tutor_district, tutor_charge,
-                            name, phone, medium, subjects, start_date, tutor } = request;
+                data.forEach(tutor => {
+                    const { id, name, phone,  location, details, subject,start_date, gender, budget, days_per_week } = tutor;
 
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                    <td>${id || ''}</td>
-                    <td ><strong>tutor</strong></td>
-                    <td class="text-nowrap">${tutor_name || ''}</td>
-                    <td class="text-nowrap">${tutor_phone || ''}</td>
-                    <td class="text-nowrap"> ${tutor_district || ''} , ${tutor_division || ''}</td> 
-                    <td>${tutor_charge || ''}</td>
-                     <td ><strong>student</strong></td>
-                    <td class="text-nowrap">${name || ''}</td>
-                    <td class="text-nowrap">${phone || ''}</td>
-                    <td class="text-nowrap">${medium || ''}</td>
-                    <td class="text-nowrap">${start_date || ''}</td>
-                    <td>${subjects || ''}</td>
-                    <td><button onClick="showModalWithId(${id})" class="btn btn-edit">Edit</button></td>
-           `;
-                        tableBody.appendChild(row);
-                    });
-
-                    // Initialize DataTables with search and pagination
-                    $('#hireTutorRequestTable').DataTable({
-                        "paging": true,
-                        "searching": true,
-                        "pageLength": 10,
-                        "lengthMenu": [5, 10, 15, 20],
-                        "columnDefs": [
-                            {
-                                "targets": [0, 2, 3, 4, 5, 7, 8, 9, 10, 11],
-                                "orderable": true
-                            },
-                            {
-                                "targets": "_all",
-                                "orderable": false
-                            }
-                        ]
-                    });
-
-                })
-
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
-
-
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <th>Id</th>
+                                <th class="text-nowrap">${Name}</th>
+                                <th >${Phone}</th>
+                                <th class="text-nowrap">${location}</th>
+                                <th> ${Details} </th>
+                                <th>${Subject}</th>
+                                <th class="text-nowrap">${Start_date}</th>
+                                <th>${Class}</th>
+                                <th class="text-nowrap">${lesson_type}</th>
+                                <th>${Gender}</th>
+                                <th>${Budget}</th>
+                                <th class="text-nowrap">${Days/week}</th>
+                 <td><button class="btn btn-approve">Approve</button></td>
+          
+            `;
+                    tableBody.appendChild(row);
                 });
-        });
 
-
-        function showModalWithId(id) {
-            $('#exampleModal').modal('show');
-
-            document.getElementById('confirmButton').onclick = function () { handleRemoveApprove(id); };
-
-        }
-
-
-
-
-
-        const handleRemoveApprove = (id) => {
-
-            const apiUrl = `http://192.168.0.169:8000/api/account/unapproved-request/${id}/`
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: id })
+                $('#tutorRequestList').DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "pageLength": 10,
+                    "lengthMenu": [5, 10, 15, 20],
+                    "columnDefs": [
+                        {
+                            "targets": [0, 1, 2, 3, 4],
+                            "orderable": true
+                        },
+                        {
+                            "targets": "_all",
+                            "orderable": false
+                        }
+                    ]
+                });
             })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('ID posted successfully');
-                        window.location.reload();
-                    } else {
-                        console.error('Failed to post ID');
-                    }
-                })
-
-
-        }
-
-        function closeModal() {
-            $('#exampleModal').modal('hide');  // Close the modal
-        }
-
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
+            });
 
     </script>
 
@@ -770,3 +702,6 @@
 </body>
 
 </html>
+
+
+

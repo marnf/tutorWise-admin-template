@@ -435,9 +435,10 @@
                                             <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                         </svg><span class="h6 ">Tutor Request</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="guestTutorRequest.html"> Tutor Request</a></li>
-                                        <li><a href="userTutorRequest.html">Hire Tutor Request</a></li>
-                                        <li><a href="approvedList.html">Approved List</a></li>
+                                        <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
+                                        <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
 
                                     </ul>
                                 </li>
@@ -486,40 +487,40 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                        <svg class="stroke-icon ">
-                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                        </svg>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                        </svg><span class="h6 ">Payment</span></a>
-                                    <ul class="sidebar-submenu">
-                                        <li><a href="applyNumberPayment.html">normal payment </a></li>
-                                        <li><a href="proTutorPayment.html">pro payment </a></li>
+                                    <svg class="stroke-icon ">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                    </svg><span class="h6 ">Payment</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                    <li><a href="proTutorPayment.html">pro payment </a></li>
 
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
 
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
 
-                                        <svg class="stroke-icon ">
-                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                        </svg>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                        </svg><span class="h6 ">Review</span></a>
-                                </li>
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">Review</span></a>
+                        </li>
 
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
 
-                                        <svg class="stroke-icon ">
-                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                        </svg>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                        </svg><span class="h6 ">testimonial</span></a>
-                                </li>
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">testimonial</span></a>
+                        </li>
 
-
+                            
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -585,6 +586,27 @@
                     </div>
                 </div>
 
+
+
+                <!-- popUp -->
+
+                 <!-- popUp -->
+
+                 <div id="popupSuccess"
+                 style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
+                 <div>
+                     <h6 class=" text-white">Data successfully removed....</h6>
+                 </div>
+             </div>
+
+             <div id="successFailed"
+                 style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
+                 <div>
+                     <h6 class=" text-white">Failed to remove....</h6>
+                 </div>
+             </div>
+
+
             </div>
 
 
@@ -646,12 +668,12 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.169:8000/api/account/view-review-rating/')
+            fetch('http://192.168.0.154:8000/api/account/view-review-rating/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
                     if (data.length === 0) {
-                        tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        tableBody.innerHTML = " <tr><td colspan='15' class='text-center'>No data available</td></tr>";
                         return;
                     }
                     data.forEach(request => {
@@ -691,7 +713,7 @@
 
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
 
 
                 });
@@ -708,7 +730,7 @@
 
         const approveRequest = (id) => {
 
-            const apiUrl = `http://192.168.0.169:8000/api/account/add-testimonials/${id}/`
+            const apiUrl = `http://192.168.0.154:8000/api/account/add-testimonials/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -719,9 +741,22 @@
                 .then(response => {
                     if (response.ok) {
                         console.log('ID posted successfully');
-                        window.location.reload();
+                         const popup = document.getElementById('popupSuccess');
+                        popup.style.display = 'block';
+                        setTimeout(() => {
+                            popup.style.display = 'none';
+                        }, 3000);
+
+                       window.location.reload();
                     } else {
                         console.error('Failed to post ID');
+                        const popup = document.getElementById('successFailed');
+                        popup.style.display = 'block';
+                        setTimeout(() => {
+                            popup.style.display = 'none';
+                        }, 3000);
+
+                       window.location.reload();
                     }
                 })
 

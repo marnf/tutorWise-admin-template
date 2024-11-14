@@ -485,9 +485,10 @@
                                             <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                         </svg><span class="h6 ">Tutor Request</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="guestTutorRequest.html"> Tutor Request</a></li>
-                                        <li><a href="userTutorRequest.html">Hire Tutor Request</a></li>
-                                        <li><a href="approvedList.html">Approved List</a></li>
+                                        <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
+                                        <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
 
                                     </ul>
                                 </li>
@@ -536,40 +537,40 @@
 
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
-                                        <svg class="stroke-icon ">
-                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                        </svg>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                        </svg><span class="h6 ">Payment</span></a>
-                                    <ul class="sidebar-submenu">
-                                        <li><a href="applyNumberPayment.html">normal payment </a></li>
-                                        <li><a href="proTutorPayment.html">pro payment </a></li>
+                                    <svg class="stroke-icon ">
+                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                    </svg>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                    </svg><span class="h6 ">Payment</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a href="applyNumberPayment.html">normal payment </a></li>
+                                    <li><a href="proTutorPayment.html">pro payment </a></li>
 
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
 
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="ReviewPage.html">
 
-                                        <svg class="stroke-icon ">
-                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                        </svg>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                        </svg><span class="h6 ">Review</span></a>
-                                </li>
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">Review</span></a>
+                        </li>
 
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="testimonial.html">
 
-                                        <svg class="stroke-icon ">
-                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                        </svg>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                        </svg><span class="h6 ">testimonial</span></a>
-                                </li>
+                                <svg class="stroke-icon ">
+                                    <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                </svg><span class="h6 ">testimonial</span></a>
+                        </li>
 
-
+                            
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -734,7 +735,7 @@
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/script1.js"></script>
-    
+
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Include DataTables JS -->
@@ -743,17 +744,17 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.169:8000/api/account/view-institution/')
+            fetch('http://192.168.0.154:8000/api/account/view-institution/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
                     if (data.length === 0) {
-                        tableBody.innerHTML = " <tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        tableBody.innerHTML = " <tr><td colspan='15' class='text-center'>No data available</td></tr>";
                         return;
                     }
                     data.forEach(data => {
                         const { id, name, logo } = data;
-                        const institutionLogo = `http://192.168.0.169:8000${logo}`;
+                        const institutionLogo = `http://192.168.0.154:8000${logo}`;
 
                         const row = document.createElement('tr');
                         row.innerHTML = `
@@ -793,7 +794,7 @@
 
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
 
 
                 });
@@ -812,7 +813,7 @@
 
         const handleRemoveInstitute = (id) => {
 
-            const apiUrl = `http://192.168.0.169:8000/api/account/delete-institution/${id}/`
+            const apiUrl = `http://192.168.0.154:8000/api/account/delete-institution/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -851,7 +852,7 @@
         function showModalFormWithId(id) {
             $('#formModal').modal('show');
             document.getElementById('editForm').onclick = function () {
-               
+
                 handleEditInstitute(id);
             };
         }
@@ -860,7 +861,7 @@
             event.preventDefault();
             const form = document.getElementById('myForm');
             const formData = new FormData(form);
-            const apiUrl = `http://192.168.0.169:8000/api/account/edit-institution/${id}/`;
+            const apiUrl = `http://192.168.0.154:8000/api/account/edit-institution/${id}/`;
 
             fetch(apiUrl, {
                 method: 'PUT',
@@ -875,7 +876,7 @@
                             popup.style.display = 'none';
                         }, 3000);
 
-                       window.location.reload();
+                        window.location.reload();
                     } else {
                         console.error('Failed to edit data');
                         const popup = document.getElementById('successFailed');

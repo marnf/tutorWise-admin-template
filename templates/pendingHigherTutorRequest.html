@@ -20,6 +20,7 @@
         rel="stylesheet">
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
     <!-- Themify icon-->
@@ -44,13 +45,13 @@
     <!-- database cdn link -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
-
     <style>
         .dataTables_filter input:focus {
             border-color: #000000;
             outline: none;
             background: gainsboro;
         }
+
 
 
 
@@ -75,20 +76,6 @@
             color: white;
         }
 
-        .btn-edit {
-            background-color: #7e8083;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .btn-edit:hover {
-            background-color: #000000;
-            transform: scale(1.05);
-            color: white;
-        }
 
         .btn-box {
             display: flex;
@@ -98,7 +85,7 @@
         }
 
         .btn-approve,
-        .btn-edit {
+        .btn-approve {
             width: 100%;/
         }
     </style>
@@ -136,8 +123,6 @@
 
     <!-- page-wrapper Start-->
     <div class="page-wrapper default-wrapper" id="pageWrapper">
-
-
         <!-- Page Header Start-->
         <div class="page-header">
             <div class="header-wrapper row m-0">
@@ -412,9 +397,6 @@
             </div>
         </div>
         <!-- Page Header Ends   -->
-
-
-
         <!-- Page Body Start-->
         <div class="page-body-wrapper default-menu default-menu">
             <!-- Page Sidebar Start-->
@@ -449,9 +431,10 @@
                                             <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                         </svg><span class="h6 ">Tutor Request</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="guestTutorRequest.html"> Tutor Request</a></li>
-                                        <li><a href="userTutorRequest.html">Hire Tutor Request</a></li>
-                                        <li><a href="approvedList.html">Approved List</a></li>
+                                        <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
+                                        <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
 
                                     </ul>
                                 </li>
@@ -546,27 +529,94 @@
 
             <div class="page-body">
 
-                <div class="container mt-5">
-                    <h2 class="mb-4 text-center">Tutor Request List</h2>
-                    <table id="tutorRequestList" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Location</th>
-                                <th>Details</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
+                <div class=" mt-4">
+                    <h2 class="text-center ">Request List</h2>
 
-                        </tbody>
-                    </table>
+
+                    <div class=" mt-4">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div class="card p-3 shadow-sm overflow-auto">
+                                    <!-- Tutor and Student Information Table -->
+                                    <table id="hireTutorRequestTable" class="table table-bordered table-striped mt-3">
+                                        <thead class="table-light">
+                                            <tr class="">
+                                                <th>ID</th>
+                                                <th>Type</th>
+                                                <th class="text-nowrap"> Tutor Name</th>
+                                                <th class="text-nowrap">Phone</th>
+                                                <th class="text-nowrap">Location</th>
+                                                <th>Charge</th>
+                                                <th>Type</th>
+                                                <th class="text-nowrap"> Student Name</th>
+                                                <th class="text-nowrap">Phone</th>
+                                                <th>Medium</th>
+                                                <th class="text-nowrap">Start Date</th>
+                                                <th>Subject</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
 
+
+
+                <!-- Modal Structure -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to approve this user?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="confirmButton" type="button" class="btn btn-primary">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- popup section -->
+
+
+                
+                <div id="popupSuccess"
+                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
+                    <div>
+                        <h6 class=" text-white">Data successfully submitted....</h6>
+                    </div>
+                </div>
+
+                <div id="successFailed"
+                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
+                    <div>
+                        <h6 class=" text-white">Failed to submit....</h6>
+                    </div>
+                </div>
+
+
+
+
+
+
             </div>
+
+
 
 
 
@@ -633,55 +683,114 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <script>
-        fetch('http://192.168.0.169:8000/api/account/view-request-tutor/')
-            .then(res => res.json())
-            .then(data => {
-                const tableBody = document.getElementById('table-body');
-                if (data.length === 0) {
-                    tableBody.innerHTML = "<tr><td colspan='10' class='text-center'>No data available</td></tr>";
-                    return;
-                }
+        $(document).ready(function () {
 
-                data.forEach(tutor => {
-                    const { id, name, phone, location, details } = tutor;
+            fetch('http://192.168.0.154:8000/api/account/view-hire-request-tutor/')
+                .then(res => res.json())
+                .then(data => {
+                    const tableBody = document.getElementById('table-body');
+                    if (data.length === 0) {
+                        tableBody.innerHTML = " <tr><td colspan='15' class='text-center'>No data available</td></tr>";
+                        return;
+                    }
+                    data.forEach(request => {
+                        const { id, tutor_name, tutor_phone, tutor_division, tutor_district, tutor_charge,
+                            name, phone, medium, subjects, start_date, tutor } = request;
 
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                <td>${id}</td>
-                <td class="text-nowrap">${name}</td>
-                <td class="text-nowrap">${phone ? phone : ''}</td>
-                <td class="text-nowrap">${location ? location : ''}</td>
-                <td>${details ? details : ''}</td>
-                 <td><button class="btn btn-approve">Approve</button></td>
-          
-            `;
-                    tableBody.appendChild(row);
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td>${id || ''}</td>
+                    <td ><strong>tutor</strong></td>
+                    <td class="text-nowrap">${tutor_name || ''}</td>
+                    <td class="text-nowrap">${tutor_phone || ''}</td>
+                    <td class="text-nowrap"> ${tutor_district || ''} , ${tutor_division || ''}</td> 
+                    <td>${tutor_charge || ''}</td>
+                     <td ><strong>student</strong></td>
+                    <td class="text-nowrap">${name || ''}</td>
+                    <td class="text-nowrap">${phone || ''}</td>
+                    <td class="text-nowrap">${medium || ''}</td>
+                    <td class="text-nowrap">${start_date || ''}</td>
+                    <td>${subjects || ''}</td>
+                    <td><button   onclick="showModalWithId(${id})" class="btn btn-approve">Approve</button></td>
+           `;
+                        tableBody.appendChild(row);
+                    });
+
+                    // Initialize DataTables with search and pagination
+                    $('#hireTutorRequestTable').DataTable({
+                        "paging": true,
+                        "searching": true,
+                        "pageLength": 10,
+                        "lengthMenu": [5, 10, 15, 20],
+                        "columnDefs": [
+                            {
+                                "targets": [0, 2, 3, 4, 5, 7, 8, 9, 10, 11],
+                                "orderable": true
+                            },
+                            {
+                                "targets": "_all",
+                                "orderable": false
+                            }
+                        ]
+                    });
+
+                })
+
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='13' class='text-center'>Error loading data</td></tr>";
+
+
                 });
 
-                $('#tutorRequestList').DataTable({
-                    "paging": true,
-                    "searching": true,
-                    "pageLength": 10,
-                    "lengthMenu": [5, 10, 15, 20],
-                    "columnDefs": [
-                        {
-                            "targets": [0, 1, 2, 3, 4],
-                            "orderable": true
-                        },
-                        {
-                            "targets": "_all",
-                            "orderable": false
-                        }
-                    ]
-                });
+        });
+
+
+        function showModalWithId(id) {
+            $('#exampleModal').modal('show');
+
+            document.getElementById('confirmButton').onclick = function () { approveRequest(id); };
+
+        }
+
+
+
+        const approveRequest = (id) => {
+
+            const apiUrl = `http://192.168.0.154:8000/api/account/approve-request/${id}/`
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
             })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
-            });
+                .then(response => {
+                    if (response.ok) {
+                        console.log('ID posted successfully');
+                        const popup = document.getElementById('popupSuccess');
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 100000);
+                    } else {
+                        console.error('Failed to post ID');
+                        const popup = document.getElementById('successFailed');
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 100000);
+                    }
+                })
+
+
+        }
+
+        function closeModal() {
+            $('#exampleModal').modal('hide');  
+        }
 
     </script>
-
 
 
 </body>

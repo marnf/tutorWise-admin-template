@@ -445,9 +445,10 @@
                                             <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                         </svg><span class="h6 ">Tutor Request</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="guestTutorRequest.html"> Tutor Request</a></li>
-                                        <li><a href="userTutorRequest.html">Hire Tutor Request</a></li>
-                                        <li><a href="approvedList.html">Approved List</a></li>
+                                        <li><a href="pendingTutorRequest.html"> Pending Tutor Request</a></li>
+                                        <li><a href="approvedTutorRequest.html"> Approved Tutor Request</a></li>
+                                        <li><a href="pendingHigherTutorRequest.html"> Pending Hire Tutor Request</a></li>
+                                        <li><a href="approvedHigherTutorRequest.html">Approved Higher Tutor Request</a></li>
 
                                     </ul>
                                 </li>
@@ -528,7 +529,6 @@
                                     <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
                                 </svg><span class="h6 ">testimonial</span></a>
                         </li>
-
 
                             
                             </ul>
@@ -631,12 +631,12 @@
     <script>
 
         $(document).ready(function () {
-            fetch('http://192.168.0.169:8000/api/account/non-pro-tutor-list/')
+            fetch('http://192.168.0.154:8000/api/account/non-pro-tutor-list/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
                     if (data.length === 0) {
-                        tableBody.innerHTML = "<tr><td colspan='10' class='text-center'>No data available</td></tr>";
+                        tableBody.innerHTML = "<tr><td colspan='15' class='text-center'>No data available</td></tr>";
                         return;
                     }
 
@@ -649,7 +649,7 @@
 
 
 
-                        const profilePictureUrl = `http://192.168.0.169:8000${personalInfo.profile_picture}`;
+                        const profilePictureUrl = `http://192.168.0.154:8000${personalInfo.profile_picture}`;
 
                         const row = document.createElement('tr');
                         row.innerHTML = `
@@ -692,7 +692,7 @@
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    document.getElementById('table-body').innerHTML = "<tr><td colspan='10' class='text-center'>Error loading data</td></tr>";
+                    document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
                 });
         });
 
