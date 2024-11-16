@@ -744,7 +744,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.154:8000/api/admin/view-institution/')
+            fetch('https://tutorwise-backend.vercel.app/api/admin/view-institution/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -754,7 +754,7 @@
                     }
                     data.forEach(data => {
                         const { id, name, logo } = data;
-                        const institutionLogo = `http://192.168.0.154:8000${logo}`;
+                        const institutionLogo = `https://tutorwise-backend.vercel.app/${logo}`;
 
                         const row = document.createElement('tr');
                         row.innerHTML = `
@@ -813,7 +813,7 @@
 
         const handleRemoveInstitute = (id) => {
 
-            const apiUrl = `http://192.168.0.154:8000/api/admin/delete-institution/${id}/`
+            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/delete-institution/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -861,7 +861,7 @@
             event.preventDefault();
             const form = document.getElementById('myForm');
             const formData = new FormData(form);
-            const apiUrl = `http://192.168.0.154:8000/api/admin/edit-institution/${id}/`;
+            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/edit-institution/${id}/`;
 
             fetch(apiUrl, {
                 method: 'PUT',

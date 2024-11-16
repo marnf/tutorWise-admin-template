@@ -873,7 +873,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <script>
-        fetch('http://192.168.0.154:8000/api/admin/view-request-tutor/')
+        fetch('https://tutorwise-backend.vercel.app/api/admin/view-request-tutor/')
             .then(res => res.json())
             .then(data => {
                 const tableBody = document.getElementById('table-body');
@@ -958,13 +958,13 @@
         // modal opening end......................
 
 
-        function handleEditData(id) {
+        const handleEditData = (id) => {
             event.preventDefault();
             const form = document.getElementById('myForm');
             const formData = new FormData(form);
 
 
-            const url = `http://192.168.0.154:8000/api/admin/edit-faq/${id}/`;
+            const url = `https://tutorwise-backend.vercel.app/api/admin/edit-faq/${id}/`;
 
             fetch(url, {
                 method: 'PUT',
@@ -995,10 +995,9 @@
 
 
 
-
         const handleRemoveData = (id) => {
 
-            const apiUrl = `http://192.168.0.154:8000/api/admin/unapproved-request/${id}/`
+            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/unapproved-request/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -1032,10 +1031,10 @@
         }
 
 
-
+        
         const handleDeleteData = (id) => {
 
-            const apiUrl = `http://192.168.0.154:8000/api/admin/unapproved-request/${id}/`
+            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/unapproved-request/${id}/`
             fetch(apiUrl, {
                 method: 'DELETE',
                 

@@ -644,7 +644,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.154:8000/api/admin/pro-tutor-payment')
+            fetch('https://tutorwise-backend.vercel.app/api/admin/pro-tutor-payment')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
