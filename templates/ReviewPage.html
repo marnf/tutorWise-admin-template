@@ -668,7 +668,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.154:8000/api/account/view-review-rating/')
+            fetch('http://192.168.0.154:8000/api/admin/view-review-rating/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -730,7 +730,7 @@
 
         const approveRequest = (id) => {
 
-            const apiUrl = `http://192.168.0.154:8000/api/account/add-testimonials/${id}/`
+            const apiUrl = `http://192.168.0.154:8000/api/admin/add-testimonials/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {

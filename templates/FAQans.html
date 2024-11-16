@@ -758,7 +758,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.154:8000/api/account/view-faq/')
+            fetch('http://192.168.0.154:8000/api/admin/view-faq/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -829,7 +829,7 @@
         const formData = new FormData(form);
 
 
-        const url = `http://192.168.0.154:8000/api/account/edit-faq/${id}/`;
+        const url = `http://192.168.0.154:8000/api/admin/edit-faq/${id}/`;
 
         fetch(url, {
             method: 'PUT',

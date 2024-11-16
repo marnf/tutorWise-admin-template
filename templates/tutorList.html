@@ -631,7 +631,7 @@
     <script>
 
         $(document).ready(function () {
-            fetch('http://192.168.0.154:8000/api/account/non-pro-tutor-list/')
+            fetch('http://192.168.0.154:8000/api/admin/non-pro-tutor-list/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
