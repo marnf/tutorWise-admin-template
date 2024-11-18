@@ -87,6 +87,7 @@
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
+
         .btn-submit {
             background-color: #00852c;
             color: white;
@@ -107,6 +108,7 @@
             transform: scale(1.05);
             color: white;
         }
+
         .btn-submit:hover {
             background-color: #005320;
             transform: scale(1.05);
@@ -161,6 +163,7 @@
             padding: 0.65rem 0.75rem;
             line-height: 1.5;
             border-radius: 0.25rem;
+            border: 1px solid black;
         }
 
 
@@ -233,8 +236,8 @@
 
 
         <!-- Page Header Start-->
-        <div class="page-header">
-            <div class="header-wrapper row m-0">
+        <div class="page-header " style="height: 89px;">
+            <div class="header-wrapper row ">
                 <form class="form-inline search-full col" action="#" method="get">
                     <div class="form-group w-100">
                         <div class="Typeahead Typeahead--twitterUsers">
@@ -515,14 +518,16 @@
             <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
                 <div>
                     <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
-                                src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark"
-                                src="../assets/images/logo/logo_dark.png" alt=""></a>
+                                style="height: 45px; margin-left: 10px;" src="../assets/images/TutorwiseLogo.png"
+                                alt=""><img class="img-fluid for-dark" src="../assets/images/TutorwiseLogo.png"
+                                alt=""></a>
                         <div class="back-btn"><i class="fa-solid fa-angle-left"></i></div>
-                        <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid">
+                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle"
+                                data-feather="grid">
                             </i></div>
                     </div>
                     <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
-                                src="../assets/images/logo/logo-icon.png" alt=""></a></div>
+                                src="../assets/images/TutorwiseLogo.png" alt=""></a></div>
                     <nav class="sidebar-main">
                         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
                         <div id="sidebar-menu">
@@ -641,10 +646,10 @@
 
 
 
-            <div class="page-body">
+            <div class="page-body pt-1">
 
                 <div class="container mt-5">
-                    <h2 class="mb-4 text-center">Tutor Request List</h2>
+                    <h2 class=" text-center">Tutor Request List</h2>
                     <table id="tutorRequestList" class="table table-bordered">
                         <thead>
                             <tr>
@@ -678,22 +683,22 @@
                                 <form id="myForm" class="p-3">
                                     <div class="row">
                                         <!-- Left Section -->
-                                        <div class="col-md-6 border-end pe-4">
+                                        <div class="col-md-6 border-end border-dark pe-4">
 
                                             <div class="mb-3">
                                                 <label class="form-label">Start Date <span
                                                         class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="datepicker"
+                                                <div class="input-group ">
+                                                    <input type="text" class="form-control border border-dark" id="datepicker"
                                                         name="startDate" placeholder="Select a date" readonly>
-                                                    <span class="input-group-text" id="calendar-icon"
+                                                    <span class="input-group-text border  border-dark" id="calendar-icon"
                                                         style="cursor: pointer;">
                                                         <i class="fa-solid fa-calendar"></i>
                                                     </span>
                                                 </div>
 
                                                 <div class="form-check mt-1">
-                                                    <input class="form-check-input" type="checkbox" id="startImmediate"
+                                                    <input class="form-check-input " type="checkbox" id="startImmediate"
                                                         name="startImmediate">
                                                     <label class="form-check-label" for="startImmediate">Start
                                                         Immediately</label>
@@ -722,8 +727,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Subjects <span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="subject "
-                                                    id="subjectInput" list="subjects" name="curriculums" required>
+                                                <input type="text" class="form-control border border-dark" placeholder="subject " id="subjectInput" list="subjects" name="curriculums" required>
                                                 <datalist id="subjects">
                                                     <option value="Bangla">
                                                     <option value="English">
@@ -764,7 +768,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Budget <span
                                                         class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" placeholder="0" name="budget"
+                                                <input type="number" class="form-control border border-dark" placeholder="0" name="budget"
                                                     required>
                                             </div>
 
@@ -820,6 +824,7 @@
                                                         class="text-danger">*</span></label>
                                                 <select class="form-select" name="daysPerWeek"
                                                     aria-label="Default select required">
+                                                    <option>1 days</option>
                                                     <option>2 days</option>
                                                     <option>3 days</option>
                                                     <option>4 days</option>
@@ -830,7 +835,7 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label">Additional Comment</label>
-                                                <textarea class="form-control" rows="4" placeholder="Type here..."
+                                                <textarea class="form-control border border-dark" rows="4" placeholder="Type here..."
                                                     name="additionalComment"></textarea>
                                             </div>
                                             <div class="d-grid mt-4">
@@ -1060,8 +1065,12 @@
 
         const handleDelateData = (id) => {
 
-            fetch('https://example.com/api/items/12345', {
-                method: 'DELETE',
+            fetch(`http://192.168.0.154:8000/api/admin/delete-request-tutor/${id}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
             })
                 .then(response => {
                     if (response.ok) {

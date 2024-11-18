@@ -139,8 +139,8 @@
 
 
         <!-- Page Header Start-->
-        <div class="page-header">
-            <div class="header-wrapper row m-0">
+        <div class="page-header " style="height: 89px;">
+            <div class="header-wrapper row ">
                 <form class="form-inline search-full col" action="#" method="get">
                     <div class="form-group w-100">
                         <div class="Typeahead Typeahead--twitterUsers">
@@ -421,14 +421,16 @@
             <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
                 <div>
                     <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
-                                src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark"
-                                src="../assets/images/logo/logo_dark.png" alt=""></a>
+                                style="height: 45px; margin-left: 10px;" src="../assets/images/TutorwiseLogo.png"
+                                alt=""><img class="img-fluid for-dark" src="../assets/images/TutorwiseLogo.png"
+                                alt=""></a>
                         <div class="back-btn"><i class="fa-solid fa-angle-left"></i></div>
-                        <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid">
+                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle"
+                                data-feather="grid">
                             </i></div>
                     </div>
                     <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
-                                src="../assets/images/logo/logo-icon.png" alt=""></a></div>
+                                src="../assets/images/TutorwiseLogo.png" alt=""></a></div>
                     <nav class="sidebar-main">
                         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
                         <div id="sidebar-menu">
@@ -547,11 +549,11 @@
 
 
 
-            <div class="page-body">
+            <div class="page-body overflow-auto pt-1 ">
 
-                <div class="container mt-5">
+                <div class="container mt-5 ms-3">
                     <h2 class="mb-4 text-center">Tutor Request List</h2>
-                    <table id="tutorRequestList" class="table table-bordered">
+                    <table id="tutorRequestList" class="table table-bordered ">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -873,7 +875,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <script>
-        fetch('https://tutorwise-backend.vercel.app/api/admin/view-request-tutor/')
+        fetch('https://tutorwise-backend.vercel.app/api/admin/approve-request-tuor-list/')
             .then(res => res.json())
             .then(data => {
                 const tableBody = document.getElementById('table-body');
@@ -883,24 +885,24 @@
                 }
 
                 data.forEach(tutor => {
-                    const { id, name, phone, location, details, subject, start_date, gender, budget, days_per_week, start_immediately, Additional_Comment } = tutor;
+                    const { id, name, phone, location, details, otp, subject, start_date, gender, budget, lesson_type, days_per_week, start_immediate, class_name, additional_comment } = tutor;
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
                                 <th>${id}</th>
-                                <th class="text-nowrap">${Name}</th>
-                                <th >${Phone}</th>
+                                <th class="text-nowrap">${name}</th>
+                                <th >${phone}</th>
                                 <th class="text-nowrap">${location}</th>
-                                <th> ${Details} </th>
-                                <th>${Subject}</th>
-                                <th class="text-nowrap">${Start_date}</th>
-                                <th>${Class}</th>
+                                <th class="text-nowrap"> ${details} </th>
+                                <th>${subject}</th>
+                                <th class="text-nowrap">${start_date}</th>
+                                <th class="text-nowrap">${class_name}</th>
                                 <th class="text-nowrap">${lesson_type}</th>
-                                <th>${Gender}</th>
-                                <th>${Budget}</th>
-                                <th class="text-nowrap">${Days / week}</th>
-                                <th class="text-nowrap">${start_immediately}</th>
-                                <th class="text-nowrap">${Additional_Comment}</th>
+                                <th>${gender}</th>
+                                <th>${budget}</th>
+                                <th class="text-nowrap">${days_per_week}</th>
+                                <th class="text-nowrap">${start_immediate}</th>
+                                <th class="text-nowrap">${additional_comment}</th>
                  <th class="d-flex gap-2">
                     <button class="btn btn-approve" onClick="openFormModal(${id})">Edit</button>
                     <button class="btn btn-approve" onClick="removeFormData(${id})">Remove</button>
@@ -916,6 +918,7 @@
                     "paging": true,
                     "searching": true,
                     "pageLength": 10,
+                  
                     "lengthMenu": [5, 10, 15, 20],
                     "columnDefs": [
                         {
@@ -928,6 +931,9 @@
                         }
                     ]
                 });
+
+              
+
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -1031,13 +1037,13 @@
         }
 
 
-        
+
         const handleDeleteData = (id) => {
 
             const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/unapproved-request/${id}/`
             fetch(apiUrl, {
                 method: 'DELETE',
-                
+
             })
                 .then(response => {
                     if (response.ok) {
