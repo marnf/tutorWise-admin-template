@@ -648,23 +648,39 @@
 
             <div class="page-body pt-1">
 
-                <div class="container mt-5">
+                <div class=" mt-4">
                     <h2 class=" text-center">Tutor Request List</h2>
-                    <table id="tutorRequestList" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Location</th>
-                                <th>Details</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
+                    <div class="row justify-content-center">
 
-                        </tbody>
-                    </table>
+                        <div class="col-md-12">
+
+                            <div class="card p-3 shadow-sm overflow-auto">
+                                <div class="row justify-content-center">
+
+
+                                    <table id="tutorRequestList" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Location</th>
+                                                <th>Details</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body">
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
 
@@ -675,7 +691,7 @@
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Job Application Form</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -685,49 +701,151 @@
                                         <!-- Left Section -->
                                         <div class="col-md-6 border-end border-dark pe-4">
 
+
+
                                             <div class="mb-3">
-                                                <label class="form-label">Start Date <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="input-group ">
-                                                    <input type="text" class="form-control border border-dark" id="datepicker"
-                                                        name="startDate" placeholder="Select a date" readonly>
-                                                    <span class="input-group-text border  border-dark" id="calendar-icon"
-                                                        style="cursor: pointer;">
-                                                        <i class="fa-solid fa-calendar"></i>
-                                                    </span>
+                                                <label for="nameInput" class="form-label">Name:</label>
+                                                <input type="text" id="nameInput"
+                                                    class="form-control border border-dark" name="name" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="phoneInput" class="form-label">Phone:</label>
+                                                <input type="text" id="phoneInput"
+                                                    class="form-control border border-dark" name="phone" />
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label for="locationInput" class="form-label">Location:</label>
+                                                <input type="text" id="locationInput"
+                                                    class="form-control border border-dark" name="location" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="detailsInput" class="form-label">Details:</label>
+                                                <textarea id="detailsInput" class="form-control border border-dark"
+                                                    name="details" rows="3"></textarea>
+                                            </div>
+
+
+
+
+                                            <div class="d-flex justify-content-between gap-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Start Date <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control border border-dark"
+                                                            id="datepicker" name="start_date"
+                                                            placeholder="Select a date" readonly>
+                                                        <span class="input-group-text border border-dark"
+                                                            id="calendar-icon" style="cursor: pointer;">
+                                                            <i class="fa-solid fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="form-check mt-1">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="startImmediate" name="start_immediate" value="yes">
+                                                        <label class="form-check-label" for="startImmediate">Start
+                                                            Immediately</label>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 w-50">
+                                                    <label class="form-label">Days Per Week <span
+                                                            class="text-danger">*</span></label>
+                                                    <select class="form-select" name="days_per_week" required>
+                                                        <option value="1">1 days</option>
+                                                        <option value="2">2 days</option>
+                                                        <option value="3">3 days</option>
+                                                        <option value="4">4 days</option>
+                                                        <option value="5">5 days</option>
+                                                        <option value="6">6 days</option>
+                                                    </select>
                                                 </div>
 
-                                                <div class="form-check mt-1">
-                                                    <input class="form-check-input " type="checkbox" id="startImmediate"
-                                                        name="startImmediate">
-                                                    <label class="form-check-label" for="startImmediate">Start
-                                                        Immediately</label>
+                                            </div>
+
+
+                                        </div>
+
+                                        <!-- Right Section -->
+                                        <div class="col-md-6 ps-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Lesson Type <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="d-flex gap-3 border-top border-dark pt-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lesson_type"
+                                                            id="online" value="Online" required>
+                                                        <label class="form-check-label" for="online">Online</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lesson_type"
+                                                            id="offline" value="Offline" required>
+                                                        <label class="form-check-label" for="offline">Offline</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lesson_type"
+                                                            id="Both" value="Both" required>
+                                                        <label class="form-check-label" for="Both">Both</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Educational Level <span
+                                                <label class="form-label">Gender <span
                                                         class="text-danger">*</span></label>
-                                                <select class="form-select" name="educationalLevel" required>
-                                                    <option>Class 1</option>
-                                                    <option>Class 2</option>
-                                                    <option>Class 3</option>
-                                                    <option>Class 4</option>
-                                                    <option>Class 5</option>
-                                                    <option>Class 6</option>
-                                                    <option>Class 7</option>
-                                                    <option>Class 8</option>
-                                                    <option>Class 9</option>
-                                                    <option>Class 10</option>
-                                                    <option>HSC/A level</option>
-                                                    <option>SSC/A level</option>
-                                                </select>
+                                                <div class="d-flex gap-3 border-top border-dark pt-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="male" value="male" required>
+                                                        <label class="form-check-label" for="male">Male</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="female" value="female" required>
+                                                        <label class="form-check-label" for="female">Female</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="Others" value="Others" required>
+                                                        <label class="form-check-label" for="Others">Others</label>
+                                                    </div>
+                                                </div>
                                             </div>
 
+                                            <div class="d-flex justify-content-between gap-2">
+                                                <div class="mb-3 w-50">
+                                                    <label class="form-label">Educational Level <span
+                                                            class="text-danger">*</span></label>
+                                                    <select class="form-select" name="class_name" required>
+                                                        <option value="Class 1">Class 1</option>
+                                                        <option value="Class 2">Class 2</option>
+                                                        <option value="Class 3">Class 3</option>
+                                                        <option value="Class 4">Class 4</option>
+                                                        <option value="Class 5">Class 5</option>
+                                                        <option value="Class 6">Class 6</option>
+                                                        <option value="Class 7">Class 7</option>
+                                                        <option value="Class 8">Class 8</option>
+                                                        <option value="Class 9">Class 9</option>
+                                                        <option value="Class 10">Class 10</option>
+                                                        <option value="HSC/A level">HSC/A level</option>
+                                                        <option value="SSC/A level">SSC/A level</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Budget <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control border border-dark"
+                                                        placeholder="0" name="budget" required>
+                                                </div>
+                                            </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Subjects <span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" class="form-control border border-dark" placeholder="subject " id="subjectInput" list="subjects" name="curriculums" required>
+                                                <input type="text" class="form-control border border-dark"
+                                                    placeholder="Subject" id="subjectInput" list="subjects"
+                                                    name="subject" required>
                                                 <datalist id="subjects">
                                                     <option value="Bangla">
                                                     <option value="English">
@@ -765,86 +883,20 @@
                                             </div>
 
 
-                                            <div class="mb-3">
-                                                <label class="form-label">Budget <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="number" class="form-control border border-dark" placeholder="0" name="budget"
-                                                    required>
-                                            </div>
-
-
-                                        </div>
-
-                                        <!-- Right Section -->
-                                        <div class="col-md-6 ps-4">
-                                            <div class="mb-3">
-                                                <label class="form-label">Lesson Type <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="d-flex gap-3 border-top border-dark pt-2">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lessonType"
-                                                            id="online" value="Online" required>
-                                                        <label class="form-check-label" for="online">Online</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lessonType"
-                                                            id="offline" value="Offline" required>
-                                                        <label class="form-check-label" for="offline">Offline</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lessonType"
-                                                            id="Both" value="Both" required>
-                                                        <label class="form-check-label" for="Both">Both</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Gender <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="d-flex gap-3 border-top border-dark pt-2">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="male" value="Male" required>
-                                                        <label class="form-check-label" for="male">Male</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="female" value="Female" required>
-                                                        <label class="form-check-label" for="female">Female</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="Others" value="Others" required>
-                                                        <label class="form-check-label" for="Others">Others</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Days Per Week <span
-                                                        class="text-danger">*</span></label>
-                                                <select class="form-select" name="daysPerWeek"
-                                                    aria-label="Default select required">
-                                                    <option>1 days</option>
-                                                    <option>2 days</option>
-                                                    <option>3 days</option>
-                                                    <option>4 days</option>
-                                                    <option>5 days</option>
-                                                    <option>6 days</option>
-                                                </select>
-                                            </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Additional Comment</label>
-                                                <textarea class="form-control border border-dark" rows="4" placeholder="Type here..."
-                                                    name="additionalComment"></textarea>
+                                                <textarea class="form-control border border-dark" rows="5"
+                                                    placeholder="Type here..." name="additional_comment"></textarea>
                                             </div>
                                             <div class="d-grid mt-4">
                                                 <button type="submit" id="confirmButton"
-                                                    class="btn  btn-submit py-2">Submit Data</button>
+                                                    class="btn btn-submit py-2">Submit Data</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>
@@ -862,7 +914,7 @@
                                 Are you sure you want to Delate this user?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" onclick="closeDelateModal()" class="btn btn-secondary"
+                                <button type="button" onclick="closeDeleteModal()" class="btn btn-secondary"
                                     data-dismiss="modal">Close</button>
                                 <button id="confirmDelateButton" type="button" class="btn btn-primary">Remove</button>
                             </div>
@@ -955,10 +1007,14 @@
     <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+    <!-- Base api -->
+    <script src="./base_url.js"></script>
+
 
 
     <script>
-        fetch('https://tutorwise-backend.vercel.app/api/admin/view-request-tutor/')
+
+        fetch(`${BASE_URL}/api/admin/view-request-tutor/`)
             .then(res => res.json())
             .then(data => {
                 const tableBody = document.getElementById('table-body');
@@ -977,7 +1033,7 @@
                 <td class="text-nowrap">${phone ? phone : ''}</td>
                 <td class="text-nowrap">${location ? location : ''}</td>
                 <td>${details ? details : ''}</td>
-                 <td class="d-flex gap-2"><button onClick="showModalWithId(${id})" class="btn btn-approve">Add</button> 
+                 <td class="d-flex gap-2"><button onClick="showModalWithData(${id}, '${name}', '${phone}', '${location}', '${details}')" class="btn btn-approve">Add</button>
                     <button onClick="showModalWithIdForDelate(${id})" class="btn btn-remove">Delate</button>
                     </td>
               
@@ -1009,12 +1065,23 @@
             });
 
 
-        function showModalWithId(id) {
+        function showModalWithData(id, name, phone, location, details) {
+
             $('#exampleModal').modal('show');
 
-            document.getElementById('confirmButton').onclick = function () { handleEditData(id); };
 
+            document.getElementById('nameInput').value = name || '';
+            document.getElementById('phoneInput').value = phone || '';
+            document.getElementById('locationInput').value = location || '';
+            document.getElementById('detailsInput').value = details || '';
+
+
+            document.getElementById('confirmButton').onclick = function () {
+                handleEditData(id);
+            };
         }
+
+
 
 
         function showModalWithIdForDelate(id) {
@@ -1030,8 +1097,11 @@
             const form = document.getElementById('myForm');
             const formData = new FormData(form);
 
+            const isStartImmediateChecked = document.getElementById('startImmediate').checked;
+            formData.set('start_immediate', isStartImmediateChecked ? 'true' : 'false');
 
-            const url = `https://tutorwise-backend.vercel.app/api/admin/edit-faq/${id}/`;
+
+            const url = `${BASE_URL}/api/admin/request-tutor-add-info/${id}/`;
 
             fetch(url, {
                 method: 'PUT',
@@ -1044,7 +1114,7 @@
                     popup.style.display = 'block';
                     setTimeout(() => {
                         popup.style.display = 'none';
-                    }, 100000);
+                    }, 10000);
 
                     window.location.reload();
                 })
@@ -1054,23 +1124,18 @@
                     popup.style.display = 'block';
                     setTimeout(() => {
                         popup.style.display = 'none';
-                    }, 100000);
+                    }, 10000);
 
                     window.location.reload();
                 });
+
         }
-
-
 
 
         const handleDelateData = (id) => {
 
-            fetch(`http://192.168.0.154:8000/api/admin/delete-request-tutor/${id}/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: id })
+            fetch(`${BASE_URL}/api/admin/delete-request-tutor/${id}/`, {
+                method: 'DELETE',
             })
                 .then(response => {
                     if (response.ok) {
@@ -1108,7 +1173,7 @@
         function closeModal() {
             $('#exampleModal').modal('hide');
         }
-        function closeDelateModal() {
+        function closeDeleteModal() {
             $('#delateModal').modal('hide');
         }
 

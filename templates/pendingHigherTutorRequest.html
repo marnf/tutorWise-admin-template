@@ -124,7 +124,7 @@
     <!-- page-wrapper Start-->
     <div class="page-wrapper default-wrapper" id="pageWrapper">
         <!-- Page Header Start-->
-        <div class="page-header "style="height: 89px;">
+        <div class="page-header " style="height: 89px;">
             <div class="header-wrapper row ">
                 <form class="form-inline search-full col" action="#" method="get">
                     <div class="form-group w-100">
@@ -402,11 +402,13 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
                 <div>
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light" style="height: 45px; margin-left: 10px;"
-                                src="../assets/images/TutorwiseLogo.png" alt=""><img class="img-fluid for-dark"
-                                src="../assets/images/TutorwiseLogo.png" alt=""></a>
+                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
+                                style="height: 45px; margin-left: 10px;" src="../assets/images/TutorwiseLogo.png"
+                                alt=""><img class="img-fluid for-dark" src="../assets/images/TutorwiseLogo.png"
+                                alt=""></a>
                         <div class="back-btn"><i class="fa-solid fa-angle-left"></i></div>
-                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle" data-feather="grid">
+                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle"
+                                data-feather="grid">
                             </i></div>
                     </div>
                     <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
@@ -692,7 +694,8 @@
 
 
 
-
+    <!-- Base api -->
+    <script src="./base_url.js"></script>
     <!-- latest jquery-->
     <script src="../assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
@@ -726,7 +729,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('https://tutorwise-backend.vercel.app/api/admin/view-hire-request-tutor/')
+            fetch('http://192.168.0.154:8000/api/admin/view-hire-request-tutor/')
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -752,7 +755,7 @@
                     <td class="text-nowrap">${medium || ''}</td>
                     <td class="text-nowrap">${start_date || ''}</td>
                     <td>${subjects || ''}</td>
-                    <td>
+                    <td class="d-flex gap-2">
                         <button   onclick="showModalWithId(${id})" class="btn btn-approve">Approve</button>
                         <button   onclick="showEditModalWithId(${id})" class="btn btn-approve">Edit</button>
                         <button   onclick="showDeleteModalWithId(${id})" class="btn btn-approve">Delete</button>
@@ -791,7 +794,7 @@
 
         });
 
-// all modal opening function..............
+        // all modal opening function..............
         function showModalWithId(id) {
             $('#exampleModal').modal('show');
 
@@ -800,14 +803,14 @@
         }
 
         function showEditModalWithId(id) {
-            $('#exampleModal').modal('show');
+            $('#exampleEditModal').modal('show');
 
             document.getElementById('confirmEditButton').onclick = function () { handleEditModal(id); };
 
         }
 
         function showDeleteModalWithId(id) {
-            $('#exampleModal').modal('show');
+            $('#exampleDeleteModal').modal('show');
 
             document.getElementById('confirmDeleteButton').onclick = function () { handleDeleteModal(id); };
 
@@ -817,7 +820,7 @@
 
         const approveRequest = (id) => {
 
-            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/approve-request/${id}/`
+            const apiUrl = `http://192.168.0.154:8000/api/admin/approve-request/${id}/`
 
 
             fetch(apiUrl, {
@@ -849,7 +852,7 @@
         }
 
 
-// edit function...............
+        // edit function...............
         function handleEditModal(id) {
             event.preventDefault();
             const form = document.getElementById('myForm');
@@ -886,12 +889,17 @@
         }
 
 
-// delete function................
+        // delete function................
         const handleDeleteModal = (id) => {
 
-            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/unapproved-request/${id}/`
+
+            const apiUrl = `http://192.168.0.154:8000/api/admin/delete-hire-tutor-request/${id}/`
             fetch(apiUrl, {
-                method: 'DELETE',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
 
             })
                 .then(response => {
@@ -924,7 +932,7 @@
 
 
 
-// close all modal................
+        // close all modal................
         function closeModal() {
             $('#exampleModal').modal('hide');
         }

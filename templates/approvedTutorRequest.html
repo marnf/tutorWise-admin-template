@@ -69,6 +69,22 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
+        .btn-submit {
+            background-color: #00852c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #005320;
+            transform: scale(1.05);
+            color: white;
+        }
+
+
         .btn-approve:hover {
             background-color: #0056b3;
             transform: scale(1.05);
@@ -82,6 +98,20 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .form-select {
+            height: calc(1.5em + 1.25rem + 2px);
+            font-size: 15px;
+            padding: 0.65rem 0.75rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            height: 40px;
+            font-size: 15px;
+            padding: 0.65rem 0.75rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            border: 1px solid black;
         }
 
         .btn-edit:hover {
@@ -549,40 +579,55 @@
 
 
 
-            <div class="page-body overflow-auto pt-1 ">
+            <div class="page-body  pt-1  overflow-auto ">
 
-                <div class="container mt-5 ms-3">
-                    <h2 class="mb-4 text-center">Tutor Request List</h2>
-                    <table id="tutorRequestList" class="table table-bordered ">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th class="text-nowrap">Name</th>
-                                <th>Phone</th>
-                                <th class="text-nowrap">Location</th>
-                                <th>Details</th>
-                                <th>Subject</th>
-                                <th class="text-nowrap">Start Date</th>
-                                <th>Class</th>
-                                <th class="text-nowrap">lesson Type</th>
-                                <th>Gender</th>
-                                <th>Budget</th>
-                                <th class="text-nowrap">Days/week</th>
-                                <th class="text-nowrap">Start Immediately</th>
-                                <th class="text-nowrap">Additional Comment</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
 
-                        </tbody>
-                    </table>
+
+
+
+                <div class=" mt-4">
+                    <h2 class=" text-center">Approved tutor request</h2>
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-12">
+
+                            <div class="card p-3 shadow-sm overflow-auto">
+                                <div class="row justify-content-center">
+
+
+                                    <table id="tutorRequestList" class="table table-bordered  ">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th class="text-nowrap">Name</th>
+                                                <th>Phone</th>
+                                                <th class="text-nowrap">Location</th>
+                                                <th>Details</th>
+                                                <th>Subject</th>
+                                                <th class="text-nowrap">Start Date</th>
+                                                <th>Class</th>
+                                                <th class="text-nowrap">lesson Type</th>
+                                                <th>Gender</th>
+                                                <th>Budget</th>
+                                                <th class="text-nowrap">Days/week</th>
+                                                <th class="text-nowrap">Start Immediately</th>
+                                                <th class="text-nowrap">Additional Comment</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body">
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
-
-
-
-
-
 
 
 
@@ -591,7 +636,7 @@
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Job Application Form</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -599,52 +644,153 @@
                                 <form id="myForm" class="p-3">
                                     <div class="row">
                                         <!-- Left Section -->
-                                        <div class="col-md-6 border-end pe-4">
+                                        <div class="col-md-6 border-end border-dark pe-4">
+
+
 
                                             <div class="mb-3">
-                                                <label class="form-label">Start Date <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="datepicker"
-                                                        name="startDate" placeholder="Select a date" readonly>
-                                                    <span class="input-group-text" id="calendar-icon"
-                                                        style="cursor: pointer;">
-                                                        <i class="fa-solid fa-calendar"></i>
-                                                    </span>
+                                                <label for="nameInput" class="form-label">Name:</label>
+                                                <input type="text" id="nameInput"
+                                                    class="form-control border border-dark" name="name" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="phoneInput" class="form-label">Phone:</label>
+                                                <input type="text" id="phoneInput"
+                                                    class="form-control border border-dark" name="phone" />
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label for="locationInput" class="form-label">Location:</label>
+                                                <input type="text" id="locationInput"
+                                                    class="form-control border border-dark" name="location" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="detailsInput" class="form-label">Details:</label>
+                                                <textarea id="detailsInput" class="form-control border border-dark"
+                                                    name="details" rows="3"></textarea>
+                                            </div>
+
+
+
+
+                                            <div class="d-flex justify-content-between gap-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Start Date <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control border border-dark"
+                                                            id="datepicker" name="start_date"
+                                                            placeholder="Select a date" readonly>
+                                                        <span class="input-group-text border border-dark"
+                                                            id="calendar-icon" style="cursor: pointer;">
+                                                            <i class="fa-solid fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="form-check mt-1">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="startImmediate" name="start_immediate" value="yes">
+                                                        <label class="form-check-label" for="startImmediate">Start
+                                                            Immediately</label>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 w-50">
+                                                    <label class="form-label">Days Per Week <span
+                                                            class="text-danger">*</span></label>
+                                                    <select class="form-select" name="days_per_week" required>
+                                                        <option value="1">1 days</option>
+                                                        <option value="2">2 days</option>
+                                                        <option value="3">3 days</option>
+                                                        <option value="4">4 days</option>
+                                                        <option value="5">5 days</option>
+                                                        <option value="6">6 days</option>
+                                                    </select>
                                                 </div>
 
-                                                <div class="form-check mt-1">
-                                                    <input class="form-check-input" type="checkbox" id="startImmediate"
-                                                        name="startImmediate">
-                                                    <label class="form-check-label" for="startImmediate">Start
-                                                        Immediately</label>
+                                            </div>
+
+
+                                        </div>
+
+                                        <!-- Right Section -->
+                                        <div class="col-md-6 ps-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Lesson Type <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="d-flex gap-3 border-top border-dark pt-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lesson_type"
+                                                            id="online" value="Online" required>
+                                                        <label class="form-check-label" for="online">Online</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lesson_type"
+                                                            id="offline" value="Offline" required>
+                                                        <label class="form-check-label" for="offline">Offline</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="lesson_type"
+                                                            id="Both" value="Both" required>
+                                                        <label class="form-check-label" for="Both">Both</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Educational Level <span
+                                                <label class="form-label">Gender <span
                                                         class="text-danger">*</span></label>
-                                                <select class="form-select" name="educationalLevel" required>
-                                                    <option>Class 1</option>
-                                                    <option>Class 2</option>
-                                                    <option>Class 3</option>
-                                                    <option>Class 4</option>
-                                                    <option>Class 5</option>
-                                                    <option>Class 6</option>
-                                                    <option>Class 7</option>
-                                                    <option>Class 8</option>
-                                                    <option>Class 9</option>
-                                                    <option>Class 10</option>
-                                                    <option>HSC/A level</option>
-                                                    <option>SSC/A level</option>
-                                                </select>
+                                                <div class="d-flex gap-3 border-top border-dark pt-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="male" value="male" required>
+                                                        <label class="form-check-label" for="male">Male</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="female" value="female" required>
+                                                        <label class="form-check-label" for="female">Female</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="Others" value="Others" required>
+                                                        <label class="form-check-label" for="Others">Others</label>
+                                                    </div>
+                                                </div>
                                             </div>
 
+                                            <div class="d-flex justify-content-between gap-2">
+                                                <div class="mb-3 w-50">
+                                                    <label class="form-label">Educational Level <span
+                                                            class="text-danger">*</span></label>
+                                                    <select class="form-select" name="class_name" required>
+                                                        <option value="Class 1">Class 1</option>
+                                                        <option value="Class 2">Class 2</option>
+                                                        <option value="Class 3">Class 3</option>
+                                                        <option value="Class 4">Class 4</option>
+                                                        <option value="Class 5">Class 5</option>
+                                                        <option value="Class 6">Class 6</option>
+                                                        <option value="Class 7">Class 7</option>
+                                                        <option value="Class 8">Class 8</option>
+                                                        <option value="Class 9">Class 9</option>
+                                                        <option value="Class 10">Class 10</option>
+                                                        <option value="HSC/A level">HSC/A level</option>
+                                                        <option value="SSC/A level">SSC/A level</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Budget <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control border border-dark"
+                                                        placeholder="0" name="budget" required>
+                                                </div>
+                                            </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Subjects <span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="subject "
-                                                    id="subjectInput" list="subjects" name="curriculums" required>
+                                                <input type="text" class="form-control border border-dark"
+                                                    placeholder="Subject" id="subjectInput" list="subjects"
+                                                    name="subject" required>
                                                 <datalist id="subjects">
                                                     <option value="Bangla">
                                                     <option value="English">
@@ -682,89 +828,26 @@
                                             </div>
 
 
-                                            <div class="mb-3">
-                                                <label class="form-label">Budget <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" placeholder="0" name="budget"
-                                                    required>
-                                            </div>
-
-
-                                        </div>
-
-                                        <!-- Right Section -->
-                                        <div class="col-md-6 ps-4">
-                                            <div class="mb-3">
-                                                <label class="form-label">Lesson Type <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="d-flex gap-3 border-top border-dark pt-2">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lessonType"
-                                                            id="online" value="Online" required>
-                                                        <label class="form-check-label" for="online">Online</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lessonType"
-                                                            id="offline" value="Offline" required>
-                                                        <label class="form-check-label" for="offline">Offline</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lessonType"
-                                                            id="Both" value="Both" required>
-                                                        <label class="form-check-label" for="Both">Both</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Gender <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="d-flex gap-3 border-top border-dark pt-2">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="male" value="Male" required>
-                                                        <label class="form-check-label" for="male">Male</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="female" value="Female" required>
-                                                        <label class="form-check-label" for="female">Female</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="Others" value="Others" required>
-                                                        <label class="form-check-label" for="Others">Others</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Days Per Week <span
-                                                        class="text-danger">*</span></label>
-                                                <select class="form-select" name="daysPerWeek"
-                                                    aria-label="Default select required">
-                                                    <option>2 days</option>
-                                                    <option>3 days</option>
-                                                    <option>4 days</option>
-                                                    <option>5 days</option>
-                                                    <option>6 days</option>
-                                                </select>
-                                            </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Additional Comment</label>
-                                                <textarea class="form-control" rows="4" placeholder="Type here..."
-                                                    name="additionalComment"></textarea>
+                                                <textarea class="form-control border border-dark" rows="5"
+                                                    placeholder="Type here..." name="additional_comment"></textarea>
                                             </div>
                                             <div class="d-grid mt-4">
                                                 <button type="submit" id="confirmButton"
-                                                    class="btn btn-primary py-2">Submit Data</button>
+                                                    class="btn btn-submit py-2">Submit Data</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+
 
 
                 <div class="modal fade" id="exampleRemoveModal" tabindex="-1" role="dialog"
@@ -808,6 +891,21 @@
 
 
 
+                <div id="popupSuccess"
+                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
+                    <div>
+                        <h6 class=" text-white">successfully done....</h6>
+                    </div>
+                </div>
+
+                <div id="successFailed"
+                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
+                    <div>
+                        <h6 class=" text-white">Failed to submit....</h6>
+                    </div>
+                </div>
+
+
             </div>
 
 
@@ -844,6 +942,9 @@
 
 
 
+
+    <!-- Base api -->
+    <script src="./base_url.js"></script>
     <!-- latest jquery-->
     <script src="../assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
@@ -874,8 +975,9 @@
     <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+
     <script>
-        fetch('https://tutorwise-backend.vercel.app/api/admin/approve-request-tuor-list/')
+        fetch(`${BASE_URL}/api/admin/approve-request-tutor-list/`)
             .then(res => res.json())
             .then(data => {
                 const tableBody = document.getElementById('table-body');
@@ -887,38 +989,51 @@
                 data.forEach(tutor => {
                     const { id, name, phone, location, details, otp, subject, start_date, gender, budget, lesson_type, days_per_week, start_immediate, class_name, additional_comment } = tutor;
 
+                    // Convert the start_date to Date object
+                    const dateObj = new Date(start_date);
+
+                    // Format the date
+                    const formattedDate = dateObj.toLocaleDateString('en-GB');  // Format to dd/mm/yyyy
+
+                    // Format the time with AM/PM
+                    const formattedTime = dateObj.toLocaleTimeString('en-GB', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true // Enable AM/PM format
+                    });
+
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                                <th>${id}</th>
-                                <th class="text-nowrap">${name}</th>
-                                <th >${phone}</th>
-                                <th class="text-nowrap">${location}</th>
-                                <th class="text-nowrap"> ${details} </th>
-                                <th>${subject}</th>
-                                <th class="text-nowrap">${start_date}</th>
-                                <th class="text-nowrap">${class_name}</th>
-                                <th class="text-nowrap">${lesson_type}</th>
-                                <th>${gender}</th>
-                                <th>${budget}</th>
-                                <th class="text-nowrap">${days_per_week}</th>
-                                <th class="text-nowrap">${start_immediate}</th>
-                                <th class="text-nowrap">${additional_comment}</th>
-                 <th class="d-flex gap-2">
-                    <button class="btn btn-approve" onClick="openFormModal(${id})">Edit</button>
-                    <button class="btn btn-approve" onClick="removeFormData(${id})">Remove</button>
-                    <button class="btn btn-approve" onClick="deleteFormData(${id})">Delete</button>
-                    
-                    </th>
-          
-            `;
+        <th>${id}</th>
+        <th class="text-nowrap">${name}</th>
+        <th>${phone}</th>
+        <th class="text-nowrap">${location}</th>
+        <th class="text-nowrap">${details}</th>
+        <th>${subject}</th>
+        <th class="text-nowrap">${formattedDate} <span class="text-muted">${formattedTime}</span></th>  <!-- Display date and time -->
+        <th class="text-nowrap">${class_name}</th>
+        <th class="text-nowrap">${lesson_type}</th>
+        <th>${gender}</th>
+        <th>${budget}</th>
+        <th class="text-nowrap">${days_per_week}</th>
+        <th class="text-nowrap">${start_immediate}</th>
+        <th class="text-nowrap">${additional_comment}</th>
+        <th class="d-flex gap-2">
+            <button class="btn btn-approve bg-success" onClick="openFormModal(${id}, '${name}', '${phone}', '${location}', '${details}')">Edit</button>
+            <button class="btn btn-approve" onClick="openRemoveModal(${id})">Remove</button>
+           
+        </th>
+    `;
                     tableBody.appendChild(row);
                 });
+
+
 
                 $('#tutorRequestList').DataTable({
                     "paging": true,
                     "searching": true,
                     "pageLength": 10,
-                  
+
                     "lengthMenu": [5, 10, 15, 20],
                     "columnDefs": [
                         {
@@ -932,7 +1047,7 @@
                     ]
                 });
 
-              
+
 
             })
             .catch(error => {
@@ -942,8 +1057,15 @@
 
 
         // modal opening.............................
-        const openFormModal = (id) => {
+        const openFormModal = (id, name, phone, location, details) => {
             $('#exampleModal').modal('show');
+
+
+            document.getElementById('nameInput').value = name || '';
+            document.getElementById('phoneInput').value = phone || '';
+            document.getElementById('locationInput').value = location || '';
+            document.getElementById('detailsInput').value = details || '';
+
 
             document.getElementById('confirmButton').onclick = function () { handleEditData(id); };
         }
@@ -970,7 +1092,7 @@
             const formData = new FormData(form);
 
 
-            const url = `https://tutorwise-backend.vercel.app/api/admin/edit-faq/${id}/`;
+            const url = `${BASE_URL}/api/admin/edit-faq/${id}/`;
 
             fetch(url, {
                 method: 'PUT',
@@ -1003,7 +1125,7 @@
 
         const handleRemoveData = (id) => {
 
-            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/unapproved-request/${id}/`
+            const apiUrl = `${BASE_URL}/api/admin/unapprove-request-tutor/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -1040,7 +1162,7 @@
 
         const handleDeleteData = (id) => {
 
-            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/unapproved-request/${id}/`
+            const apiUrl = `${BASE_URL}/api/admin/unapproved-request/${id}/`
             fetch(apiUrl, {
                 method: 'DELETE',
 
