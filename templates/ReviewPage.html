@@ -125,7 +125,7 @@
 
 
         <!-- Page Header Start-->
-        <div class="page-header "style="height: 89px;">
+        <div class="page-header " style="height: 89px;">
             <div class="header-wrapper row ">
                 <form class="form-inline search-full col" action="#" method="get">
                     <div class="form-group w-100">
@@ -406,11 +406,13 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
                 <div>
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light" style="height: 45px; margin-left: 10px;"
-                                src="../assets/images/TutorwiseLogo.png" alt=""><img class="img-fluid for-dark"
-                                src="../assets/images/TutorwiseLogo.png" alt=""></a>
+                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
+                                style="height: 45px; margin-left: 10px;" src="../assets/images/TutorwiseLogo.png"
+                                alt=""><img class="img-fluid for-dark" src="../assets/images/TutorwiseLogo.png"
+                                alt=""></a>
                         <div class="back-btn"><i class="fa-solid fa-angle-left"></i></div>
-                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle" data-feather="grid">
+                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle"
+                                data-feather="grid">
                             </i></div>
                     </div>
                     <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
@@ -568,6 +570,57 @@
                 </div>
 
 
+                <div class="modal fade" id="exampleEditModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body ">
+                            <form id="myForm">
+                                <!-- Static ID -->
+                                <div class="mb-3">
+                                  <label for="staticId" class="form-label">ID:</label><span></span>
+                                </div>
+                        
+                                <!-- Tutor Name -->
+                                <div class="mb-3">
+                                  <label for="tutorName" class="form-label">Tutor Name:</label>
+                                  <input type="text" id="tutorName" class="form-control" placeholder="Enter tutor's name" required>
+                                </div>
+                          
+                                <!-- Review -->
+                                <div class="mb-3">
+                                  <label for="review" class="form-label">Review:</label>
+                                  <textarea id="review" class="form-control" rows="3" placeholder="Write your review here" required></textarea>
+                                </div>
+                          
+                                <!-- Rating -->
+                                <div class="mb-3">
+                                  <label for="rating" class="form-label">Rating (1-5):</label>
+                                  <input type="number" id="rating" class="form-control" min="1" max="5" placeholder="Enter a rating" required>
+                                </div>
+                          
+                                <!-- Student Name -->
+                                <div class="mb-3">
+                                  <label for="studentName" class="form-label">Student Name:</label>
+                                  <input type="text" id="studentName" class="form-control" placeholder="Enter student's name" required>
+                                </div>
+                          
+                                <!-- Submit Button -->
+                                <button type="submit" id="submitEditBtn" class="btn btn-primary justify-content-end">Submit</button>
+                              </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -592,21 +645,21 @@
 
                 <!-- popUp -->
 
-                 <!-- popUp -->
+                <!-- popUp -->
 
-                 <div id="popupSuccess"
-                 style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
-                 <div>
-                     <h6 class=" text-white">Data successfully removed....</h6>
-                 </div>
-             </div>
+                <div id="popupSuccess"
+                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
+                    <div>
+                        <h6 class=" text-white">Data successfully removed....</h6>
+                    </div>
+                </div>
 
-             <div id="successFailed"
-                 style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
-                 <div>
-                     <h6 class=" text-white">Failed to remove....</h6>
-                 </div>
-             </div>
+                <div id="successFailed"
+                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
+                    <div>
+                        <h6 class=" text-white">Failed to remove....</h6>
+                    </div>
+                </div>
 
 
             </div>
@@ -637,7 +690,8 @@
 
 
 
-    <!-- latest jquery-->
+    <!-- Base api -->
+    <script src="./base_url.js"></script> <!-- latest jquery-->
     <script src="../assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -661,7 +715,7 @@
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/script1.js"></script>
-    
+
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Include DataTables JS -->
@@ -688,7 +742,11 @@
                     <td class="text-nowrap">${message || ''}</td>
                     <td class="text-nowrap"> ${rating || ''}</td> 
                     <td>${student_name || ''}</td>
-                     <td><button  onClick="showModalWithId(${id})"   class="btn btn-edit">Add to testimonial</button></td>
+                     <td class= d-flex gap-2 >
+                        <button  onClick="showModalWithId(${id})" class="btn btn-edit">Add to testimonial</button>
+                        <button  onClick="showEditModalWithId(${id})" class="btn btn-edit bg-success">Edit</button>
+                        <button  onClick="showDeleteModalWithId(${id})" class="btn btn-edit bg-danger">Delete</button>
+                        </td>
            `;
                         tableBody.appendChild(row);
                     });
@@ -729,6 +787,20 @@
 
         }
 
+        function showEditModalWithId(id) {
+            $('#exampleEditModal').modal('show');
+
+            document.getElementById('confirmButton').onclick = function () { approveRequest(id); };
+
+        }
+
+        function showDeleteModalWithId(id) {
+            $('#exampleDeleteModal').modal('show');
+
+            document.getElementById('confirmButton').onclick = function () { approveRequest(id); };
+
+        }
+
 
         const approveRequest = (id) => {
 
@@ -743,13 +815,13 @@
                 .then(response => {
                     if (response.ok) {
                         console.log('ID posted successfully');
-                         const popup = document.getElementById('popupSuccess');
+                        const popup = document.getElementById('popupSuccess');
                         popup.style.display = 'block';
                         setTimeout(() => {
                             popup.style.display = 'none';
                         }, 3000);
 
-                       window.location.reload();
+                        window.location.reload();
                     } else {
                         console.error('Failed to post ID');
                         const popup = document.getElementById('successFailed');
@@ -758,7 +830,7 @@
                             popup.style.display = 'none';
                         }, 3000);
 
-                       window.location.reload();
+                        window.location.reload();
                     }
                 })
 

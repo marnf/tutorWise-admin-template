@@ -44,6 +44,20 @@
     <!-- database cdn link -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
+
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css"
+        rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Gijgo Datepicker CSS -->
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <!-- Gijgo Datepicker JS -->
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+
+
     <style>
         .dataTables_filter input:focus {
             border-color: #000000;
@@ -138,7 +152,7 @@
 
 
         <!-- Page Header Start-->
-        <div class="page-header "style="height: 89px;">
+        <div class="page-header " style="height: 89px;">
             <div class="header-wrapper row ">
                 <form class="form-inline search-full col" action="#" method="get">
                     <div class="form-group w-100">
@@ -419,11 +433,13 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
                 <div>
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light" style="height: 45px; margin-left: 10px;"
-                                src="../assets/images/TutorwiseLogo.png" alt=""><img class="img-fluid for-dark"
-                                src="../assets/images/TutorwiseLogo.png" alt=""></a>
+                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
+                                style="height: 45px; margin-left: 10px;" src="../assets/images/TutorwiseLogo.png"
+                                alt=""><img class="img-fluid for-dark" src="../assets/images/TutorwiseLogo.png"
+                                alt=""></a>
                         <div class="back-btn"><i class="fa-solid fa-angle-left"></i></div>
-                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle" data-feather="grid">
+                        <div class="toggle-sidebar mt-1"><i class="status_toggle middle sidebar-toggle"
+                                data-feather="grid">
                             </i></div>
                     </div>
                     <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
@@ -586,6 +602,158 @@
 
                 </div>
 
+
+
+                <div class="modal fade" id="exampleEditModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body ">
+                                <form id="myForm" class="container">
+                                    <div class="row">
+
+                                        <!-- Student Information -->
+                                        <div class="col-md-6 pe-4">
+                                            <h4 class="mb-3 text-center">Student Information</h4>
+                                            <div class="mb-3">
+                                                <label for="studentName" class="form-label">Student Name</label>
+                                                <input type="text" class="form-control border border-dark"
+                                                    id="studentName" name="name" placeholder="Enter student's name">
+                                            </div>
+                                            <div class="d-flex gap-2 justify-content-between">
+                                                <div class="mb-3 w-50  ">
+                                                    <label for="studentPhone" class="form-label">Student Phone Number
+                                                    </label>
+                                                    <p
+                                                        class="form-control-plaintext text-dark px-2 border phoneStudent rounded">
+                                                    </p>
+                                                </div>
+
+
+
+                                                <div class="mb-3 w-50">
+                                                    <label class="form-label">Start Date</label>
+                                                    <div class="input-group w-100">
+                                                        <input type="text" class="form-control border border-dark"
+                                                            id="datepicker" name="start_date"
+                                                            placeholder="Select a date">
+                                                        <span class="input-group-text border border-dark"
+                                                            id="calendar-icon" style="cursor: pointer;">
+                                                            <i class="fa-solid fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Medium <span
+                                                        class="text-danger">*</span></label>
+                                                <select class="form-select border border-dark" name="medium" id="medium"
+                                                    required>
+                                                    <option value="Diploma">Diploma</option>
+                                                    <option value="Bangla medium">Bangla medium</option>
+                                                    <option value="English medium">English medium</option>
+                                                    <option value="English version">English version</option>
+                                                    <option value="Dakhil">Dakhil</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Subjects <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control border border-dark"
+                                                    placeholder="Subject" id="subjectInput" list="subjects"
+                                                    name="subjects" required>
+                                                <datalist id="subjects">
+                                                    <option value="Bangla">
+                                                    <option value="English">
+                                                    <option value="Math">
+                                                    <option value="Physics">
+                                                    <option value="Science">
+                                                    <option value="Chemistry">
+                                                    <option value="Digital Technology">
+                                                    <option value="Life and livelihood">
+                                                    <option value="Healthy Safety">
+                                                    <option value="Religious Studies">
+                                                    <option value="Biology">
+                                                    <option value="Information and Communication Technology">
+                                                    <option value="Agriculture Education">
+                                                    <option value="Geography">
+                                                    <option value="Psychology">
+                                                    <option value="Sports">
+                                                    <option value="Accounting">
+                                                    <option value="Finance & Banking">
+                                                    <option value="Economics">
+                                                    <option value="Statistics">
+                                                    <option value="Production Management & Marketing">
+                                                    <option value="Business Organization and management">
+                                                    <option value="Civic & Good Governance">
+                                                    <option value="History">
+                                                    <option value="History and Social Sciences">
+                                                    <option value="Islamic History">
+                                                    <option value="Sociology">
+                                                    <option value="Social Work">
+                                                    <option value="Logic">
+                                                    <option value="Soil Science">
+                                                    <option value="Arts and crafts">
+                                                    <option value="Art and Culture">
+                                                </datalist>
+                                            </div>
+                                        </div>
+
+                                        <!-- Tutor Information -->
+                                        <div class="col-md-6 border-start border-dark ps-4">
+                                            <h4 class="mb-3 text-center">Tutor Information</h4>
+                                            <div class="mb-3">
+                                                <label for="tutorName" class="form-label">Tutor Name</label>
+                                                <p
+                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-name">
+                                                </p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="tutorPhone" class="form-label">Tutor Phone Number</label>
+                                                <p
+                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-phone">
+                                                </p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="location" class="form-label">Location</label>
+                                                <p
+                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-location">
+                                                </p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="charge" class="form-label">Charge</label>
+                                                <p
+                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-charge">
+                                                </p>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" id="editSubmit"
+                                                    class="btn btn-success w-100">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -652,7 +820,8 @@
 
 
 
-    <!-- latest jquery-->
+    <!-- Base api -->
+    <script src="./base_url.js"></script> <!-- latest jquery-->
     <script src="../assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -685,7 +854,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('http://192.168.0.154:8000/api/admin/view-approve-reqeust-list/')
+            fetch(`${BASE_URL}/api/admin/view-approve-reqeust-list/`)
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -711,7 +880,10 @@
                     <td class="text-nowrap">${medium || ''}</td>
                     <td class="text-nowrap">${start_date || ''}</td>
                     <td>${subjects || ''}</td>
-                    <td><button onClick="showModalWithId(${id})" class="btn btn-edit">Remove</button></td>
+                    <td class="d-flex gap-2">
+                        <button onClick="showModalWithId(${id})" class="btn btn-edit">Remove</button>
+                        <button onClick="showEditModalWithId(${id},'${tutor_name}','${tutor_phone}','${tutor_district}','${tutor_division}', '${tutor_charge}', '${name}', '${phone}', '${medium}','${start_date}', '${subjects}')" class="btn btn-edit">Edit</button>
+                        </td>
            `;
                         tableBody.appendChild(row);
                     });
@@ -753,12 +925,84 @@
         }
 
 
+        function showEditModalWithId(id, tutor_name, tutor_phone, tutor_district, tutor_division, tutor_charge, name, phone, medium, start_date, subjects) {
+            $('#exampleEditModal').modal('show');
+
+
+
+
+            // Tutor information set
+            document.querySelector('#exampleEditModal .modal-body .tutor-name').innerText = tutor_name || '';
+            document.querySelector('#exampleEditModal .modal-body .tutor-phone').innerText = tutor_phone || '';
+            document.querySelector('#exampleEditModal .modal-body .tutor-location').innerText = `${tutor_district || ''}, ${tutor_division || ''}`;
+            document.querySelector('#exampleEditModal .modal-body .tutor-charge').innerText = tutor_charge || '';
+
+            // Student information set
+            document.getElementById('studentName').value = name || '';
+            document.querySelector('#exampleEditModal .modal-body .phoneStudent').innerText = phone || '';
+
+            // Correct Medium selection
+            document.getElementById('medium').value = medium || 'Bangla';
+
+
+            // Date Input
+            document.getElementById('datepicker').value = start_date || '';
+
+            // Subject Input
+            document.getElementById('subjectInput').value = subjects || '';
+
+
+
+            document.getElementById('editSubmit').onclick = function () { handleEditModal(id); };
+
+        }
+
+
+        function handleEditModal(id) {
+            event.preventDefault();
+            const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+
+
+            const url = `${BASE_URL}/api/admin/edit-approve-hire-tutor-request/${id}/`;
+
+            fetch(url, {
+                method: 'PUT',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    const popup = document.getElementById('popupSuccess');
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 100000);
+
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const popup = document.getElementById('successFailed');
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 100000);
+
+                    window.location.reload();
+                });
+        }
+
+
+
+
+
 
 
 
         const handleRemoveApprove = (id) => {
 
-            const apiUrl = `http://192.168.0.154:8000/api/admin/unapproved-request/${id}/`
+            const apiUrl = `${BASE_URL}/api/admin/unapproved-request/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -798,7 +1042,23 @@
         }
 
 
+
+        $(document).ready(function () {
+            // Initialize datepicker
+            $('#datepicker').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            // Show datepicker when the icon is clicked
+            $('#calendar-icon').click(function () {
+                $('#datepicker').focus();
+            });
+        });
+
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
 
 

@@ -45,6 +45,17 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css"
+        rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Gijgo Datepicker CSS -->
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <!-- Gijgo Datepicker JS -->
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+
+
     <style>
         .dataTables_filter input:focus {
             border-color: #000000;
@@ -655,8 +666,9 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="phoneInput" class="form-label">Phone:</label>
-                                                <input type="text" id="phoneInput"
-                                                    class="form-control border border-dark" name="phone" />
+                                                <p
+                                                    class="form-control-plaintext text-dark px-2 border phoneStudent rounded">
+                                                </p>
                                             </div>
 
 
@@ -945,7 +957,8 @@
 
     <!-- Base api -->
     <script src="./base_url.js"></script>
-    <!-- latest jquery-->
+    <!-- Base api -->
+    <script src="./base_url.js"></script> <!-- latest jquery-->
     <script src="../assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -1004,25 +1017,25 @@
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
-        <th>${id}</th>
-        <th class="text-nowrap">${name}</th>
-        <th>${phone}</th>
-        <th class="text-nowrap">${location}</th>
-        <th class="text-nowrap">${details}</th>
-        <th>${subject}</th>
-        <th class="text-nowrap">${formattedDate} <span class="text-muted">${formattedTime}</span></th>  <!-- Display date and time -->
-        <th class="text-nowrap">${class_name}</th>
-        <th class="text-nowrap">${lesson_type}</th>
-        <th>${gender}</th>
-        <th>${budget}</th>
-        <th class="text-nowrap">${days_per_week}</th>
-        <th class="text-nowrap">${start_immediate}</th>
-        <th class="text-nowrap">${additional_comment}</th>
-        <th class="d-flex gap-2">
-            <button class="btn btn-approve bg-success" onClick="openFormModal(${id}, '${name}', '${phone}', '${location}', '${details}')">Edit</button>
-            <button class="btn btn-approve" onClick="openRemoveModal(${id})">Remove</button>
-           
-        </th>
+                                <th>${id}</th>
+                                <th class="text-nowrap">${name}</th>
+                                <th>${phone}</th>
+                                <th class="text-nowrap">${location}</th>
+                                <th class="text-nowrap">${details}</th>
+                                <th>${subject}</th>
+                                <th class="text-nowrap">${formattedDate} <span class="text-muted">${formattedTime}</span></th>  <!-- Display date and time -->
+                                <th class="text-nowrap">${class_name}</th>
+                                <th class="text-nowrap">${lesson_type}</th>
+                                <th>${gender}</th>
+                                <th>${budget}</th>
+                                <th class="text-nowrap">${days_per_week}</th>
+                                <th class="text-nowrap">${start_immediate}</th>
+                                <th class="text-nowrap">${additional_comment}</th>
+                                <th class="d-flex gap-2">
+                                    <button class="btn btn-approve bg-success" onClick="openFormModal(${id}, '${name}', '${phone}', '${location}', '${subject}','${class_name}','${lesson_type}','${gender}','${budget}','${days_per_week}','${additional_comment}', '${details}','${formattedDate}')">Edit</button>
+                                    <button class="btn btn-approve" onClick="openRemoveModal(${id})">Remove</button>
+                                
+                                </th>
     `;
                     tableBody.appendChild(row);
                 });
@@ -1057,18 +1070,30 @@
 
 
         // modal opening.............................
-        const openFormModal = (id, name, phone, location, details) => {
+        const openFormModal = (id, name, phone, location, subject, className, lessonType, gender, budget, daysPerWeek, additionalComment, details, formattedDate) => {
+
             $('#exampleModal').modal('show');
 
-
             document.getElementById('nameInput').value = name || '';
-            document.getElementById('phoneInput').value = phone || '';
+            document.querySelector('.phoneStudent').innerText = phone || '';
             document.getElementById('locationInput').value = location || '';
+            document.getElementById('subjectInput').value = subject || '';
+            document.querySelector('select[name="class_name"]').value = className || '';
+            document.querySelector(`input[name="lesson_type"][value="${lessonType}"]`).checked = true;
+            document.querySelector(`input[name="gender"][value="${gender}"]`).checked = true;
+            document.querySelector('input[name="budget"]').value = budget || '';
+            document.querySelector('select[name="days_per_week"]').value = daysPerWeek || '';
+            document.querySelector('textarea[name="additional_comment"]').value = additionalComment || '';
             document.getElementById('detailsInput').value = details || '';
+            document.getElementById('datepicker').value = formattedDate || '';
 
 
-            document.getElementById('confirmButton').onclick = function () { handleEditData(id); };
-        }
+            document.getElementById('confirmButton').onclick = function () {
+                handleEditData(id);
+            };
+        };
+
+
 
         const openRemoveModal = (id) => {
             $('#exampleRemoveModal').modal('show');
@@ -1197,8 +1222,26 @@
 
 
 
+
+        $(document).ready(function () {
+            // Initialize datepicker
+            $('#datepicker').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            // Show datepicker when the icon is clicked
+            $('#calendar-icon').click(function () {
+                $('#datepicker').focus();
+            });
+        });
+
+
+
     </script>
 
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
 
 </body>
