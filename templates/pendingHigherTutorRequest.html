@@ -609,147 +609,150 @@
 
 
                 <div class="modal fade" id="exampleEditModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body ">
-                                <form id="myForm" class="container">
-                                    <div class="row">
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body ">
+                            <form id="myForm" class="container">
+                                <div class="row">
 
-                                        <!-- Student Information -->
-                                        <div class="col-md-6 pe-4">
-                                            <h4 class="mb-3 text-center">Student Information</h4>
-                                            <div class="mb-3">
-                                                <label for="studentName" class="form-label">Student Name</label>
-                                                <input type="text" class="form-control border border-dark"
-                                                    id="studentName" name="name" placeholder="Enter student's name">
+                                    <!-- Student Information -->
+                                    <div class="col-md-6 pe-4">
+                                        <h4 class="mb-3 text-center">Student Information</h4>
+                                        <div class="mb-3">
+                                            <label for="studentName" class="form-label">Student Name</label>
+                                            <input type="text" class="form-control border border-dark"
+                                                id="studentName" name="name" placeholder="Enter student's name">
+                                        </div>
+                                        <div class="d-flex gap-2 justify-content-between">
+                                            <div class="mb-3 w-50  ">
+                                                <label for="studentPhone" class="form-label">Student Phone Number
+                                                </label>
+                                                <p
+                                                    class="form-control-plaintext text-dark px-2 border phoneStudent rounded">
+                                                </p>
                                             </div>
-                                            <div class="d-flex gap-2 justify-content-between">
-                                                <div class="mb-3 w-50  ">
-                                                    <label for="studentPhone" class="form-label">Student Phone Number
-                                                    </label>
-                                                    <p
-                                                        class="form-control-plaintext text-dark px-2 border phoneStudent rounded">
-                                                    </p>
+
+
+
+                                            <div class="mb-3 w-50">
+                                                <label class="form-label">Start Date</label>
+                                                <div class="input-group w-100">
+                                                    <input type="text" class="form-control border border-dark"
+                                                        id="datepicker" name="start_date"
+                                                        placeholder="Select a date">
+                                                    <span class="input-group-text border border-dark"
+                                                        id="calendar-icon" style="cursor: pointer;">
+                                                        <i class="fa-solid fa-calendar"></i>
+                                                    </span>
                                                 </div>
-
-
-
-                                                <div class="mb-3 w-50">
-                                                    <label class="form-label">Start Date</label>
-                                                    <div class="input-group w-100">
-                                                        <input type="text" class="form-control border border-dark"
-                                                            id="datepicker" name="start_date"
-                                                            placeholder="Select a date">
-                                                        <span class="input-group-text border border-dark"
-                                                            id="calendar-icon" style="cursor: pointer;">
-                                                            <i class="fa-solid fa-calendar"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Medium <span
-                                                        class="text-danger">*</span></label>
-                                                <select class="form-select border border-dark" name="medium" id="medium"
-                                                    required>
-                                                    <option value="bangla medium">bangla medium</option>
-                                                    <option value="English medium">English medium</option>
-                                                </select>
                                             </div>
 
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Subjects <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" class="form-control border border-dark"
-                                                    placeholder="Subject" id="subjectInput" list="subjects"
-                                                    name="subjects" required>
-                                                <datalist id="subjects">
-                                                    <option value="Bangla">
-                                                    <option value="English">
-                                                    <option value="Math">
-                                                    <option value="Physics">
-                                                    <option value="Science">
-                                                    <option value="Chemistry">
-                                                    <option value="Digital Technology">
-                                                    <option value="Life and livelihood">
-                                                    <option value="Healthy Safety">
-                                                    <option value="Religious Studies">
-                                                    <option value="Biology">
-                                                    <option value="Information and Communication Technology">
-                                                    <option value="Agriculture Education">
-                                                    <option value="Geography">
-                                                    <option value="Psychology">
-                                                    <option value="Sports">
-                                                    <option value="Accounting">
-                                                    <option value="Finance & Banking">
-                                                    <option value="Economics">
-                                                    <option value="Statistics">
-                                                    <option value="Production Management & Marketing">
-                                                    <option value="Business Organization and management">
-                                                    <option value="Civic & Good Governance">
-                                                    <option value="History">
-                                                    <option value="History and Social Sciences">
-                                                    <option value="Islamic History">
-                                                    <option value="Sociology">
-                                                    <option value="Social Work">
-                                                    <option value="Logic">
-                                                    <option value="Soil Science">
-                                                    <option value="Arts and crafts">
-                                                    <option value="Art and Culture">
-                                                </datalist>
-                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Medium <span
+                                                    class="text-danger">*</span></label>
+                                            <select class="form-select border border-dark" name="medium" id="medium"
+                                                required>
+                                                <option value="Diploma">Diploma</option>
+                                                <option value="Bangla medium">Bangla medium</option>
+                                                <option value="English medium">English medium</option>
+                                                <option value="English version">English version</option>
+                                                <option value="Dakhil">Dakhil</option>
+                                            </select>
                                         </div>
 
-                                        <!-- Tutor Information -->
-                                        <div class="col-md-6 border-start border-dark ps-4">
-                                            <h4 class="mb-3 text-center">Tutor Information</h4>
-                                            <div class="mb-3">
-                                                <label for="tutorName" class="form-label">Tutor Name</label>
-                                                <p
-                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-name">
-                                                </p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="tutorPhone" class="form-label">Tutor Phone Number</label>
-                                                <p
-                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-phone">
-                                                </p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="location" class="form-label">Location</label>
-                                                <p
-                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-location">
-                                                </p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="charge" class="form-label">Charge</label>
-                                                <p
-                                                    class="form-control-plaintext text-dark px-2 border rounded tutor-charge">
-                                                </p>
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" id="editSubmit"
-                                                    class="btn btn-success w-100">Submit</button>
-                                            </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Subjects <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control border border-dark"
+                                                placeholder="Subject" id="subjectInput" list="subjects"
+                                                name="subjects" required>
+                                            <datalist id="subjects">
+                                                <option value="Bangla">
+                                                <option value="English">
+                                                <option value="Math">
+                                                <option value="Physics">
+                                                <option value="Science">
+                                                <option value="Chemistry">
+                                                <option value="Digital Technology">
+                                                <option value="Life and livelihood">
+                                                <option value="Healthy Safety">
+                                                <option value="Religious Studies">
+                                                <option value="Biology">
+                                                <option value="Information and Communication Technology">
+                                                <option value="Agriculture Education">
+                                                <option value="Geography">
+                                                <option value="Psychology">
+                                                <option value="Sports">
+                                                <option value="Accounting">
+                                                <option value="Finance & Banking">
+                                                <option value="Economics">
+                                                <option value="Statistics">
+                                                <option value="Production Management & Marketing">
+                                                <option value="Business Organization and management">
+                                                <option value="Civic & Good Governance">
+                                                <option value="History">
+                                                <option value="History and Social Sciences">
+                                                <option value="Islamic History">
+                                                <option value="Sociology">
+                                                <option value="Social Work">
+                                                <option value="Logic">
+                                                <option value="Soil Science">
+                                                <option value="Arts and crafts">
+                                                <option value="Art and Culture">
+                                            </datalist>
                                         </div>
                                     </div>
 
+                                    <!-- Tutor Information -->
+                                    <div class="col-md-6 border-start border-dark ps-4">
+                                        <h4 class="mb-3 text-center">Tutor Information</h4>
+                                        <div class="mb-3">
+                                            <label for="tutorName" class="form-label">Tutor Name</label>
+                                            <p
+                                                class="form-control-plaintext text-dark px-2 border rounded tutor-name">
+                                            </p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tutorPhone" class="form-label">Tutor Phone Number</label>
+                                            <p
+                                                class="form-control-plaintext text-dark px-2 border rounded tutor-phone">
+                                            </p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="location" class="form-label">Location</label>
+                                            <p
+                                                class="form-control-plaintext text-dark px-2 border rounded tutor-location">
+                                            </p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="charge" class="form-label">Charge</label>
+                                            <p
+                                                class="form-control-plaintext text-dark px-2 border rounded tutor-charge">
+                                            </p>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" id="editSubmit"
+                                                class="btn btn-success w-100">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-                                </form>
 
-                            </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
+            </div>
 
 
 
@@ -1029,7 +1032,7 @@
             const formData = new FormData(form);
 
 
-            const url = `${BASE_URL}/api/admin/edit-faq/${id}/`;
+            const url = `${BASE_URL}/api/admin/edit-hire-tutor-request/${id}/`;
 
             fetch(url, {
                 method: 'PUT',
@@ -1122,7 +1125,7 @@
         $(document).ready(function () {
             // Initialize datepicker
             $('#datepicker').datepicker({
-                format: 'mm/dd/yyyy',
+                format: 'yyyy-mm-dd',
                 autoclose: true
             });
 

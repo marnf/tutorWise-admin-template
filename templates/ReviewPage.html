@@ -52,15 +52,6 @@
         }
 
 
-
-
-        .table th,
-        .table td {
-            text-align: left;
-        }
-
-
-
         .btn-edit {
             background-color: #2563c2;
             color: white;
@@ -70,22 +61,15 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
+        .table th,
+        .table td {
+            text-align: left;
+        }
+
+
         .btn-edit:hover {
-            background-color: #0e28b9;
             transform: scale(1.05);
-            color: white;
-        }
 
-        .btn-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .btn-Edit,
-        .btn-edit {
-            width: 100%;/
         }
     </style>
 
@@ -570,54 +554,66 @@
                 </div>
 
 
-                <div class="modal fade" id="exampleEditModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body ">
-                            <form id="myForm">
-                                <!-- Static ID -->
-                                <div class="mb-3">
-                                  <label for="staticId" class="form-label">ID:</label><span></span>
-                                </div>
-                        
-                                <!-- Tutor Name -->
-                                <div class="mb-3">
-                                  <label for="tutorName" class="form-label">Tutor Name:</label>
-                                  <input type="text" id="tutorName" class="form-control" placeholder="Enter tutor's name" required>
-                                </div>
-                          
-                                <!-- Review -->
-                                <div class="mb-3">
-                                  <label for="review" class="form-label">Review:</label>
-                                  <textarea id="review" class="form-control" rows="3" placeholder="Write your review here" required></textarea>
-                                </div>
-                          
-                                <!-- Rating -->
-                                <div class="mb-3">
-                                  <label for="rating" class="form-label">Rating (1-5):</label>
-                                  <input type="number" id="rating" class="form-control" min="1" max="5" placeholder="Enter a rating" required>
-                                </div>
-                          
-                                <!-- Student Name -->
-                                <div class="mb-3">
-                                  <label for="studentName" class="form-label">Student Name:</label>
-                                  <input type="text" id="studentName" class="form-control" placeholder="Enter student's name" required>
-                                </div>
-                          
-                                <!-- Submit Button -->
-                                <button type="submit" id="submitEditBtn" class="btn btn-primary justify-content-end">Submit</button>
-                              </form>
-
+                <div class="modal fade" id="exampleEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="myForm">
+                                    <!-- Name and ID Section -->
+                                    <div class="row mb-4">
+                                        <!-- Tutor Name -->
+                                        <div class="col-md-8">
+                                            <label for="tutorName" class="form-label fw-bold">Tutor Name:</label>
+                                            <p class="form-control-plaintext text-dark px-3 border rounded tutor_name">
+                                                <!-- Dynamic Name Content -->
+                                            </p>
+                                        </div>
+                
+                                        <!-- ID -->
+                                        <div class="col-md-4">
+                                            <label for="staticId" class="form-label fw-bold">ID:</label>
+                                            <p class="form-control-plaintext text-dark px-3 border rounded id-number">
+                                                <!-- Dynamic ID Content -->
+                                            </p>
+                                        </div>
+                                    </div>
+                
+                                    <!-- Review -->
+                                    <div class="mb-3">
+                                        <label for="review" class="form-label fw-bold">Review:</label>
+                                        <textarea id="review" class="form-control border border-dark" rows="3" name="message"
+                                            placeholder="Write your review here" required></textarea>
+                                    </div>
+                
+                                    <!-- Rating -->
+                                    <div class="mb-3">
+                                        <label for="rating" class="form-label fw-bold">Rating (1-5):</label>
+                                        <input type="number" id="rating" name="rating" class="form-control border border-dark" min="1"
+                                            max="5" placeholder="Enter a rating" required>
+                                    </div>
+                
+                                    <!-- Student Name -->
+                                    <div class="mb-3">
+                                        <label for="studentName" class="form-label fw-bold">Student Name:</label>
+                                        <p class="form-control-plaintext text-dark px-3 border rounded student_name">
+                                            <!-- Dynamic Student Name Content -->
+                                        </p>
+                                    </div>
+                
+                                    <!-- Submit Button -->
+                                    <div class="text-end">
+                                        <button type="submit" id="submitEditBtn" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                
 
 
 
@@ -724,7 +720,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('https://tutorwise-backend.vercel.app/api/admin/view-review-rating/')
+            fetch(`${BASE_URL}/api/admin/view-review-rating/`)
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -742,11 +738,12 @@
                     <td class="text-nowrap">${message || ''}</td>
                     <td class="text-nowrap"> ${rating || ''}</td> 
                     <td>${student_name || ''}</td>
-                     <td class= d-flex gap-2 >
-                        <button  onClick="showModalWithId(${id})" class="btn btn-edit">Add to testimonial</button>
-                        <button  onClick="showEditModalWithId(${id})" class="btn btn-edit bg-success">Edit</button>
-                        <button  onClick="showDeleteModalWithId(${id})" class="btn btn-edit bg-danger">Delete</button>
-                        </td>
+                    <td class="d-flex justify-content-center align-items-center gap-2">
+                            <button onClick="showModalWithId(${id})" class="btn  btn-edit btn-primary  btn-sm">Add to testimonial</button>
+                            <button onClick="showEditModalWithId('${id}','${tutor_name}', '${message}','${student_name}','${rating}')" class="btn btn-success btn-edit btn-sm">Edit</button>
+                            <button onClick="showDeleteModalWithId(${id})" class="btn btn-danger  btn-edit btn-sm">Delete</button>
+                    </td>
+
            `;
                         tableBody.appendChild(row);
                     });
@@ -787,24 +784,37 @@
 
         }
 
-        function showEditModalWithId(id) {
+        function showEditModalWithId(id, tutor_name, message, student_name, rating) {
             $('#exampleEditModal').modal('show');
 
-            document.getElementById('confirmButton').onclick = function () { approveRequest(id); };
+            // Static Fields
+            document.querySelector('#exampleEditModal .modal-body .id-number').innerText = id || '';
+            document.querySelector('#exampleEditModal .modal-body .tutor_name').innerText = tutor_name || '';
+            document.querySelector('#exampleEditModal .modal-body .student_name').innerText = student_name || '';
 
+            // Editable Fields
+            document.getElementById('review').value = message || '';
+            document.getElementById('rating').value = rating || '';
+
+            // Submit Button Handler
+            document.getElementById('submitEditBtn').onclick = function (event) {
+                event.preventDefault();  // Prevent default form submission
+                handleEditReview(id);  // Custom function to handle the form submission
+            };
         }
+
 
         function showDeleteModalWithId(id) {
             $('#exampleDeleteModal').modal('show');
 
-            document.getElementById('confirmButton').onclick = function () { approveRequest(id); };
+            document.getElementById('confirmDeleteButton').onclick = function () { approveRequest(id); };
 
         }
 
 
         const approveRequest = (id) => {
 
-            const apiUrl = `https://tutorwise-backend.vercel.app/api/admin/add-testimonials/${id}/`
+            const apiUrl = `${BASE_URL}/api/admin/add-testimonials/${id}/`
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -836,6 +846,42 @@
 
 
         }
+
+
+        function handleEditReview(id) {
+            const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+
+            const url = `http://192.168.0.154:8000/api/admin/edit-review-rating/${id}/`;
+
+
+            fetch(url, {
+                method: 'PUT',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    const popup = document.getElementById('popupSuccess');
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 3000);
+
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const popup = document.getElementById('successFailed')
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 3000);
+
+                    window.location.reload();
+                });
+        }
+
 
         function closeModal() {
             $('#exampleModal').modal('hide');  // Close the modal

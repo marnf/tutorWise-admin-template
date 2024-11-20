@@ -783,7 +783,7 @@
     <script>
         $(document).ready(function () {
 
-            fetch('https://tutorwise-backend.vercel.app/api/admin/view-faq/')
+            fetch(`${BASE_URL}/api/admin/view-faq/`)
                 .then(res => res.json())
                 .then(data => {
                     const tableBody = document.getElementById('table-body');
@@ -800,7 +800,7 @@
                     <td>${question || ''}</td>
                     <td>${answer || ''}</td>
                      <td class="d-flex gap-2">
-                        <button  onclick="showModalWithId(${id})" class="btn btn-approve ">Edit</button>
+                        <button  onclick="showModalWithId('${id}' , '${question}',' ${answer}')" class="btn btn-approve ">Edit</button>
                         <button  onclick="showDeleteModalWithId(${id})" class="btn btn-approve ">Delete</button>
                         </td>
            `;
@@ -836,8 +836,11 @@
         });
 
 
-        function showModalWithId(id) {
+        function showModalWithId(id,question,answer ) {
             $('#exampleModal').modal('show');
+
+            document.getElementById('questionInput').value = question || '';
+            document.getElementById('answerInput').value = answer || '';
 
             document.getElementById('confirmSubmit').onclick = function () { submitForm(id); };
 
@@ -865,7 +868,7 @@
             const formData = new FormData(form);
 
 
-            const url = `https://tutorwise-backend.vercel.app/api/admin/edit-faq/${id}/`;
+            const url = `${BASE_URL}/api/admin/edit-faq/${id}/`;
 
             fetch(url, {
                 method: 'PUT',

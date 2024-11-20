@@ -706,7 +706,7 @@
                                             <div class="mb-3">
                                                 <label for="nameInput" class="form-label">Name:</label>
                                                 <input type="text" id="nameInput"
-                                                    class="form-control border border-dark" name="name" />
+                                                    class="form-control border border-dark" name="name"  />
                                             </div>
 
 
@@ -882,7 +882,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Additional Comment</label>
                                                 <textarea class="form-control border border-dark" rows="5"
-                                                    placeholder="Type here..." name="additional_comment"></textarea>
+                                                    placeholder="Type here..." name="additional_comment" required></textarea>
                                             </div>
                                             <div class="d-grid mt-4">
                                                 <button type="submit" id="confirmButton"
@@ -1181,7 +1181,7 @@
         $(document).ready(function () {
             // Initialize datepicker
             $('#datepicker').datepicker({
-                format: 'mm/dd/yyyy',
+                format: 'yyyy-mm-dd',
                 autoclose: true
             });
 

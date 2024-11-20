@@ -690,10 +690,10 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Start Date <span
                                                             class="text-danger">*</span></label>
-                                                    <div class="input-group">
+                                                    <div class="input-group w-100">
                                                         <input type="text" class="form-control border border-dark"
                                                             id="datepicker" name="start_date"
-                                                            placeholder="Select a date" readonly>
+                                                            placeholder="Select a date">
                                                         <span class="input-group-text border border-dark"
                                                             id="calendar-icon" style="cursor: pointer;">
                                                             <i class="fa-solid fa-calendar"></i>
@@ -1002,18 +1002,6 @@
                 data.forEach(tutor => {
                     const { id, name, phone, location, details, otp, subject, start_date, gender, budget, lesson_type, days_per_week, start_immediate, class_name, additional_comment } = tutor;
 
-                    // Convert the start_date to Date object
-                    const dateObj = new Date(start_date);
-
-                    // Format the date
-                    const formattedDate = dateObj.toLocaleDateString('en-GB');  // Format to dd/mm/yyyy
-
-                    // Format the time with AM/PM
-                    const formattedTime = dateObj.toLocaleTimeString('en-GB', {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true // Enable AM/PM format
-                    });
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -1023,7 +1011,7 @@
                                 <th class="text-nowrap">${location}</th>
                                 <th class="text-nowrap">${details}</th>
                                 <th>${subject}</th>
-                                <th class="text-nowrap">${formattedDate} <span class="text-muted">${formattedTime}</span></th>  <!-- Display date and time -->
+                                <th class="text-nowrap">${start_date}</th>  
                                 <th class="text-nowrap">${class_name}</th>
                                 <th class="text-nowrap">${lesson_type}</th>
                                 <th>${gender}</th>
@@ -1032,7 +1020,7 @@
                                 <th class="text-nowrap">${start_immediate}</th>
                                 <th class="text-nowrap">${additional_comment}</th>
                                 <th class="d-flex gap-2">
-                                    <button class="btn btn-approve bg-success" onClick="openFormModal(${id}, '${name}', '${phone}', '${location}', '${subject}','${class_name}','${lesson_type}','${gender}','${budget}','${days_per_week}','${additional_comment}', '${details}','${formattedDate}')">Edit</button>
+                                    <button class="btn btn-approve bg-success" onClick="openFormModal(${id}, '${name}', '${phone}', '${location}', '${subject}','${class_name}','${lesson_type}','${gender}','${budget}','${days_per_week}','${additional_comment}', '${details}','${start_date}')">Edit</button>
                                     <button class="btn btn-approve" onClick="openRemoveModal(${id})">Remove</button>
                                 
                                 </th>
@@ -1070,7 +1058,7 @@
 
 
         // modal opening.............................
-        const openFormModal = (id, name, phone, location, subject, className, lessonType, gender, budget, daysPerWeek, additionalComment, details, formattedDate) => {
+        const openFormModal = (id, name, phone, location, subject, className, lessonType, gender, budget, daysPerWeek, additionalComment, details, start_date) => {
 
             $('#exampleModal').modal('show');
 
@@ -1085,7 +1073,7 @@
             document.querySelector('select[name="days_per_week"]').value = daysPerWeek || '';
             document.querySelector('textarea[name="additional_comment"]').value = additionalComment || '';
             document.getElementById('detailsInput').value = details || '';
-            document.getElementById('datepicker').value = formattedDate || '';
+            document.getElementById('datepicker').value = start_date || '';
 
 
             document.getElementById('confirmButton').onclick = function () {
@@ -1111,13 +1099,13 @@
         // modal opening end......................
 
 
-        const handleEditData = (id) => {
+        function handleEditData(id) {
             event.preventDefault();
             const form = document.getElementById('myForm');
             const formData = new FormData(form);
 
 
-            const url = `${BASE_URL}/api/admin/edit-faq/${id}/`;
+            const url = `${BASE_URL}/api/admin/edit-approved-request-tutor/${id}/`;
 
             fetch(url, {
                 method: 'PUT',
@@ -1145,6 +1133,10 @@
                     window.location.reload();
                 });
         }
+
+
+
+
 
 
 
@@ -1185,48 +1177,12 @@
 
 
 
-        const handleDeleteData = (id) => {
-
-            const apiUrl = `${BASE_URL}/api/admin/unapproved-request/${id}/`
-            fetch(apiUrl, {
-                method: 'DELETE',
-
-            })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('ID posted successfully');
-                        const popup = document.getElementById('popupSuccess');
-                        popup.style.display = 'block';
-                        setTimeout(() => {
-                            popup.style.display = 'none';
-                        }, 100000);
-
-                        window.location.reload();
-                    } else {
-                        console.error('Failed to post ID');
-                        const popup = document.getElementById('successFailed');
-                        popup.style.display = 'block';
-                        setTimeout(() => {
-                            popup.style.display = 'none';
-                        }, 100000);
-
-                        window.location.reload();
-                    }
-                })
-
-
-        }
-
-
-
-
-
 
 
         $(document).ready(function () {
             // Initialize datepicker
             $('#datepicker').datepicker({
-                format: 'mm/dd/yyyy',
+                format: 'yyyy-mm-dd',
                 autoclose: true
             });
 
@@ -1235,7 +1191,6 @@
                 $('#datepicker').focus();
             });
         });
-
 
 
     </script>
