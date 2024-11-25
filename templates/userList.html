@@ -56,6 +56,15 @@
 
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+
+
     <style>
         .dataTables_filter input:focus {
             border-color: #000000;
@@ -141,6 +150,11 @@
         .btn-approve,
         .btn-edit {
             width: 100%;/
+        }
+
+        .hover-zoom:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
     </style>
 
@@ -483,6 +497,20 @@
                                     </div>
                                 </li>
 
+
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="userList.html">
+
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Userl List</span></a>
+                                </li>
+
+
+
+
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
 
                                         <svg class="stroke-icon ">
@@ -580,6 +608,7 @@
                                 </li>
 
 
+
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -592,366 +621,230 @@
 
             <div class="page-body  pt-1  overflow-auto ">
 
-
-
-
-
                 <div class=" mt-4">
                     <h2 class=" text-center">Approved tutor request</h2>
-                    <div class="row justify-content-center">
-
-                        <div class="col-md-12">
-
-                            <div class="card p-3 shadow-sm overflow-auto">
-                                <div class="row justify-content-center">
-
-
-                                    <table id="tutorRequestList" class="table table-bordered  ">
-                                        <thead>
-                                            <tr>
-                                                <th>Id</th>
-                                                <th class="text-nowrap">Name</th>
-                                                <th>Phone</th>
-                                                <th class="text-nowrap">Location</th>
-                                                <th>Details</th>
-                                                <th>Subject</th>
-                                                <th class="text-nowrap">Start Date</th>
-                                                <th>Class</th>
-                                                <th class="text-nowrap">lesson Type</th>
-                                                <th>Gender</th>
-                                                <th>Budget</th>
-                                                <th class="text-nowrap">Days/week</th>
-                                                <th class="text-nowrap">Start Immediately</th>
-                                                <th class="text-nowrap">Additional Comment</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="table-body">
-
-                                        </tbody>
-                                    </table>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>
 
+                <button class="btn btn-primary btn-lg px-4 my-2 shadow-sm hover-zoom" onclick="openCreateModal()">create
+                    user</button>
+
+                <div class="row justify-content-center">
+
+                    <div class="col-md-12">
+
+                        <div class="card p-3 shadow-sm overflow-auto">
 
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Information Form</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body ">
-                                <form id="myForm" class="p-3">
-                                    <div class="row">
-                                        <!-- Left Section -->
-                                        <div class="col-md-6 border-end border-dark pe-4">
+                            <div class="row justify-content-center">
 
 
+                                <table id="userListTable" class="table table-bordered  ">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th class="text-nowrap">Name</th>
+                                            <th class="text-nowrap">Phone</th>
+                                            <th>Last Login</th>
+                                            <th class="text-nowrap">Join Date</th>
+                                            <th>User Type</th>
+                                            <th>Roles Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-body">
 
-                                            <div class="mb-3">
-                                                <label for="nameInput" class="form-label">Name:</label>
-                                                <input type="text" id="nameInput"
-                                                    class="form-control border border-dark" name="name" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="phoneInput" class="form-label">Phone:</label>
-                                                <p
-                                                    class="form-control-plaintext text-dark px-2 border phoneStudent rounded">
-                                                </p>
-                                            </div>
+                                    </tbody>
+                                </table>
 
-
-                                            <div class="mb-3">
-                                                <label for="locationInput" class="form-label">Location:</label>
-                                                <input type="text" id="locationInput"
-                                                    class="form-control border border-dark" name="location" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="detailsInput" class="form-label">Details:</label>
-                                                <textarea id="detailsInput" class="form-control border border-dark"
-                                                    name="details" rows="3"></textarea>
-                                            </div>
-
-
-
-
-                                            <div class="d-flex justify-content-between gap-2">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Start Date <span
-                                                            class="text-danger">*</span></label>
-                                                    <div class="input-group w-100">
-                                                        <input type="text" class="form-control border border-dark"
-                                                            id="datepicker" name="start_date"
-                                                            placeholder="Select a date">
-                                                        <span class="input-group-text border border-dark"
-                                                            id="calendar-icon" style="cursor: pointer;">
-                                                            <i class="fa-solid fa-calendar"></i>
-                                                        </span>
-                                                    </div>
-
-                                                    <div class="form-check mt-1">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="startImmediate" name="start_immediate" value="yes">
-                                                        <label class="form-check-label" for="startImmediate">Start
-                                                            Immediately</label>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 w-50">
-                                                    <label class="form-label">Days Per Week <span
-                                                            class="text-danger">*</span></label>
-                                                    <select class="form-select" name="days_per_week" required>
-                                                        <option value="1">1 days</option>
-                                                        <option value="2">2 days</option>
-                                                        <option value="3">3 days</option>
-                                                        <option value="4">4 days</option>
-                                                        <option value="5">5 days</option>
-                                                        <option value="6">6 days</option>
-                                                    </select>
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-
-                                        <!-- Right Section -->
-                                        <div class="col-md-6 ps-4">
-                                            <div class="mb-3">
-                                                <label class="form-label">Lesson Type <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="d-flex gap-3 border-top border-dark pt-2">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lesson_type"
-                                                            id="online" value="Online" required>
-                                                        <label class="form-check-label" for="online">Online</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lesson_type"
-                                                            id="offline" value="Offline" required>
-                                                        <label class="form-check-label" for="offline">Offline</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="lesson_type"
-                                                            id="Both" value="Both" required>
-                                                        <label class="form-check-label" for="Both">Both</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Gender <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="d-flex gap-3 border-top border-dark pt-2">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="male" value="male" required>
-                                                        <label class="form-check-label" for="male">Male</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="female" value="female" required>
-                                                        <label class="form-check-label" for="female">Female</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender"
-                                                            id="Others" value="Others" required>
-                                                        <label class="form-check-label" for="Others">Others</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between gap-2">
-                                                <div class="mb-3 w-50">
-                                                    <label class="form-label">Educational Level <span
-                                                            class="text-danger">*</span></label>
-                                                    <select class="form-select" name="class_name" required>
-                                                        <option value="Class 1">Class 1</option>
-                                                        <option value="Class 2">Class 2</option>
-                                                        <option value="Class 3">Class 3</option>
-                                                        <option value="Class 4">Class 4</option>
-                                                        <option value="Class 5">Class 5</option>
-                                                        <option value="Class 6">Class 6</option>
-                                                        <option value="Class 7">Class 7</option>
-                                                        <option value="Class 8">Class 8</option>
-                                                        <option value="Class 9">Class 9</option>
-                                                        <option value="Class 10">Class 10</option>
-                                                        <option value="HSC/A level">HSC/A level</option>
-                                                        <option value="SSC/A level">SSC/A level</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Budget <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="number" class="form-control border border-dark"
-                                                        placeholder="0" name="budget" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Subjects <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" class="form-control border border-dark"
-                                                    placeholder="Subject" id="subjectInput" list="subjects"
-                                                    name="subject" required>
-                                                <datalist id="subjects">
-                                                    <option value="Bangla">
-                                                    <option value="English">
-                                                    <option value="Math">
-                                                    <option value="Physics">
-                                                    <option value="Science">
-                                                    <option value="Chemistry">
-                                                    <option value="Digital Technology">
-                                                    <option value="Life and livelihood">
-                                                    <option value="Healthy Safety">
-                                                    <option value="Religious Studies">
-                                                    <option value="Biology">
-                                                    <option value="Information and Communication Technology">
-                                                    <option value="Agriculture Education">
-                                                    <option value="Geography">
-                                                    <option value="Psychology">
-                                                    <option value="Sports">
-                                                    <option value="Accounting">
-                                                    <option value="Finance & Banking">
-                                                    <option value="Economics">
-                                                    <option value="Statistics">
-                                                    <option value="Production Management & Marketing">
-                                                    <option value="Business Organization and management">
-                                                    <option value="Civic & Good Governance">
-                                                    <option value="History">
-                                                    <option value="History and Social Sciences">
-                                                    <option value="Islamic History">
-                                                    <option value="Sociology">
-                                                    <option value="Social Work">
-                                                    <option value="Logic">
-                                                    <option value="Soil Science">
-                                                    <option value="Arts and crafts">
-                                                    <option value="Art and Culture">
-                                                </datalist>
-                                            </div>
-
-
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Additional Comment</label>
-                                                <textarea class="form-control border border-dark" rows="5"
-                                                    placeholder="Type here..." name="additional_comment"></textarea>
-                                            </div>
-                                            <div class="d-grid mt-4">
-                                                <button type="submit" id="confirmButton"
-                                                    class="btn btn-submit py-2">Submit Data</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
 
                             </div>
                         </div>
                     </div>
+
                 </div>
-
-
-
-
-                <div class="modal fade" id="exampleRemoveModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to Remove this user?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" onclick="closeModal()" class="btn btn-secondary"
-                                    data-dismiss="modal">Close</button>
-                                <button id="confirmRemoveButton" type="button" class="btn btn-primary">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal fade" id="exampleDeleteModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to Delete this user?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" onclick="closeModal()" class="btn btn-secondary"
-                                    data-dismiss="modal">Close</button>
-                                <button id="confirmDeleteButton" type="button" class="btn btn-primary">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div id="popupSuccess"
-                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
-                    <div>
-                        <h6 class=" text-white">successfully done....</h6>
-                    </div>
-                </div>
-
-                <div id="successFailed"
-                    style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
-                    <div>
-                        <h6 class=" text-white">Failed to submit....</h6>
-                    </div>
-                </div>
-
 
             </div>
 
 
 
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">User Registration</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="registrationForm" class="p-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- User Type Dropdown -->
+                                        <div class="mb-3">
+                                            <label for="userType" class="form-label">User Type:</label>
+                                            <select id="userType" class="form-select" name="user_type" required>
+                                                <option value="admin">Admin</option>
+                                                <option value="super_admin">Super Admin</option>
+                                            </select>
+                                        </div>
 
+                                        <!-- Multiple Select -->
+                                        <div class="mb-2">
+                                            <label for="multiple-select-clear-field" class="form-label">Access:</label>
+                                            <select class="form-select" id="multiple-select-clear-field"
+                                                name="roles_name" data-placeholder="Choose anything" multiple>
 
-            <!-- footer start-->
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 footer-copyright text-center">
-                            <p class="mb-0">Copyright <span class="year-update"> </span> © Cuba Theme By Pixelstrap </p>
+                                            </select>
+                                        </div>
+
+                                        <!-- Username input field -->
+                                        <div class="mb-3">
+                                            <label for="usernameInput" class="form-label">Username:</label>
+                                            <input type="text" id="usernameInput" class="form-control" name="username"
+                                                required />
+                                        </div>
+
+                                        <!-- Phone number input field -->
+                                        <div class="mb-3">
+                                            <label for="phoneInput" class="form-label">Phone Number:</label>
+                                            <input type="tel" id="phoneInput" class="form-control" name="phone"
+                                                required />
+                                        </div>
+
+                                        <!-- Submit button -->
+                                        <div class="d-grid mt-4">
+                                            <button type="submit" id="createModalButton"
+                                                class="btn btn-primary py-2">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </footer>
+            </div>
+
+
+            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">User Registration</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="registrationForm" class="p-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- User Type Dropdown -->
+                                        <div class="mb-3">
+                                            <label for="userType" class="form-label">User Type:</label>
+                                            <select id="userType" class="form-select" name="user_type" required>
+                                                <option value="admin">Admin</option>
+                                                <option value="super_admin">Super Admin</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Multiple Select -->
+                                        <div class="mb-2">
+                                            <label for="multiple-select-custom-field" class="form-label">Access:</label>
+                                            <select class="form-select" id="multiple-select-custom-field"
+                                                name="roles_name" data-placeholder="Choose anything" multiple>
+
+                                            </select>
+                                        </div>
+
+                                        <!-- Username input field -->
+                                        <div class="mb-3">
+                                            <label for="usernameInput" class="form-label">Username:</label>
+                                            <input type="text" id="usernameInput" class="form-control" name="username"
+                                                required />
+                                        </div>
+
+                                        <!-- Phone number input field -->
+                                        <div class="mb-3">
+                                            <label for="phoneInput" class="form-label">Phone Number:</label>
+                                            <input type="tel" id="phoneInput" class="form-control" name="phone"
+                                                required />
+                                        </div>
+
+                                        <!-- Password input field -->
+                                        <div class="mb-3">
+                                            <label for="passwordInput" class="form-label">Password:</label>
+                                            <input type="password" id="passwordInput" class="form-control"
+                                                name="password" required />
+                                        </div>
+
+                                        <!-- Submit button -->
+                                        <div class="d-grid mt-4">
+                                            <button type="submit" id="createModalButton"
+                                                class="btn btn-primary py-2">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="exampleRemoveModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to Remove this user?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="closeModal()" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
+                            <button id="confirmRemoveButton" type="button" class="btn btn-primary">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="popupSuccess"
+                style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
+                <div>
+                    <h6 class=" text-white">successfully done....</h6>
+                </div>
+            </div>
+
+            <div id="successFailed"
+                style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
+                <div>
+                    <h6 class=" text-white">Failed to submit....</h6>
+                </div>
+            </div>
+
+
         </div>
 
 
 
-
-
+        <!-- footer start-->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 footer-copyright text-center">
+                        <p class="mb-0">Copyright <span class="year-update"> </span> © Cuba Theme By Pixelstrap </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
 
-
-
-
-
-
-
-
-
-
+    </div>
 
 
 
@@ -987,125 +880,146 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
+    <!-- cdn for multiple selector -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
 
     <script>
-        fetch(`${BASE_URL}/api/admin/approve-request-tutor-list/`)
+        // Fetch all users data and populate the table
+        fetch(`${BASE_URL}/api/admin/all-users-list/`)
             .then(res => res.json())
             .then(data => {
                 const tableBody = document.getElementById('table-body');
                 if (data.length === 0) {
-                    tableBody.innerHTML = "<tr><td colspan='15' class='text-center'>No data available</td></tr>";
+                    tableBody.innerHTML = "<tr><td colspan='8' class='text-center'>No data available</td></tr>";
                     return;
                 }
 
-                data.forEach(tutor => {
-                    const { id, name, phone, location, details, otp, subject, start_date, gender, budget, lesson_type, days_per_week, start_immediate, class_name, additional_comment } = tutor;
+                const users = data.user_data || data;
 
+                users.forEach(tutor => {
+                    const { id, last_login, username, phone, join_date, user_type, roles_name } = tutor;
+                    const rolesNameStr = roles_name.join(', ') || 'No roles';
+
+                    const formattedJoinDate = new Date(join_date).toLocaleString();
+                    const formattedLastLogin = new Date(last_login).toLocaleString();
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                                <th>${id}</th>
-                                <th class="text-nowrap">${name}</th>
-                                <th>${phone}</th>
-                                <th class="text-nowrap">${location}</th>
-                                <th class="text-nowrap">${details}</th>
-                                <th>${subject}</th>
-                                <th class="text-nowrap">${start_date}</th>  
-                                <th class="text-nowrap">${class_name}</th>
-                                <th class="text-nowrap">${lesson_type}</th>
-                                <th>${gender}</th>
-                                <th>${budget}</th>
-                                <th class="text-nowrap">${days_per_week}</th>
-                                <th class="text-nowrap">${start_immediate}</th>
-                                <th class="text-nowrap">${additional_comment}</th>
-                                <th class="d-flex gap-2">
-                                    <button class="btn btn-approve bg-success" onClick="openFormModal(${id}, '${name}', '${phone}', '${location}', '${subject}','${class_name}','${lesson_type}','${gender}','${budget}','${days_per_week}','${additional_comment}', '${details}','${start_date}')">Edit</button>
-                                    <button class="btn btn-approve" onClick="openRemoveModal(${id})">Remove</button>
-                                
-                                </th>
-    `;
+                        <td>${id}</td>
+                        <td class="text-nowrap">${username || 'Not Available'}</td>
+                        <td class="text-nowrap">${phone || 'Not Available'}</td>
+                        <td class="text-nowrap">${formattedLastLogin || 'Not Available'}</td>
+                        <td class="text-nowrap">${formattedJoinDate || 'Not Available'}</td>
+                        <td class="text-nowrap">${user_type || 'Not Available'}</td>
+                        <td class="text-nowrap">${rolesNameStr || 'Not Available'}</td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-approve bg-success" onClick="openFormModal(${id},'${username}','${phone}','${formattedLastLogin}','${formattedJoinDate}', '${rolesNameStr}')">Edit</button>
+                            <button class="btn btn-approve" onClick="openRemoveModal(${id})">Remove</button>
+                        </td>`;
                     tableBody.appendChild(row);
                 });
 
 
 
-                $('#tutorRequestList').DataTable({
+
+
+                // DataTable initialization
+                $('#userListTable').DataTable({
                     "paging": true,
                     "searching": true,
                     "pageLength": 10,
-
                     "lengthMenu": [5, 10, 15, 20],
                     "columnDefs": [
-                        {
-                            "targets": [0, 1, 2, 3, 4],
-                            "orderable": true
-                        },
-                        {
-                            "targets": "_all",
-                            "orderable": false
-                        }
+                        { "targets": [0, 1, 2, 4, 5], "orderable": true },
+                        { "targets": "_all", "orderable": false }
                     ]
                 });
-
-
-
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
-                document.getElementById('table-body').innerHTML = "<tr><td colspan='15' class='text-center'>Error loading data</td></tr>";
+                document.getElementById('table-body').innerHTML = "<tr><td colspan='8' class='text-center'>Error loading data</td></tr>";
             });
 
 
 
-            
-        // modal opening.............................
-        const openFormModal = (id, name, phone, location, subject, className, lessonType, gender, budget, daysPerWeek, additionalComment, details, start_date) => {
 
+
+        // Fetch roles data and populate the select field
+        fetch(`${BASE_URL}/api/admin/view-role/`)
+            .then(res => res.json())
+            .then(data => {
+                const rolesSelect1 = document.getElementById('multiple-select-clear-field');
+                rolesSelect1.innerHTML = ''; // Clear previous options
+
+                data.forEach(role => {
+                    const option = document.createElement('option');
+                    option.value = role.role_name; // Use role_name as value
+                    option.textContent = role.role_name; // Use role_name as display text
+                    rolesSelect1.appendChild(option);
+                });
+
+                // Refresh Select2
+                $(rolesSelect1).trigger('change');
+            })
+            .catch(error => {
+                console.error('Error fetching roles:', error);
+            });
+
+
+        // Fetch roles data and populate the select field
+        fetch(`${BASE_URL}/api/admin/view-role/`)
+            .then(res => res.json())
+            .then(data => {
+                const rolesSelect2 = document.getElementById('multiple-select-custom-field');
+                rolesSelect2.innerHTML = '';
+
+                data.forEach(role => {
+                    const option = document.createElement('option');
+                    option.value = role.role_name;
+                    option.textContent = role.role_name;
+                    rolesSelect2.appendChild(option);
+                });
+
+                // Refresh Select2
+                $(rolesSelect2).trigger('change');
+            })
+            .catch(error => {
+                console.error('Error fetching roles:', error);
+            });
+
+
+
+
+
+        // Open the modal and populate the form
+        const openFormModal = (id, username, phone, formattedLastLogin, formattedJoinDate, rolesNameStr) => {
             $('#exampleModal').modal('show');
 
-            document.getElementById('nameInput').value = name || '';
-            document.querySelector('.phoneStudent').innerText = phone || '';
-            document.getElementById('locationInput').value = location || '';
-            document.getElementById('subjectInput').value = subject || '';
-            document.querySelector('select[name="class_name"]').value = className || '';
-            document.querySelector(`input[name="lesson_type"][value="${lessonType}"]`).checked = true;
-            document.querySelector(`input[name="gender"][value="${gender}"]`).checked = true;
-            document.querySelector('input[name="budget"]').value = budget || '';
-            document.querySelector('select[name="days_per_week"]').value = daysPerWeek || '';
-            document.querySelector('textarea[name="additional_comment"]').value = additionalComment || '';
-            document.getElementById('detailsInput').value = details || '';
-            document.getElementById('datepicker').value = start_date || '';
+            document.getElementById('usernameInput').value = username || '';
+            document.getElementById('phoneInput').value = phone || '';
+            document.getElementById('userType').value = 'admin';
 
+            const rolesSelect1 = document.getElementById('multiple-select-clear-field');
+            const rolesArray1 = rolesNameStr ? rolesNameStr.split(', ') : [];
+            $(rolesSelect1).val(rolesArray1).trigger('change');
 
-            document.getElementById('confirmButton').onclick = function () {
+            const rolesSelect2 = document.getElementById('multiple-select-clear-field');
+            const rolesArray2 = rolesNameStr ? rolesNameStr.split(', ') : [];
+            $(rolesSelect2).val(rolesArray2).trigger('change');
+
+            document.getElementById('createModalButton').onclick = function () {
                 handleEditData(id);
             };
         };
 
 
 
-        const openRemoveModal = (id) => {
-            $('#exampleRemoveModal').modal('show');
 
-            document.getElementById('confirmRemoveButton').onclick = function () { handleRemoveData(id); };
-        }
-
-        const deleteFormData = (id) => {
-            $('#exampleDeleteModal').modal('show');
-
-            document.getElementById('confirmDeleteButton').onclick = function () { handleDeleteData(id); };
-        }
-
-
-        // modal opening end......................
-
-
+        // Handle form submission for editing
         function handleEditData(id) {
             event.preventDefault();
-            const form = document.getElementById('myForm');
+            const form = document.getElementById('registrationForm');
             const formData = new FormData(form);
-
 
             const url = `${BASE_URL}/api/admin/edit-approved-request-tutor/${id}/`;
 
@@ -1120,9 +1034,52 @@
                     popup.style.display = 'block';
                     setTimeout(() => {
                         popup.style.display = 'none';
+                    }, 1000);
+
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const popup = document.getElementById('successFailed');
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 1000);
+
+                    window.location.reload();
+                });
+        }
+
+        // Open the create modal
+        const openCreateModal = () => {
+            $('#createModal').modal('show');
+            document.getElementById('createModalButton').onclick = function () { handleCreateData(); };
+        };
+
+        // Handle create data submission
+        function handleCreateData() {
+            event.preventDefault();
+            const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+
+            const url = '${BASE_URL}/api/admin/add-institution/';
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    const popup = document.getElementById('popupSuccess');
+                    popup.style.display = 'block';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
                     }, 100000);
 
                     window.location.reload();
+
+
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -1138,67 +1095,30 @@
 
 
 
-
-
-
-
-        const handleRemoveData = (id) => {
-
-            const apiUrl = `${BASE_URL}/api/admin/unapprove-request-tutor/${id}/`
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: id })
-            })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('ID posted successfully');
-                        const popup = document.getElementById('popupSuccess');
-                        popup.style.display = 'block';
-                        setTimeout(() => {
-                            popup.style.display = 'none';
-                        }, 100000);
-
-                        window.location.reload();
-                    } else {
-                        console.error('Failed to post ID');
-                        const popup = document.getElementById('successFailed');
-                        popup.style.display = 'block';
-                        setTimeout(() => {
-                            popup.style.display = 'none';
-                        }, 100000);
-
-                        window.location.reload();
-                    }
-                })
-
-
-        }
-
-
-
-
-
-        $(document).ready(function () {
-            // Initialize datepicker
-            $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true
-            });
-
-            // Show datepicker when the icon is clicked
-            $('#calendar-icon').click(function () {
-                $('#datepicker').focus();
-            });
-        });
-
-
+        // Open remove modal and handle removal
+        const openRemoveModal = (id) => {
+            $('#exampleRemoveModal').modal('show');
+            document.getElementById('confirmRemoveButton').onclick = function () { handleRemoveData(id); };
+        };
     </script>
 
-    <!-- Bootstrap Datepicker JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        // Initialize Select2 for multiple select
+        $('#multiple-select-clear-field').select2({
+            theme: "bootstrap-5",
+            width: '100%',
+            placeholder: "Choose roles",
+            closeOnSelect: false,
+        });
+
+        $('#multiple-select-custom-field').select2({
+            theme: "bootstrap-5",
+            width: '100%',
+            placeholder: "Choose roles",
+            closeOnSelect: false,
+            tags: true
+        });
+    </script>
 
 
 </body>
