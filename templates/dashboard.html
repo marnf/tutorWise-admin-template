@@ -12,7 +12,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
-    <title>Project Create | Cuba - Premium Admin Template By Pixelstrap</title>
+    <title>Social Dashboard | Cuba - Premium Admin Template By Pixelstrap</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
         rel="stylesheet">
@@ -32,7 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/select/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/select.bootstrap5.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/vector-map1/jsvectormap.min.css">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
@@ -41,128 +43,141 @@
     <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-    <!-- database cdn link -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css"
-        rel="stylesheet">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- Gijgo Datepicker CSS -->
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <!-- Gijgo Datepicker JS -->
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
-
-
 
     <style>
-        .dataTables_filter input:focus {
-            border-color: #000000;
-            outline: none;
-            background: gainsboro;
+        /* পিচার্টের container */
+        .social-chart {
+            position: relative;
+            /* To position the percentage inside the chart */
+        }
+
+        /* সেন্টার করা percentage */
+        .percentage-center {
+            position: absolute;
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            font-size: 14px;
+            color: #333;
+
+            z-index: 1;
+
+            pointer-events: none;
+
         }
 
 
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
-
-        .table th,
-        .table td {
-            text-align: left;
+        @keyframes bake-pie {
+            from {
+                transform: rotate(0deg) translate3d(0, 0, 0);
+            }
         }
 
-        .btn-approve {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+        body {
+            font-family: "Open Sans", Arial;
+            background: #EEE;
         }
 
-        .btn-submit {
-            background-color: #00852c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+        main {
+            width: 400px;
+            margin: 30px auto;
         }
 
-        .btn-submit:hover {
-            background-color: #005320;
-            transform: scale(1.05);
-            color: white;
+        section {
+            margin-top: 30px;
         }
 
-
-        .btn-approve:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-            color: white;
+        .pieID {
+            display: inline-block;
+            vertical-align: top;
         }
 
-        .btn-edit {
-            background-color: #7e8083;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+        .pie {
+            height: 200px;
+            width: 200px;
+            position: relative;
+            margin: 0 30px 30px 0;
         }
 
-        .form-select {
-            height: calc(1.5em + 1.25rem + 2px);
-            font-size: 15px;
-            padding: 0.65rem 0.75rem;
-            line-height: 1.5;
-            border-radius: 0.25rem;
-            height: 40px;
-            font-size: 15px;
-            padding: 0.65rem 0.75rem;
-            line-height: 1.5;
-            border-radius: 0.25rem;
-            border: 1px solid black;
+        .pie::before {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+            background: #EEE;
+            border-radius: 50%;
+            top: 50px;
+            left: 50px;
         }
 
-        .btn-edit:hover {
-            background-color: #000000;
-            transform: scale(1.05);
-            color: white;
+        .pie::after {
+            content: "";
+            display: block;
+            width: 120px;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+            margin: 220px auto;
+
         }
 
-        .btn-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
+        .slice {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            clip: rect(0px, 200px, 200px, 100px);
+            animation: bake-pie 1s;
         }
 
-        .btn-approve,
-        .btn-edit {
-            width: 100%;/
+        .slice span {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: black;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            clip: rect(0px, 200px, 200px, 100px);
         }
 
-        .hover-zoom:hover {
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
+        .legend {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background: #FFF;
+            padding: 15px;
+            font-size: 13px;
+            box-shadow: 1px 1px 0 #DDD,
+                2px 2px 0 #BBB;
         }
+
+        .legend li {
+            width: 110px;
+            height: 1.25em;
+            margin-bottom: 0.7em;
+            padding-left: 0.5em;
+            border-left: 1.25em solid black;
+        }
+
+        .legend em {
+            font-style: normal;
+        }
+
+        .legend span {
+            float: right;
+        }
+
+       
     </style>
-
-
-
-
-
-
 </head>
 
 <body>
@@ -178,21 +193,11 @@
             </filter>
         </svg>
     </div>
-    <!-- loader ends-->
-
-
-
-    <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
-    <!-- tap on tap ends-->
-
 
 
 
     <!-- page-wrapper Start-->
-    <div class="page-wrapper default-wrapper" id="pageWrapper">
-
-
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
         <!-- Page Header Start-->
         <div class="page-header " style="height: 89px;">
             <div class="header-wrapper row ">
@@ -455,23 +460,22 @@
                     </ul>
                 </div>
                 <script class="result-template" type="text/x-handlebars-template">
-            <div class="ProfileCard u-cf">                        
-            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
-            <div class="ProfileCard-details">
-            <div class="ProfileCard-realName">{{name}}</div>
-            </div>
-            </div>
-          </script>
+        <div class="ProfileCard u-cf">                        
+        <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+        <div class="ProfileCard-details">
+        <div class="ProfileCard-realName">{{name}}</div>
+        </div>
+        </div>
+      </script>
                 <script class="empty-template"
                     type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
             </div>
         </div>
-        <!-- Page Header Ends   -->
 
 
 
         <!-- Page Body Start-->
-        <div class="page-body-wrapper default-menu default-menu">
+        <div class="page-body-wrapper">
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
                 <div>
@@ -498,16 +502,16 @@
                                 </li>
 
 
-                                
+
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="dashboard.html">
 
-                                    <svg class="stroke-icon ">
-                                        <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
-                                    </svg>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
-                                    </svg><span class="h6 ">Dashboard</span></a>
-                            </li>
+                                        <svg class="stroke-icon ">
+                                            <use href="../assets/svg/icon-sprite.svg#stroke-editors"></use>
+                                        </svg>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-editors"></use>
+                                        </svg><span class="h6 ">Dashboard</span></a>
+                                </li>
 
 
 
@@ -625,243 +629,364 @@
                     </nav>
                 </div>
             </div>
-            <!-- Page Sidebar Ends-->
 
 
 
-            <div class="page-body  pt-1  overflow-auto ">
 
-                <div class=" mt-4">
-                    <h2 class=" text-center">Approved tutor request</h2>
-                </div>
-
-                <button class="btn btn-primary btn-lg px-4 my-2 shadow-sm hover-zoom" onclick="openCreateModal()">create
-                    user</button>
-
-                <div class="row justify-content-center">
-
-                    <div class="col-md-12">
-
-                        <div class="card p-3 shadow-sm overflow-auto">
-
-
-                            <div class="row justify-content-center">
-
-
-                                <table id="userListTable" class="table table-bordered  ">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th class="text-nowrap">Name</th>
-                                            <th class="text-nowrap">Phone</th>
-                                            <th>Last Login</th>
-                                            <th class="text-nowrap">Join Date</th>
-                                            <th>User Type</th>
-                                            <th>Roles Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-body">
-
-                                    </tbody>
-                                </table>
-
-
+            <div class="page-body">
+                <div class="container-fluid">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3>Social</h3>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">
+                                            <svg class="stroke-icon">
+                                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                                            </svg></a></li>
+                                    <li class="breadcrumb-item">Dashboard</li>
+                                    <li class="breadcrumb-item active">Social</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-            </div>
-
-
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">User Registration</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="registrationForm" class="p-5">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!-- User Type Dropdown -->
-                                        <div class="mb-3">
-                                            <label for="userType" class="form-label">User Type:</label>
-                                            <select id="userType" class="form-select" name="user_type" required>
-                                                <option value="admin">Admin</option>
-                                                <option value="super_admin">Super Admin</option>
-                                            </select>
+                <!-- Container-fluid starts-->
+                <div class="container-fluid dashboard-5">
+                    <div class="row">
+                        <!-- Total Tutor Card -->
+                        <div class="col s-xxl-3 box-col-4">
+                            <div class="card social-widget widget-hover">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h2>Total Tutor</h2>
                                         </div>
-
-                                        <!-- Multiple Select -->
-                                        <div class="mb-2">
-                                            <label for="multiple-select-clear-field" class="form-label">Access:</label>
-                                            <select class="form-select" id="multiple-select-clear-field"
-                                                name="roles_name" data-placeholder="Choose anything" multiple>
-
-                                            </select>
+                                    </div>
+                                    <div class="social-content">
+                                        <div>
+                                            <h5 id="tutor-counter" class="mb-1 counter">0</h5>
+                                            <span class="f-light">Tutors</span>
                                         </div>
-
-                                        <!-- Username input field -->
-                                        <div class="mb-3">
-                                            <label for="usernameInput" class="form-label">Username:</label>
-                                            <input type="text" id="usernameInput" class="form-control" name="username"
-                                                required />
-                                        </div>
-
-                                        <!-- Phone number input field -->
-                                        <div class="mb-3">
-                                            <label for="phoneInput" class="form-label">Phone Number:</label>
-                                            <input type="tel" id="phoneInput" class="form-control" name="phone"
-                                                required />
-                                        </div>
-
-                                        <!-- Submit button -->
-                                        <div class="d-grid mt-4">
-                                            <button type="submit" id="createModalButton"
-                                                class="btn btn-primary py-2">Create</button>
+                                        <div class="social-chart">
+                                            <div id="tutor-chart"></div>
+                                            <div class="percentage-center" id="percentageText"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-
-            <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">User Registration</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="registrationForm" class="p-5">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!-- User Type Dropdown -->
-                                        <div class="mb-3">
-                                            <label for="userType" class="form-label">User Type:</label>
-                                            <select id="userType" class="form-select" name="user_type" required>
-                                                <option value="admin">Admin</option>
-                                                <option value="super_admin">Super Admin</option>
-                                            </select>
+                        <!-- Total Student Card -->
+                        <div class="col s-xxl-3 box-col-4">
+                            <div class="card social-widget widget-hover">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h2>Total Student</h2>
                                         </div>
-
-                                        <!-- Multiple Select -->
-                                        <div class="mb-2">
-                                            <label for="multiple-select-custom-field" class="form-label">Access:</label>
-                                            <select class="form-select" id="multiple-select-custom-field"
-                                                name="roles_name" data-placeholder="Choose anything" multiple>
-
-                                            </select>
+                                    </div>
+                                    <div class="social-content">
+                                        <div>
+                                            <h5 id="student-counter" class="mb-1 counter">0</h5>
+                                            <span class="f-light">Students</span>
                                         </div>
-
-                                        <!-- Username input field -->
-                                        <div class="mb-3">
-                                            <label for="usernameInput" class="form-label">Username:</label>
-                                            <input type="text" id="usernameInput" class="form-control" name="username"
-                                                required />
-                                        </div>
-
-                                        <!-- Phone number input field -->
-                                        <div class="mb-3">
-                                            <label for="phoneInput" class="form-label">Phone Number:</label>
-                                            <input type="tel" id="phoneInput" class="form-control" name="phone"
-                                                required />
-                                        </div>
-
-                                        <!-- Password input field -->
-                                        <div class="mb-3">
-                                            <label for="passwordInput" class="form-label">Password:</label>
-                                            <input type="password" id="passwordInput" class="form-control"
-                                                name="password" required />
-                                        </div>
-
-                                        <!-- Submit button -->
-                                        <div class="d-grid mt-4">
-                                            <button type="submit" id="createModalButton"
-                                                class="btn btn-primary py-2">Create</button>
+                                        <div class="social-chart">
+                                            <div id="student-chart"></div>
+                                            <div class="percentage-center" id="student-percentageText"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                        </div>
+
+                        <!-- Pro Tutor Card -->
+                        <div class="col s-xxl-3 box-col-4">
+                            <div class="card social-widget widget-hover">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h2>Pro Tutor</h2>
+                                        </div>
+                                    </div>
+                                    <div class="social-content">
+                                        <div>
+                                            <h5 id="pro-tutor-counter" class="mb-1 counter">0</h5>
+                                            <span class="f-light">Pro Tutors</span>
+                                        </div>
+                                        <div class="social-chart">
+                                            <div id="pro-tutor-chart"></div>
+                                            <div class="percentage-center" id="pro-tutor-percentageText"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Referrer Number Card -->
+                        <div class="col s-xxl-3 box-col-4">
+                            <div class="card social-widget widget-hover">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h2>Referrer Number</h2>
+                                        </div>
+                                    </div>
+                                    <div class="social-content">
+                                        <div>
+                                            <h5 id="referrer-counter" class="mb-1 counter">0</h5>
+                                            <span class="f-light">Referrers</span>
+                                        </div>
+                                        <div class="social-chart">
+                                            <div id="referrer-chart"></div>
+                                            <div class="percentage-center" id="referrer-percentageText"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Number Card -->
+                        <div class="col s-xxl-3 box-col-4">
+                            <div class="card social-widget widget-hover">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h2>Payment Number</h2>
+                                        </div>
+                                    </div>
+                                    <div class="social-content">
+                                        <div>
+                                            <h5 id="payment-counter" class="mb-1 counter">0</h5>
+                                            <span class="f-light">Payments</span>
+                                        </div>
+                                        <div class="social-chart">
+                                            <div id="payment-chart"></div>
+                                            <div class="percentage-center" id="payment-percentageText"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- active user -->
+                        <div class="col s-xxl-3 box-col-4">
+                            <div class="card social-widget widget-hover">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h2>Active User</h2>
+                                        </div>
+                                    </div>
+                                    <div class="social-content">
+                                        <div>
+                                            <h5 id="active-user-counter" class="mb-1 counter">0</h5>
+                                            <span class="f-light">active Users</span>
+                                        </div>
+                                        <div class="social-chart">
+                                            <div id="active-user-chart"></div>
+                                            <div class="percentage-center" id="active-user-percentageText"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- inactive User Card -->
+                        <div class="col md-col-3  s-xxl-3 box-col-4 ">
+                            <div class="card social-widget widget-hover shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h2>Inactive User</h2>
+                                        </div>
+                                    </div>
+                                    <div class="social-content">
+                                        <div>
+                                            <h5 id="inactive-user-counter" class="mb-1 counter">0</h5>
+                                            <span class="f-light">Inactive Users</span>
+                                        </div>
+                                        <div class="social-chart">
+                                            <div id="inactive-user-chart"></div>
+                                            <div class="percentage-center" id="inactive-user-percentageText"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary btn-lg px-4 my-2 shadow-sm " onclick="">Send
+                                            Message</button>
+
+                                        <button class="btn btn-primary btn-lg px-4 my-2 shadow-sm "
+                                            onclick="">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+                <main>
+                    <section>
+                        <div class="pieID pie">
+
+                        </div>
+                        <ul class="pieID legend">
+                            <li>
+                                <em>Humans</em>
+                                <span>718</span>
+                            </li>
+                            <li>
+                                <em>Dogs</em>
+                                <span>531</span>
+                            </li>
+                            <li>
+                                <em>Cats</em>
+                                <span>868</span>
+                            </li>
+                            <li>
+                                <em>Slugs</em>
+                                <span>344</span>
+                            </li>
+                            <li>
+                                <em>Aliens</em>
+                                <span>1145</span>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </main>
+
+                <!-- Container-fluid Ends-->
+            </div>
+
+
+
+
+
+            <!-- footer start-->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 footer-copyright text-center">
+                            <p class="mb-0">Copyright <span class="year-update"> </span> © Cuba Theme By Pixelstrap </p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
-            <div class="modal fade" id="exampleRemoveModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to Remove this user?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" onclick="closeModal()" class="btn btn-secondary"
-                                data-dismiss="modal">Close</button>
-                            <button id="confirmRemoveButton" type="button" class="btn btn-primary">Remove</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div id="popupSuccess"
-                style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #36b95d; color: #fff; padding: 20px; border-radius: 5px;">
-                <div>
-                    <h6 class=" text-white">successfully done....</h6>
-                </div>
-            </div>
-
-            <div id="successFailed"
-                style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #bd0707; color: #fff; padding: 20px; border-radius: 5px;">
-                <div>
-                    <h6 class=" text-white">Failed to submit....</h6>
-                </div>
-            </div>
-
-
+            </footer>
         </div>
-
-
-
-        <!-- footer start-->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 footer-copyright text-center">
-                        <p class="mb-0">Copyright <span class="year-update"> </span> © Cuba Theme By Pixelstrap </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 
 
-    </div>
+    <script>
+        // Function to fetch all data
+        function fetchAllData() {
+            Promise.all([
+                fetch('http://192.168.0.154:8000/api/admin/total-tutor-number/'),
+                fetch('http://192.168.0.154:8000/api/admin/total-student-number/'),
+                fetch('http://192.168.0.154:8000/api/admin/total-pro-tutor-number/'),
+                fetch('http://192.168.0.154:8000/api/admin/total-referrer-number/'),
+                fetch('http://192.168.0.154:8000/api/admin/total-payment-number/'),
+                fetch('http://192.168.0.154:8000/api/admin/active-inactive-user-percentage/'),
+                fetch('http://192.168.0.154:8000/api/admin/active-inactive-user-percentage/')
+            ])
+                .then(responses => Promise.all(responses.map(response => response.json())))
+                .then(data => {
+                    // Store all data in a variable (window object or any global store)
+                    window.allData = data;
+                    // Now, you can use data as needed
+                    processData(window.allData);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Function to process and display required data
+        function processData(data) {
+            // Process data for Total Tutor Card
+            const totalTutorData = data[0];
+            document.getElementById('tutor-counter').textContent = totalTutorData.total_tutor;
+            createRadialChart(document.getElementById('tutor-chart'), totalTutorData.tutor_percentage);
+            document.getElementById('percentageText').textContent = totalTutorData.tutor_percentage + '%';
+
+            // Process data for Total Student Card
+            const totalStudentData = data[1];
+            document.getElementById('student-counter').textContent = totalStudentData.total_student;
+            createRadialChart(document.getElementById('student-chart'), totalStudentData.student_percentage);
+            document.getElementById('student-percentageText').textContent = totalStudentData.student_percentage + '%';
+
+            // Process data for Pro Tutor Card
+            const totalProTutorData = data[2];
+            document.getElementById('pro-tutor-counter').textContent = totalProTutorData.total_pro_tutor;
+            createRadialChart(document.getElementById('pro-tutor-chart'), totalProTutorData.pro_tutor_percentage);
+            document.getElementById('pro-tutor-percentageText').textContent = totalProTutorData.pro_tutor_percentage + '%';
+
+            // Process data for Referrer Card
+            const totalReferrerData = data[3];
+            document.getElementById('referrer-counter').textContent = totalReferrerData.total_referer;
+            createRadialChart(document.getElementById('referrer-chart'), totalReferrerData.referer_percentage);
+            document.getElementById('referrer-percentageText').textContent = totalReferrerData.referer_percentage + '%';
+
+            // Process data for Payment Card
+            const totalPaymentData = data[4];
+            document.getElementById('payment-counter').textContent = totalPaymentData.total_payment_number;
+            createRadialChart(document.getElementById('payment-chart'), totalPaymentData.apply_limit_percentage);
+            document.getElementById('payment-percentageText').textContent = totalPaymentData.apply_limit_percentage + '%';
 
 
 
-    <!-- Base api -->
-    <script src="./base_url.js"></script>
-    <!-- Base api -->
-    <script src="./base_url.js"></script> <!-- latest jquery-->
+            // Process data for active User Card
+            const activeUserData = data[5];
+            document.getElementById('active-user-counter').textContent = activeUserData.active_user;
+            createRadialChart(document.getElementById('active-user-chart'), activeUserData.active_percentage);
+            document.getElementById('active-user-percentageText').textContent = activeUserData.active_percentage + '%';
+
+
+            // Process data for inactive User Card
+            const inactiveUserData = data[6];
+            document.getElementById('inactive-user-counter').textContent = inactiveUserData.inactive_user;
+            createRadialChart(document.getElementById('inactive-user-chart'), inactiveUserData.inactive_percentage);
+            document.getElementById('inactive-user-percentageText').textContent = inactiveUserData.inactive_percentage + '%';
+
+
+        }
+
+        // Function to create radial chart
+        function createRadialChart(element, percentage) {
+            const chartOptions = {
+                series: [percentage],
+                chart: {
+                    height: 120,
+                    type: 'radialBar',
+                },
+                plotOptions: {
+                    radialBar: {
+                        dataLabels: {
+                            show: false,  // Hide the default data label from the chart
+                        },
+                    },
+                },
+                labels: ['Progress'],
+            };
+
+            const chart = new ApexCharts(element, chartOptions);
+            chart.render();
+        }
+
+        // Fetch all data when the page loads
+        window.onload = fetchAllData;
+    </script>
+
+
+
+
+    <!-- latest jquery-->
     <script src="../assets/js/jquery.min.js"></script>
     <!-- Bootstrap js-->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -879,257 +1004,81 @@
     <script src="../assets/js/slick/slick.min.js"></script>
     <script src="../assets/js/slick/slick.js"></script>
     <script src="../assets/js/header-slick.js"></script>
-    <script src="../assets/js/form-validation-custom.js"></script>
-    <script src="../assets/js/select/bootstrap-select.min.js"></script>
+    <script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
+    <script src="../assets/js/chart/apex-chart/stock-prices.js"></script>
+    <script src="../assets/js/counter/counter-custom.js"></script>
+    <script src="../assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/datatable/datatables/dataTables.js"></script>
+    <script src="../assets/js/datatable/datatables/dataTables.select.js"></script>
+    <script src="../assets/js/datatable/datatables/select.bootstrap5.js"></script>
+    <script src="../assets/js/datatable/datatables/datatable.custom.js"></script>
+    <script src="../assets/js/vector-map1/jsvectormap.js"></script>
+    <script src="../assets/js/vector-map1/world.js"></script>
+    <script src="../assets/js/vector-map1/custom-vectormap.js"></script>
+    <script src="../assets/js/dashboard/dashboard_5.js"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/script1.js"></script>
 
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Include DataTables JS -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <!-- cdn for multiple selector -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
-
     <script>
-        // Fetch all users data and populate the table
-        fetch(`${BASE_URL}/api/admin/all-users-list/`)
-            .then(res => res.json())
-            .then(data => {
-                const tableBody = document.getElementById('table-body');
-                if (data.length === 0) {
-                    tableBody.innerHTML = "<tr><td colspan='8' class='text-center'>No data available</td></tr>";
-                    return;
-                }
-
-                const users = data.user_data || data;
-
-                users.forEach(tutor => {
-                    const { id, last_login, username, phone, join_date, user_type, roles_name } = tutor;
-                    const rolesNameStr = roles_name.join(', ') || 'No roles';
-
-                    const formattedJoinDate = new Date(join_date).toLocaleString();
-                    const formattedLastLogin = new Date(last_login).toLocaleString();
-
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${id}</td>
-                        <td class="text-nowrap">${username || 'Not Available'}</td>
-                        <td class="text-nowrap">${phone || 'Not Available'}</td>
-                        <td class="text-nowrap">${formattedLastLogin || 'Not Available'}</td>
-                        <td class="text-nowrap">${formattedJoinDate || 'Not Available'}</td>
-                        <td class="text-nowrap">${user_type || 'Not Available'}</td>
-                        <td class="text-nowrap">${rolesNameStr || 'Not Available'}</td>
-                        <td class="d-flex gap-2">
-                            <button class="btn btn-approve bg-success" onClick="openFormModal(${id},'${username}','${phone}','${formattedLastLogin}','${formattedJoinDate}', '${rolesNameStr}')">Edit</button>
-                            <button class="btn btn-approve" onClick="openRemoveModal(${id})">Remove</button>
-                        </td>`;
-                    tableBody.appendChild(row);
-                });
-
-
-
-
-
-                // DataTable initialization
-                $('#userListTable').DataTable({
-                    "paging": true,
-                    "searching": true,
-                    "pageLength": 10,
-                    "lengthMenu": [5, 10, 15, 20],
-                    "columnDefs": [
-                        { "targets": [0, 1, 2, 4, 5], "orderable": true },
-                        { "targets": "_all", "orderable": false }
-                    ]
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                document.getElementById('table-body').innerHTML = "<tr><td colspan='8' class='text-center'>Error loading data</td></tr>";
-            });
-
-
-
-
-
-        // Fetch roles data and populate the select field
-        fetch(`${BASE_URL}/api/admin/view-role/`)
-            .then(res => res.json())
-            .then(data => {
-                const rolesSelect1 = document.getElementById('multiple-select-clear-field');
-                rolesSelect1.innerHTML = ''; // Clear previous options
-
-                data.forEach(role => {
-                    const option = document.createElement('option');
-                    option.value = role.role_name; // Use role_name as value
-                    option.textContent = role.role_name; // Use role_name as display text
-                    rolesSelect1.appendChild(option);
-                });
-
-                // Refresh Select2
-                $(rolesSelect1).trigger('change');
-            })
-            .catch(error => {
-                console.error('Error fetching roles:', error);
-            });
-
-
-        // Fetch roles data and populate the select field
-        fetch(`${BASE_URL}/api/admin/view-role/`)
-            .then(res => res.json())
-            .then(data => {
-                const rolesSelect2 = document.getElementById('multiple-select-custom-field');
-                rolesSelect2.innerHTML = '';
-
-                data.forEach(role => {
-                    const option = document.createElement('option');
-                    option.value = role.role_name;
-                    option.textContent = role.role_name;
-                    rolesSelect2.appendChild(option);
-                });
-
-                // Refresh Select2
-                $(rolesSelect2).trigger('change');
-            })
-            .catch(error => {
-                console.error('Error fetching roles:', error);
-            });
-
-
-
-
-
-        // Open the modal and populate the form
-        const openFormModal = (id, username, phone, formattedLastLogin, formattedJoinDate, rolesNameStr) => {
-            $('#exampleModal').modal('show');
-
-            document.getElementById('usernameInput').value = username || '';
-            document.getElementById('phoneInput').value = phone || '';
-            document.getElementById('userType').value = 'admin';
-
-            const rolesSelect1 = document.getElementById('multiple-select-clear-field');
-            const rolesArray1 = rolesNameStr ? rolesNameStr.split(', ') : [];
-            $(rolesSelect1).val(rolesArray1).trigger('change');
-
-            const rolesSelect2 = document.getElementById('multiple-select-clear-field');
-            const rolesArray2 = rolesNameStr ? rolesNameStr.split(', ') : [];
-            $(rolesSelect2).val(rolesArray2).trigger('change');
-
-            document.getElementById('createModalButton').onclick = function () {
-                handleEditData(id);
-            };
-        };
-
-
-
-
-        // Handle form submission for editing
-        function handleEditData(id) {
-            event.preventDefault();
-            const form = document.getElementById('registrationForm');
-            const formData = new FormData(form);
-
-            const url = `${BASE_URL}/api/admin/edit-approved-request-tutor/${id}/`;
-
-            fetch(url, {
-                method: 'PUT',
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    const popup = document.getElementById('popupSuccess');
-                    popup.style.display = 'block';
-                    setTimeout(() => {
-                        popup.style.display = 'none';
-                    }, 1000);
-
-                    window.location.reload();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    const popup = document.getElementById('successFailed');
-                    popup.style.display = 'block';
-                    setTimeout(() => {
-                        popup.style.display = 'none';
-                    }, 1000);
-
-                    window.location.reload();
-                });
+        function sliceSize(dataNum, dataTotal) {
+            return (dataNum / dataTotal) * 360;
         }
-
-        // Open the create modal
-        const openCreateModal = () => {
-            $('#createModal').modal('show');
-            document.getElementById('createModalButton').onclick = function () { handleCreateData(); };
-        };
-
-        // Handle create data submission
-        function handleCreateData() {
-            event.preventDefault();
-            const form = document.getElementById('myForm');
-            const formData = new FormData(form);
-
-            const url = '${BASE_URL}/api/admin/add-institution/';
-
-            fetch(url, {
-                method: 'POST',
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    const popup = document.getElementById('popupSuccess');
-                    popup.style.display = 'block';
-                    setTimeout(() => {
-                        popup.style.display = 'none';
-                    }, 100000);
-
-                    window.location.reload();
-
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    const popup = document.getElementById('successFailed');
-                    popup.style.display = 'block';
-                    setTimeout(() => {
-                        popup.style.display = 'none';
-                    }, 100000);
-
-                    window.location.reload();
-                });
+        function addSlice(sliceSize, pieElement, offset, sliceID, color) {
+            $(pieElement).append("<div class='slice " + sliceID + "'><span></span></div>");
+            var offset = offset - 1;
+            var sizeRotation = -179 + sliceSize;
+            $("." + sliceID).css({
+                "transform": "rotate(" + offset + "deg) translate3d(0,0,0)"
+            });
+            $("." + sliceID + " span").css({
+                "transform": "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
+                "background-color": color
+            });
         }
+        function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+            var sliceID = "s" + dataCount + "-" + sliceCount;
+            var maxSize = 179;
+            if (sliceSize <= maxSize) {
+                addSlice(sliceSize, pieElement, offset, sliceID, color);
+            } else {
+                addSlice(maxSize, pieElement, offset, sliceID, color);
+                iterateSlices(sliceSize - maxSize, pieElement, offset + maxSize, dataCount, sliceCount + 1, color);
+            }
+        }
+        function createPie(dataElement, pieElement) {
+            var listData = [];
+            $(dataElement + " span").each(function () {
+                listData.push(Number($(this).html()));
+            });
+            var listTotal = 0;
+            for (var i = 0; i < listData.length; i++) {
+                listTotal += listData[i];
+            }
+            var offset = 0;
+            var color = [
+                "cornflowerblue",
+                "olivedrab",
+                "orange",
+                "tomato",
+                "crimson",
+                "purple",
+                "turquoise",
+                "forestgreen",
+                "navy",
+                "gray"
+            ];
+            for (var i = 0; i < listData.length; i++) {
+                var size = sliceSize(listData[i], listTotal);
+                iterateSlices(size, pieElement, offset, i, 0, color[i]);
+                $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
+                offset += size;
+            }
+        }
+        createPie(".pieID.legend", ".pieID.pie");
 
-
-
-        // Open remove modal and handle removal
-        const openRemoveModal = (id) => {
-            $('#exampleRemoveModal').modal('show');
-            document.getElementById('confirmRemoveButton').onclick = function () { handleRemoveData(id); };
-        };
     </script>
-
-    <script>
-        // Initialize Select2 for multiple select
-        $('#multiple-select-clear-field').select2({
-            theme: "bootstrap-5",
-            width: '100%',
-            placeholder: "Choose roles",
-            closeOnSelect: false,
-        });
-
-        $('#multiple-select-custom-field').select2({
-            theme: "bootstrap-5",
-            width: '100%',
-            placeholder: "Choose roles",
-            closeOnSelect: false,
-            tags: true
-        });
-    </script>
-
 
 </body>
 
